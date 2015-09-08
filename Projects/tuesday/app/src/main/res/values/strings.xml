@@ -4,4 +4,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="label_click_me">Click me!</string>
+    <string name="label_toast_message">You guys are awesome!</string>
 </resources>

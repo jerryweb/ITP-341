@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">A#</string>
+
+    <string name="hello_world">Hello ITP 341!</string>
+    <string name="action_settings">Settings</string>
+    <string name="greeting">Hi, my name is Jerry, and this is my first app.</string>
+    <string name="comment">The above sentence is a run-on sentence...</string>
+</resources>
