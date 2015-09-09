@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">A2</string>
+
+    <string name="Main_Text">Which do you prefer, AMD or NVIDA or Intel Integrated Graphics.</string>
+    <string name="action_settings">Settings</string>
+    <string name="btn_1_value">AMD</string>
+    <string name="btn_2_value">NVIDA</string>
+    <string name="btn_3_value">Intel HD</string>
+    <string name="Toast_Answer_1">You chose the RED TEAM!! Number of clicks: </string>
+    <string name="Toast_Answer_2">You chose the GREEN TEAM!! Number of clicks: </string>
+    <string name="Toast_Answer_3">LOL that is a great choice and the number of clicks: </string>
+</resources>
