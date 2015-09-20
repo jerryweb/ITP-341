@@ -19,15 +19,46 @@ public class MainActivity extends Activity {
 
     //These 2 arrays contain the value for the number of times the button was clicked, and the message
     // for the toast after each button click
-    public static final String[] numClicksArray = new String[3];
+    public static final String[] numClicksArray = new String[6];
 
     private int[] numBtnClicks = {0,0,0,0,0,0};
+
+    private void populateStringArray()
+    {
+        numClicksArray[0] = "itp341.webb.jerry.a3.btn1clicks";
+        numClicksArray[1] = "itp341.webb.jerry.a3.btn2clicks";
+        numClicksArray[2] = "itp341.webb.jerry.a3.btn3clicks";
+        numClicksArray[3] = "itp341.webb.jerry.a3.btn4clicks";
+        numClicksArray[4] = "itp341.webb.jerry.a3.btn5clicks";
+        numClicksArray[5] = "itp341.webb.jerry.a3.btn6clicks";
+    }
+
+    @Override
+    protected void onSaveInstanceState (Bundle outState) {
+        super.onCreate(outState);
+        for (int i = 0; i < 6;i++){
+            outState.putInt(numClicksArray[i], numBtnClicks[i]);
+        }
+
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(savedInstanceState != null) {    //activity has existed before
+            for (int i = 0; i < 6;i++){
+                numBtnClicks[i] = savedInstanceState.getInt(numClicksArray[i],0);
+            }
+        }
+        else{
+            for (int i = 0; i < 6;i++){
+                numBtnClicks[i] = 0;
+            }
+        }
         picBtn1 = (ImageButton) findViewById(R.id.imageButton1);
         picBtn2 = (ImageButton) findViewById(R.id.imageButton2);
         picBtn3 = (ImageButton) findViewById(R.id.imageButton3);
@@ -46,6 +77,8 @@ public class MainActivity extends Activity {
         picBtn5.setOnClickListener(picBtnListener);
         picBtn6.setOnClickListener(picBtnListener);
 
+
+
     }
 
     public class  ButtonListener implements View.OnClickListener {
@@ -57,6 +90,41 @@ public class MainActivity extends Activity {
                     numBtnClicks[0]++;
                     Toast.makeText(MainActivity.this, getResources().getString(R.string.toast_american)
                             + numBtnClicks[0] + getResources().getString(R.string.toast_end),
+                            Toast.LENGTH_SHORT).show();
+                    break;
+
+                case R.id.imageButton2:
+                    numBtnClicks[1]++;
+                    Toast.makeText(MainActivity.this, getResources().getString(R.string.toast_chinese)
+                                    + numBtnClicks[1] + getResources().getString(R.string.toast_end),
+                            Toast.LENGTH_SHORT).show();
+                    break;
+
+                case R.id.imageButton3:
+                    numBtnClicks[2]++;
+                    Toast.makeText(MainActivity.this, getResources().getString(R.string.toast_indian)
+                                    + numBtnClicks[2] + getResources().getString(R.string.toast_end),
+                            Toast.LENGTH_SHORT).show();
+                    break;
+
+                case R.id.imageButton4:
+                    numBtnClicks[3]++;
+                    Toast.makeText(MainActivity.this, getResources().getString(R.string.toast_italian)
+                                    + numBtnClicks[3] + getResources().getString(R.string.toast_end),
+                            Toast.LENGTH_SHORT).show();
+                    break;
+
+                case R.id.imageButton5:
+                    numBtnClicks[4]++;
+                    Toast.makeText(MainActivity.this, getResources().getString(R.string.toast_middle_eastern)
+                                    + numBtnClicks[4] + getResources().getString(R.string.toast_end),
+                            Toast.LENGTH_SHORT).show();
+                    break;
+
+                case R.id.imageButton6:
+                    numBtnClicks[5]++;
+                    Toast.makeText(MainActivity.this, getResources().getString(R.string.toast_portuguese)
+                                    + numBtnClicks[5] + getResources().getString(R.string.toast_end),
                             Toast.LENGTH_SHORT).show();
                     break;
             }
