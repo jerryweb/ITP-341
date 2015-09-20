@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">week4day2</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="parallel_question">What is your favorite Parallel Processor?</string>
+    <string name="yes">Agree</string>
+    <string name="no">No I do not</string>
+    <string name="action_settings">Settings</string>
+</resources>
