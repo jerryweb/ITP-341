@@ -70,9 +70,7 @@ public class MainActivity extends Activity {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.btn:
-                    numBtnClicks[0]++;
-                    Toast.makeText(MainActivity.this,  getResources().getString(R.string.Toast_Answer_1)
+                case R.id.btn:Toast.makeText(MainActivity.this,  getResources().getString(R.string.Toast_Answer_1)
                             + numBtnClicks[0], Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.btn2:
