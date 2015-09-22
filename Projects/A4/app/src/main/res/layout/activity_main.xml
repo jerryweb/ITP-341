@@ -13,14 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/bill"
             android:id="@+id/textView"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:layout_margin="8dp" />
 
@@ -28,7 +30,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/editText"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:hint="@string/bill_amount_hint"
+            android:gravity="center" />
     </LinearLayout>
 
     <LinearLayout
@@ -37,17 +41,28 @@
         android:layout_height="0dp"
         android:layout_weight="0.09"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/percent"
-            android:id="@+id/textView2"
-            android:textSize="20sp"
+            android:id="@+id/percentText"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
             android:layout_margin="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/percentageOutput"
+            android:textSize="16sp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp" />
 
         <SeekBar
             android:layout_width="wrap_content"
@@ -58,6 +73,38 @@
             android:indeterminate="false"
             android:scrollIndicators="left"
             android:longClickable="false"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tip"
+            android:id="@+id/tipText"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_margin="8dp"
+            android:layout_weight=".5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/tipCalculation"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_margin="8dp"
+            android:layout_weight="0.5" />
+
     </LinearLayout>
 </LinearLayout>
