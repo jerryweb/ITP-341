@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-import android.util.Log;
 
 public class MainActivity extends Activity {
     //create my Logging tag
@@ -39,7 +38,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+populateStringArray();
         if(savedInstanceState != null) {    //activity has existed before
             for (int i = 0; i < 3;i++){
                 numBtnClicks[i] = savedInstanceState.getInt(numClicksArray[i],0);
@@ -70,7 +69,10 @@ public class MainActivity extends Activity {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.btn:Toast.makeText(MainActivity.this,  getResources().getString(R.string.Toast_Answer_1)
+
+                case R.id.btn:
+                    numBtnClicks[0]++;
+                    Toast.makeText(MainActivity.this,  getResources().getString(R.string.Toast_Answer_1)
                             + numBtnClicks[0], Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.btn2:
