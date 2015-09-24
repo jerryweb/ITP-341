@@ -19,6 +19,8 @@ public class MainActivity extends Activity {
     SeekBar seekBarPercentage;
     Spinner splitBill;
     TextView textTipPercentage;
+    TextView textTipCalculation;
+    TextView textTotalCalculation;
 
     //instance variables
     double billAmount = 0;
@@ -38,11 +40,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Creation of the Listener Variables for
+        //Creation of the Listener Variables
         editName = (EditText) findViewById(R.id.editText);
         seekBarPercentage = (SeekBar) findViewById(R.id.seekBarPercentage);
         splitBill = (Spinner) findViewById(R.id.splitBill);
         textTipPercentage = (TextView) findViewById(R.id.testView3);
+        textTipCalculation = (TextView) findViewById(R.id.textTipCalculation);
 
         //text
         editName.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -87,8 +90,9 @@ public class MainActivity extends Activity {
 
         totalAmount = billAmount/numOfPayers + tipAmount;
         Log.d(TAG, "in calculate. The totalAmount is: " + totalAmount);
+        textTipCalculation.setText("$" + Double.toString(tipAmount));
+        //textTotalCalculation.setText(Double.toString(totalAmount));
 
-        
     }
 
 }
