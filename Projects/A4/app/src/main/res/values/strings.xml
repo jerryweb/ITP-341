@@ -7,4 +7,6 @@
     <string name="split_bill">Split Bill?</string>
     <string name="per_person">Per Person</string>
     <string name="bill_amount_hint">Enter bill total here</string>
+    
+    <string name="default_tip_and_total_value">"$0.00"</string>
 </resources>
