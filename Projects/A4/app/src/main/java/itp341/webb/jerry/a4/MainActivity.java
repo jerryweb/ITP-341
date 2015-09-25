@@ -12,10 +12,25 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
+
 public class MainActivity extends Activity {
 
     // TAG
     private static final String TAG = MainActivity.class.getSimpleName();
+
+    public static final String[] values = new String[5];
+
+    Double[] calculatedValues = new Double[5];
+
+    private void populateStringArray()
+    {
+        values[0] = "itp341.webb.jerry.a4.billAmount";
+        values[1] = "itp341.webb.jerry.a4.tipAmount";
+        values[2] = "itp341.webb.jerry.a4.totalAmount";
+        values[3] = "itp341.webb.jerry.a4.perPersonAmount";
+        values[4] = "itp341.webb.jerry.a4.spinnerPerPersonSelection";
+    }
 
     //widget variables
     EditText editBillAmount;
@@ -33,12 +48,43 @@ public class MainActivity extends Activity {
     double totalAmount = 0.0;
     double perPersonAmount = 0.0;
     int numOfPayers = 1;
+    String Payers;
+
+
+    @Override
+    protected void onSaveInstanceState (Bundle outState) {
+        super.onCreate(outState);
+        for (int i = 0; i < 5;i++){
+            outState.putDouble(values[i],calculatedValues[i]);
+        }
+        outState.putInt(Payers,numOfPayers);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        populateStringArray();
+        if(savedInstanceState != null) {    //activity has existed before
+            for (int i = 0; i < 5;i++){
+                calculatedValues[i] = savedInstanceState.getDouble(values[i], 0);
 
+            }
+             billAmount = savedInstanceState.getDouble(values[0], 0);
+             tipAmount = savedInstanceState.getDouble(values[1], 0);
+             totalAmount = savedInstanceState.getDouble(values[2], 0);
+             perPersonAmount = savedInstanceState.getDouble(values[3], 0);
+            int had = savedInstanceState.getInt(Payers);
+            Log.d(TAG, "heellll: " + had);
+             spinnerSplitBill.setSelection(1);
+
+        }
+        else{
+            for (int i = 0; i < 5;i++){
+                calculatedValues[i] = Double.valueOf(0);
+            }
+        }
         //Creation of the Listener Variables
         editBillAmount = (EditText) findViewById(R.id.editText);
         seekBarPercentage = (SeekBar) findViewById(R.id.seekBarPercentage);
@@ -89,6 +135,9 @@ public class MainActivity extends Activity {
             }
         });
 
+
+        //Allows for instant feedback for the user when they select a different option from the
+        // spinner
         spinnerSplitBill.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -107,7 +156,6 @@ public class MainActivity extends Activity {
     public void calculateAndDisplay(){
         //get the number of payers from the spinner
         numOfPayers = spinnerSplitBill.getSelectedItemPosition() +1;
-
         //this will toggle the visibility of the per person display depending upon if the bill
         // will be split
         if(spinnerSplitBill.getSelectedItemPosition() > 0){
@@ -132,9 +180,18 @@ public class MainActivity extends Activity {
         totalAmount = billAmount + (tipAmount*numOfPayers);
         perPersonAmount = billAmount/numOfPayers + tipAmount;
         Log.d(TAG, "in calculate. The totalAmount is: " + totalAmount);
-        textTipCalculation.setText("$" + Double.toString(tipAmount));
-        textTotalCalculation.setText("$" + Double.toString(totalAmount));
-        textPerPersonAmount.setText("$" + Double.toString(perPersonAmount));
+
+        //Converts Doubles to currency values
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        //textTipCalculation.setText("$" + Double.toString(tipAmount));
+        textTipCalculation.setText(formatter.format(tipAmount));
+        textTotalCalculation.setText(formatter.format(totalAmount));
+        textPerPersonAmount.setText(formatter.format(perPersonAmount));
+
+        calculatedValues[0] = billAmount;
+        calculatedValues[1] = tipAmount;
+        calculatedValues[2] = totalAmount;
+        calculatedValues[3] = perPersonAmount;
     }
 
 }
