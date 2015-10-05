@@ -19,17 +19,21 @@ public class MainActivity extends Activity {
     // TAG
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    public static final String[] values = new String[5];
+    public static final String[] doubleValues = new String[4];
+    public static final String[] integerValues = new String[2];
 
-    Double[] calculatedValues = new Double[5];
+    private Double[] dCalculatedValues = {0.0,0.0,0.0,0.0};
+    private Integer[] intCalculatedValues = {0,0};
 
     private void populateStringArray()
     {
-        values[0] = "itp341.webb.jerry.a4.billAmount";
-        values[1] = "itp341.webb.jerry.a4.tipAmount";
-        values[2] = "itp341.webb.jerry.a4.totalAmount";
-        values[3] = "itp341.webb.jerry.a4.perPersonAmount";
-        values[4] = "itp341.webb.jerry.a4.spinnerPerPersonSelection";
+        doubleValues[0] = "itp341.webb.jerry.a4.billAmount";
+        doubleValues[1] = "itp341.webb.jerry.a4.tipAmount";
+        doubleValues[2] = "itp341.webb.jerry.a4.totalAmount";
+        doubleValues[3] = "itp341.webb.jerry.a4.perPersonAmount";
+
+        integerValues[0] = "itp341.webb.jerry.a4.spinnerSelection";
+        integerValues[1] = "itp341.webb.jerry.a4.value";
     }
 
     //widget variables
@@ -48,16 +52,18 @@ public class MainActivity extends Activity {
     double totalAmount = 0.0;
     double perPersonAmount = 0.0;
     int numOfPayers = 1;
-    String Payers;
+    static int previousNumOfPayers = 1;
 
 
     @Override
     protected void onSaveInstanceState (Bundle outState) {
         super.onCreate(outState);
-        for (int i = 0; i < 5;i++){
-            outState.putDouble(values[i],calculatedValues[i]);
+        for (int i = 0; i < 4;i++){
+            outState.putDouble(doubleValues[i], dCalculatedValues[i]);
         }
-        outState.putInt(Payers,numOfPayers);
+        for (int i = 0; i <2; i++){
+            outState.putInt(integerValues[i],intCalculatedValues[i]);
+        }
 
     }
 
@@ -66,25 +72,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         populateStringArray();
-        if(savedInstanceState != null) {    //activity has existed before
-            for (int i = 0; i < 5;i++){
-                calculatedValues[i] = savedInstanceState.getDouble(values[i], 0);
 
-            }
-             billAmount = savedInstanceState.getDouble(values[0], 0);
-             tipAmount = savedInstanceState.getDouble(values[1], 0);
-             totalAmount = savedInstanceState.getDouble(values[2], 0);
-             perPersonAmount = savedInstanceState.getDouble(values[3], 0);
-            int had = savedInstanceState.getInt(Payers);
-            Log.d(TAG, "heellll: " + had);
-             spinnerSplitBill.setSelection(1);
-
-        }
-        else{
-            for (int i = 0; i < 5;i++){
-                calculatedValues[i] = Double.valueOf(0);
-            }
-        }
         //Creation of the Listener Variables
         editBillAmount = (EditText) findViewById(R.id.editText);
         seekBarPercentage = (SeekBar) findViewById(R.id.seekBarPercentage);
@@ -95,6 +83,25 @@ public class MainActivity extends Activity {
         textPerPersonAmount = (TextView) findViewById(R.id.textPerPersonAmount);
         layoutPerPersonAmount = (LinearLayout) findViewById(R.id.layoutPerPersonAmount);
 
+        if(savedInstanceState != null) {    //activity has existed before
+            for (int i = 0; i < 4;i++){
+                dCalculatedValues[i] = savedInstanceState.getDouble(doubleValues[i], 0);
+
+            }
+            billAmount = savedInstanceState.getDouble(doubleValues[0], 0);
+            tipAmount = savedInstanceState.getDouble(doubleValues[1], 0);
+            totalAmount = savedInstanceState.getDouble(doubleValues[2], 0);
+            perPersonAmount = savedInstanceState.getDouble(doubleValues[3], 0);
+            previousNumOfPayers = savedInstanceState.getInt(integerValues[0],0);
+            spinnerSplitBill.setSelection(previousNumOfPayers -1);
+            editBillAmount.setText((String.valueOf( billAmount)));
+            Log.d(TAG, "in savedInstanceState != null, numOfPayers is: " + numOfPayers);
+        }
+        else{
+            for (int i = 0; i < 4;i++){
+                dCalculatedValues[i] = Double.valueOf(0);
+            }
+        }
 
         //text
         editBillAmount.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -107,6 +114,23 @@ public class MainActivity extends Activity {
                 return false;
             }
         });
+
+
+        //Allows for instant feedback for the user when they select a different option from the
+        // spinner
+        spinnerSplitBill.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                numOfPayers = spinnerSplitBill.getSelectedItemPosition() + 1;
+                calculateAndDisplay();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                calculateAndDisplay();
+            }
+        });
+
 
         //connecting spinner to widget
         //set the seek bar to default to 10% tip
@@ -136,28 +160,14 @@ public class MainActivity extends Activity {
         });
 
 
-        //Allows for instant feedback for the user when they select a different option from the
-        // spinner
-        spinnerSplitBill.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                calculateAndDisplay();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                calculateAndDisplay();
-            }
-        });
-
 
     }
 
     public void calculateAndDisplay(){
         //get the number of payers from the spinner
-        numOfPayers = spinnerSplitBill.getSelectedItemPosition() +1;
         //this will toggle the visibility of the per person display depending upon if the bill
         // will be split
+
         if(spinnerSplitBill.getSelectedItemPosition() > 0){
             layoutPerPersonAmount.setVisibility(View.VISIBLE);
         }
@@ -181,17 +191,18 @@ public class MainActivity extends Activity {
         perPersonAmount = billAmount/numOfPayers + tipAmount;
         Log.d(TAG, "in calculate. The totalAmount is: " + totalAmount);
 
-        //Converts Doubles to currency values
+        //Converts Doubles to currency doubleValues
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
-        //textTipCalculation.setText("$" + Double.toString(tipAmount));
         textTipCalculation.setText(formatter.format(tipAmount));
         textTotalCalculation.setText(formatter.format(totalAmount));
         textPerPersonAmount.setText(formatter.format(perPersonAmount));
 
-        calculatedValues[0] = billAmount;
-        calculatedValues[1] = tipAmount;
-        calculatedValues[2] = totalAmount;
-        calculatedValues[3] = perPersonAmount;
+        dCalculatedValues[0] = billAmount;
+        dCalculatedValues[1] = tipAmount;
+        dCalculatedValues[2] = totalAmount;
+        dCalculatedValues[3] = perPersonAmount;
+
+        intCalculatedValues[0] = numOfPayers;
     }
 
 }

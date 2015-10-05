@@ -1,6 +1,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="fill_parent">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -41,7 +41,13 @@
                 android:hint="@string/bill_amount_hint"
                 android:inputType="numberDecimal"
                 android:textSize="@dimen/text_size_medium"
-                android:lines="@integer/max_num_of_lines" />
+                android:lines="@integer/max_num_of_lines"
+                android:typeface="sans"
+                android:textIsSelectable="false"
+                android:textAlignment="center"
+                android:singleLine="true"
+                android:phoneNumber="false"
+                android:numeric="decimal" />
 
         </LinearLayout>
 

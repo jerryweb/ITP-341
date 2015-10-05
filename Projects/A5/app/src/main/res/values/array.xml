@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="name_1">Billy Bob Thorton</string>
+    <string name="name_2">John Doe</string>
+    <string name="name_3">Luigi</string>
+
+    <string name="email_1">bobbyT@someemail.com</string>
+    <string name="email_2">anonymous@gmail.com</string>
+    <string name="email_3">greenmushroom3@toadstool.net</string>
+    
+    <string name="phone_1">2149993560</string>
+    <string name="phone_2">1234567890</string>
+    <string name="phone_3">0987654321</string>
+    
+    <string name="address_1">955 So. Carrillo Drive, Suite 300 Los Angeles, CA</string>
+    <string name="address_2">123 Road Drive, Los Angeles, California</string>
+    <string name="address_3">warp pipe 3, world 2</string>
+
+    <string-array name="name_array">
+        <item>@string/name_1</item>
+        <item>@string/name_2</item>
+        <item>@string/name_3</item>
+    </string-array>
+
+    <array name="contacts_array">
+        <item>@array/contact_1</item>
+        <item>@array/contact_2</item>
+        <item>@array/contact_3</item>
+    </array>
+
+    <!-- the info is stored in the array as: name, email, phone, and address-->
+    <string-array name="contact_1">
+        <item>@string/name_1</item>
+        <item>@string/email_1</item>
+        <item>@string/phone_1</item>
+        <item>@string/address_1</item>
+    </string-array>
+
+    <string-array name="contact_2">
+        <item>@string/name_2</item>
+        <item>@string/email_2</item>
+        <item>@string/phone_2</item>
+        <item>@string/address_2</item>
+    </string-array>
+
+    <string-array name="contact_3">
+        <item>@string/name_3</item>
+        <item>@string/email_3</item>
+        <item>@string/phone_3</item>
+        <item>@string/address_3</item>
+    </string-array>
+
+</resources>

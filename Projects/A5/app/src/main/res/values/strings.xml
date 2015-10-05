@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">A5</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="email">Email: </string>
+    <string name="phone">Phone: </string>
+    <string name="address">Address: </string>
+    <string name="notes">Notes: </string>
+</resources>

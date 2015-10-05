@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/darker_blue">
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/name_1"
+        android:id="@+id/btn_contact_1"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button_border"
+        android:layout_marginBottom="@dimen/min_distance_between_widgets"
+        android:textColor="@color/white" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/name_2"
+        android:id="@+id/btn_contact_2"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button_border"
+        android:layout_marginBottom="@dimen/min_distance_between_widgets"
+        android:textColor="@color/white" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/name_3"
+        android:id="@+id/btn_contact_3"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/button_border"
+        android:textColor="@color/white" />
+
+</LinearLayout>
