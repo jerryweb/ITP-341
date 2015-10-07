@@ -15,6 +15,8 @@ import android.widget.TextView;
  */
 public class DetailFragment extends Fragment {
 
+    String[] contactInfo;
+
     TextView textNameDisplay;
     TextView textEmailDisplay;
     TextView textNumberDisplay;
@@ -31,7 +33,7 @@ public class DetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View view = inflater.inflate(R.layout.details_fragment, null, false);
+        View view = inflater.inflate(R.layout.details_fragment, container, false);
 
         textNameDisplay = (TextView) view.findViewById(R.id.editNameField);
         textEmailDisplay = (TextView) view.findViewById(R.id.textEmailDisplay);
@@ -45,10 +47,10 @@ public class DetailFragment extends Fragment {
 
 
         SpannableString nameUnderlined = new SpannableString("Name");
-        SpannableString emailUnderlined = new SpannableString(getResources().getString(R.string.email));
-        SpannableString addressUnderlined = new SpannableString(getResources().getString(R.string.address));
-        SpannableString numberUnderlined = new SpannableString(getResources().getString(R.string.phone));
-        SpannableString notesUnderlined = new SpannableString(getResources().getString(R.string.phone));
+//        SpannableString emailUnderlined = new SpannableString(getResources().getString(R.string.email));
+//        SpannableString addressUnderlined = new SpannableString(getResources().getString(R.string.address));
+//        SpannableString numberUnderlined = new SpannableString(getResources().getString(R.string.phone));
+//        SpannableString notesUnderlined = new SpannableString(getResources().getString(R.string.phone));
 
         nameUnderlined.setSpan(new UnderlineSpan(), 0, nameUnderlined.length(),0);
 
@@ -56,4 +58,23 @@ public class DetailFragment extends Fragment {
 
 
         return  view;
-    }}
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        Bundle bundle = getArguments();
+        contactInfo = bundle.getStringArray(MainActivity.EXTRA_CONTACT_INFO_ARRAY);
+
+        textNameDisplay.setText(contactInfo[0]);
+        editEmailField.setText(contactInfo[1]);
+        editPhoneField.setText(contactInfo[2]);
+        editAddressField.setText(contactInfo[3]);
+    }
+}

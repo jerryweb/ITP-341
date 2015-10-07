@@ -14,13 +14,13 @@ import java.lang.reflect.Array;
  * Created by jerrywebb on 10/2/15.
  */
 public class MasterFragment extends Fragment {
-    View.OnClickListener mCallback;
+    MainActivity mainActivity;
 
     Button btnContact1;
     Button btnContact2;
     Button btnContact3;
 
-    ButtonListener btnCListener;
+    ButtonListener btnCListener = new ButtonListener();
     String [] contacts;
 
 
@@ -28,17 +28,29 @@ public class MasterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View view = inflater.inflate(R.layout.master_fragment, null, false);
-
-        contacts = getResources().getStringArray(R.array.name_array);
-        btnContact1 = (Button) view.findViewById(R.id.btn_contact_1);
-        btnContact2 = (Button) view.findViewById(R.id.btn_contact_2);
-        btnContact3 = (Button) view.findViewById(R.id.btn_contact_3);
-
-        btnContact1.setOnClickListener(btnCListener);
+        View view = inflater.inflate(R.layout.master_fragment, container, false);
 
         return  view;
     }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        mainActivity = (MainActivity)getActivity();
+
+        contacts = getResources().getStringArray(R.array.name_array);
+        btnContact1 = (Button) mainActivity.findViewById(R.id.btn_contact_1);
+        btnContact2 = (Button) mainActivity.findViewById(R.id.btn_contact_2);
+        btnContact3 = (Button) mainActivity.findViewById(R.id.btn_contact_3);
+
+        btnContact1.setOnClickListener(btnCListener);
+        btnContact2.setOnClickListener(btnCListener);
+        btnContact3.setOnClickListener(btnCListener);
+        getArguments();
+    }
+
+
 
     @Override
     public void onStart() {
@@ -51,15 +63,8 @@ public class MasterFragment extends Fragment {
     public class ButtonListener implements View.OnClickListener{
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
-                case R.id.btn_contact_1:
-                    mCallback.onContactSelected()
-                    break;
-                case R.id.btn_contact_2:
-                    break;
-                case R.id.btn_contact_3:
-                    break;
-            }
+            mainActivity.onContactSelected(v.getId());
+
         }
     }
 }

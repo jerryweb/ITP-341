@@ -3,6 +3,7 @@
     <style name="AppTheme" parent="android:Theme.Material.Light">
         <item name="android:colorPrimary">@color/dark_blue</item>
         <item name="android:actionBarTheme">@color/white</item>
+        <item name="android:colorAccent">@color/white</item>
 
     </style>
 </resources>
