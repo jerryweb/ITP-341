@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="${packageName}.${activityClass}"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/min_distance_between_widgets"
+    android:paddingBottom="@dimen/min_distance_between_widgets"
+    android:weightSum="1">
+    <ImageView
+        android:layout_width="163dp"
+        android:layout_height="146dp"
+        android:id="@+id/imageView"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="fitXY"
+        android:src="@drawable/bluegrass_situation"
+        android:layout_marginBottom="@dimen/min_distance_between_widgets" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/min_distance_between_widgets"
+        android:layout_weight="0.11">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_number_of_tickets"
+            android:id="@+id/textNumberOfTickets"
+            android:layout_weight=".5"
+            android:textSize="@dimen/medium_text_size"
+            android:layout_gravity="center_vertical" />
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/spinnerNumTickets"
+            android:layout_weight=".5"
+            android:entries="@array/array_ticket_amounts" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="138dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/total"
+            android:id="@+id/textTotal"
+            android:textStyle="bold"
+            android:textSize="@dimen/medium_text_size"
+            android:layout_weight=".5"
+            android:textAlignment="gravity"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/starting_price"
+            android:id="@+id/textCost"
+            android:textSize="@dimen/medium_text_size"
+            android:textStyle="bold"
+            android:paddingLeft="@dimen/min_distance_between_widgets"
+            android:layout_weight=".5"
+            android:numeric="decimal"
+            android:textAlignment="gravity"
+            android:gravity="center_horizontal" />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/proceed"
+        android:id="@+id/buttonProceedToCheckout"
+        android:visibility="visible" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/order"
+        android:id="@+id/buttonOrder"
+        android:visibility="invisible" />
+
+</LinearLayout>

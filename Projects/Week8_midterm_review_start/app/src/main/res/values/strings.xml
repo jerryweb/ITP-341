@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Week8_midterm_review</string>
+    <string name="label_number_of_tickets">Number of Tickets</string>
+    <string name="title_activity_confirm">ConfirmActivity</string>
+
+    <string name="order">Order</string>
+    <string name="proceed">Proceed to checkout</string>
+    <string name="starting_price">$0.00</string>
+
+    <string name="total">Total</string>
+    <string name="you_are_purchasing">You are purchasing</string>
+    <string name="tickets">Tickets</string>
+
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+
+    <plurals name="quantityOfTickets">
+        <item quantity="one">ticket</item>
+        <item quantity="other">tickets</item>
+    </plurals>
+
+</resources>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/res/values/arrays.xml -->
+    <eat-comment/>
+    <string-array name="array_ticket_amounts">
+	    <item>1</item>
+	    <item>2</item>
+	    <item>3</item>
+	    <item>4</item>
+	</string-array>
+    <!-- From: file:/Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/res/values/color.xml -->
+    <eat-comment/>
+    <color name="red">#AD3232</color>
+    <!-- From: file:/Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/res/values/demins.xml -->
+    <eat-comment/>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="medium_text_size">18sp</dimen>
+    <dimen name="min_distance_between_widgets">4dp</dimen>
+    <!-- From: file:/Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <plurals name="quantityOfTickets">
+        <item quantity="one">ticket</item>
+        <item quantity="other">tickets</item>
+    </plurals>
+    <string name="app_name">Week8_midterm_review</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="label_number_of_tickets">Number of Tickets</string>
+    <string name="order">Order</string>
+    <string name="proceed">Proceed to checkout</string>
+    <string name="starting_price">$0.00</string>
+    <string name="tickets">Tickets</string>
+    <string name="title_activity_confirm">ConfirmActivity</string>
+    <string name="total">Total</string>
+    <string name="you_are_purchasing">You are purchasing</string>
+    <!-- From: file:/Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+</resources>

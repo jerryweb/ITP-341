@@ -20,8 +20,11 @@ public class MasterFragment extends Fragment {
     Button btnContact2;
     Button btnContact3;
 
+/*
     ButtonListener btnCListener = new ButtonListener();
+*/
     String [] contacts;
+
 
 
     @Override
@@ -30,26 +33,21 @@ public class MasterFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.master_fragment, container, false);
 
-        return  view;
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
         mainActivity = (MainActivity)getActivity();
 
-        contacts = getResources().getStringArray(R.array.name_array);
-        btnContact1 = (Button) mainActivity.findViewById(R.id.btn_contact_1);
-        btnContact2 = (Button) mainActivity.findViewById(R.id.btn_contact_2);
-        btnContact3 = (Button) mainActivity.findViewById(R.id.btn_contact_3);
+//        contacts = getResources().getStringArray(R.array.name_array);
 
-        btnContact1.setOnClickListener(btnCListener);
-        btnContact2.setOnClickListener(btnCListener);
-        btnContact3.setOnClickListener(btnCListener);
+        btnContact1 = (Button) view.findViewById(R.id.btn_contact_1);
+        btnContact2 = (Button) view.findViewById(R.id.btn_contact_2);
+        btnContact3 = (Button) view.findViewById(R.id.btn_contact_3);
+
+        btnContact1.setOnClickListener(mainActivity.btnCListener);
+        btnContact2.setOnClickListener(mainActivity.btnCListener);
+        btnContact3.setOnClickListener(mainActivity.btnCListener);
         getArguments();
-    }
 
+        return  view;
+    }
 
 
     @Override
@@ -60,11 +58,4 @@ public class MasterFragment extends Fragment {
 
     }
 
-    public class ButtonListener implements View.OnClickListener{
-        @Override
-        public void onClick(View v) {
-            mainActivity.onContactSelected(v.getId());
-
-        }
-    }
 }

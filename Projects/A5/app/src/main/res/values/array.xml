@@ -17,17 +17,16 @@
     <string name="address_2">123 Road Drive, Los Angeles, California</string>
     <string name="address_3">warp pipe 3, world 2</string>
 
+    <drawable name="contact_1_image">@drawable/billyb</drawable>
+    <drawable name="contact_2_image">@drawable/johnd</drawable>
+    <drawable name="contact_3_image">@drawable/luigi</drawable>
+
     <string-array name="name_array">
         <item>@string/name_1</item>
         <item>@string/name_2</item>
         <item>@string/name_3</item>
     </string-array>
 
-    <array name="contacts_array">
-        <item>@array/contact_1</item>
-        <item>@array/contact_2</item>
-        <item>@array/contact_3</item>
-    </array>
 
     <!-- the info is stored in the array as: name, email, phone, and address-->
     <string-array name="contact_1">
@@ -35,6 +34,7 @@
         <item>@string/email_1</item>
         <item>@string/phone_1</item>
         <item>@string/address_1</item>
+        <item>notes</item>
     </string-array>
 
     <string-array name="contact_2">
@@ -42,6 +42,8 @@
         <item>@string/email_2</item>
         <item>@string/phone_2</item>
         <item>@string/address_2</item>
+        <item>notes</item>
+
     </string-array>
 
     <string-array name="contact_3">
@@ -49,6 +51,13 @@
         <item>@string/email_3</item>
         <item>@string/phone_3</item>
         <item>@string/address_3</item>
+        <item>notes</item>
+    </string-array>
+
+    <string-array name="contact_images">
+        <item>@drawable/contact_1_image</item>
+        <item>@drawable/contact_2_image</item>
+        <item>@drawable/contact_3_image</item>
     </string-array>
 
 </resources>

@@ -1,0 +1,55 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:2:1-29:12
+	xmlns:android
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:2:11-69
+	package
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:3:5-52
+		INJECTED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:5:5-30
+	android:versionCode
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:4:5-28
+		INJECTED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml
+application
+ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:9:5-27:19
+	android:label
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:12:9-41
+	android:allowBackup
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:10:9-35
+	android:icon
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:11:9-45
+	android:theme
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:13:9-40
+activity#itp341.exercises.week8_midterm_review.MainActivity
+ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:14:9-22:20
+	android:label
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:16:13-45
+	android:name
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:15:13-78
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:17:13-21:29
+action#android.intent.action.MAIN
+ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:18:17-69
+	android:name
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:18:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:20:17-77
+	android:name
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:20:27-74
+activity#itp341.exercises.week8_midterm_review.ConfirmActivity
+ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:23:9-26:20
+	android:label
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:25:13-59
+	android:name
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml:24:13-81
+uses-sdk
+INJECTED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+	android:targetSdkVersion
+		INJECTED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/jerrywebb/Documents/ITP-341/Projects/Week8_midterm_review_start/app/src/main/AndroidManifest.xml
