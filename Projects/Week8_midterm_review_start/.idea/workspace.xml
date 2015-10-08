@@ -65,7 +65,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
           <provider editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
@@ -94,7 +94,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_confirm.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="activity_confirm.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_confirm.xml">
           <provider editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
@@ -1730,6 +1730,7 @@
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.56.101:5555" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_22" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager" selected="Android Application.app">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -1914,6 +1915,9 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="b0e71521-caa2-4702-9ed5-a1ed1d8e6472" name="Default" comment="" />
@@ -1985,6 +1989,14 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -2035,41 +2047,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/itp341/exercises/week8_midterm_review/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="78" column="31" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="82" column="37" selection-start-line="82" selection-start-column="37" selection-end-line="82" selection-end-column="37" />
-          <folding>
-            <element signature="e#352#387#0" expanded="true" />
-            <element signature="e#413#448#0" expanded="true" />
-            <element signature="e#472#509#0" expanded="true" />
-            <element signature="e#536#573#0" expanded="true" />
-            <element signature="e#900#937#0" expanded="true" />
-            <element signature="e#1177#1214#0" expanded="true" />
-            <element signature="e#1393#1426#0" expanded="true" />
-            <element signature="e#1545#1570#0" expanded="true" />
-            <element signature="e#2230#2245#0" expanded="true" />
-            <element signature="e#2352#2377#0" expanded="true" />
-            <element signature="e#2652#2676#0" expanded="true" />
-            <element signature="e#2745#2770#0" expanded="true" />
-            <element signature="e#2840#2877#0" expanded="true" />
-            <element signature="e#3193#3210#0" expanded="true" />
-            <element signature="e#3423#3438#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/itp341/exercises/week8_midterm_review/ConfirmActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2098,6 +2075,41 @@
             <element signature="e#2058#2095#0" expanded="true" />
             <element signature="e#2234#2251#0" expanded="true" />
             <element signature="e#2475#2491#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/itp341/exercises/week8_midterm_review/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="78" column="31" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="82" column="37" selection-start-line="82" selection-start-column="37" selection-end-line="82" selection-end-column="37" />
+          <folding>
+            <element signature="e#352#387#0" expanded="true" />
+            <element signature="e#413#448#0" expanded="true" />
+            <element signature="e#472#509#0" expanded="true" />
+            <element signature="e#536#573#0" expanded="true" />
+            <element signature="e#900#937#0" expanded="true" />
+            <element signature="e#1177#1214#0" expanded="true" />
+            <element signature="e#1393#1426#0" expanded="true" />
+            <element signature="e#1545#1570#0" expanded="true" />
+            <element signature="e#2230#2245#0" expanded="true" />
+            <element signature="e#2352#2377#0" expanded="true" />
+            <element signature="e#2652#2676#0" expanded="true" />
+            <element signature="e#2745#2770#0" expanded="true" />
+            <element signature="e#2840#2877#0" expanded="true" />
+            <element signature="e#3193#3210#0" expanded="true" />
+            <element signature="e#3423#3438#0" expanded="true" />
           </folding>
         </state>
       </provider>
