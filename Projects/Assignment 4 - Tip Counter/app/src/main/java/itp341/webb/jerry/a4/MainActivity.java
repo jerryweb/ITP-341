@@ -109,7 +109,7 @@ public class MainActivity extends Activity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
                 billAmount = Double.parseDouble(editBillAmount.getText().toString().trim());
-
+                calculateAndDisplay();
                 Log.d(TAG, "inside onEditorAction. Name is " + billAmount);
                 return false;
             }

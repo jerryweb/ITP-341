@@ -29,6 +29,7 @@ public class MainActivity extends Activity {
     protected void onSaveInstanceState (Bundle outState) {
         super.onCreate(outState);
         for (int i = 0; i < 3;i++){
+            //(key, int value)
             outState.putInt(numClicksArray[i], numBtnClicks[i]);
         }
 
@@ -38,7 +39,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-populateStringArray();
+
+        populateStringArray();
+
         if(savedInstanceState != null) {    //activity has existed before
             for (int i = 0; i < 3;i++){
                 numBtnClicks[i] = savedInstanceState.getInt(numClicksArray[i],0);
