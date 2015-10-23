@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="affogato">Affogato</string>
+    <string name="americano">Americano</string>
+    <string name="iced">Iced</string>
+    <string name="kona">Kona</string>
+    <string name="turkish">Turkish</string>
+    <string name="vienna">Vienna</string>
+
+    
+    <string-array name="brew_array">
+        <item>@string/affogato</item>
+        <item>@string/americano</item>
+        <item>@string/iced</item>
+        <item>@string/kona</item>
+        <item>@string/turkish</item>
+        <item>@string/vienna</item>
+    </string-array>
+
+
+</resources>
