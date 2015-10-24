@@ -85,17 +85,7 @@ public class MainActivity extends Activity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 order.setSize(checkedId);
-//                switch (checkedId) {
-//                    case R.id.radioButtonSmall:
-//                        order.setSize("small");
-//                        break;
-//                    case R.id.radioButtonMedium:
-//                        order.setSize("medium");
-//                        break;
-//                    case R.id.radioButtonLarge:
-//                        order.setSize("large");
-//                        break;
-//                }
+
             }
         });
 
@@ -185,15 +175,7 @@ public class MainActivity extends Activity {
                     break;
 
                 case R.id.buttonClear:
-                    order.setName("New Customer");
-                    order.setBrew("Iced");
-                    order.setSize(R.id.radioButtonSmall);
-                    order.setSpecialInstructions("");
-                    order.setMilkOrCream(false);
-                    order.setSugar(false);
-                    order.setRating(0);
-
-                    refreshView();
+                        clearFields();
                     break;
                 case R.id.buttonOrder:
                     Intent i = new Intent(getApplicationContext(), ViewOrderActivity.class);
@@ -204,12 +186,38 @@ public class MainActivity extends Activity {
         }
     }
 
+    public void clearFields(){
+        order.setName("New Customer");
+        order.setBrew("Iced");
+        order.setSize(R.id.radioButtonSmall);
+        order.setSpecialInstructions("");
+        order.setMilkOrCream(false);
+        order.setSugar(false);
+        order.setRating(0);
+
+        refreshView();
+    }
+
     public void refreshView(){
         editSpecialInstruction.setText(order.getSpecialInstructions());
         spinnerBrew.setSelection(order.getBrewPosition());
         switchSugar.setChecked(order.isSugar());
         checkMilk.setChecked(order.isMilkOrCream());
         radioGroupSize.check(order.getSize());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "Returning from ViewOrderActivity and the result is: " + resultCode);
+
+        if(resultCode == Activity.RESULT_OK){
+            Toast.makeText(getApplicationContext(), "Thanks for your order!",Toast.LENGTH_SHORT).show();
+            clearFields();
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Order not sent; please try again.",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

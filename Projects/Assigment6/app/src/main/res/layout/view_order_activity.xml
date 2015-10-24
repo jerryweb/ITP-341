@@ -7,20 +7,67 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.18"
+        android:layout_height="157dp"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_weight="0.08">
 
         <TextView
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/textOrderConfirm"
+            android:textSize="@dimen/medium_text_size" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:layout_marginTop="@dimen/space_between_widgets"
+            android:layout_marginBottom="@dimen/space_between_widgets">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Large Text"
+                android:id="@+id/textBrew"
+                android:textSize="@dimen/medium_text_size"
+                android:textStyle="bold|normal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:text="New Text"
+                android:id="@+id/textSize"
+                android:layout_weight="0.12"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/textSpecialInstructions"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/space_between_widgets"
             android:textSize="@dimen/medium_text_size"
-            android:layout_weight="0.43" />
+            android:textStyle="normal"
+            android:layout_weight="0.58"
+            android:linksClickable="false" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/correct_order_a"
+            android:id="@+id/textView"
+            android:layout_marginTop="@dimen/space_between_widgets"
+            android:gravity="center_horizontal"
+            android:textStyle="normal"
+            android:textSize="@dimen/medium_text_size" />
 
     </LinearLayout>
 
@@ -52,7 +99,7 @@
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/clear"
+            android:text="@string/cancel"
             android:id="@+id/buttonClear"
             android:layout_weight="0.5" />
     </LinearLayout>

@@ -1,9 +1,11 @@
 package itp341.webb.jerry.assigment6.model;
 
+import java.io.Serializable;
+
 /**
  * Created by jerrywebb on 10/20/15.
  */
-public class CoffeeOrder {
+public class CoffeeOrder implements Serializable {
     //These are the instance variables for the coffee order POJO class
     //Each stores a separate descriptor for each order
     private String name;
