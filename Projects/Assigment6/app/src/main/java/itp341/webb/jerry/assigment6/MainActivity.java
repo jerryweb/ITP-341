@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import itp341.webb.jerry.assigment6.model.CoffeeOrder;
 
@@ -38,6 +39,7 @@ public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     String[] brewChoices;
+    Button buttonAddOrder;
     Button buttonClear;
     Button buttonLoad;
     Button buttonOrder;
@@ -53,7 +55,8 @@ public class MainActivity extends Activity {
 
     ButtonListener buttonListener = new ButtonListener();
 
-    CoffeeOrder order = new CoffeeOrder("New User", R.id.radioButtonSmall, "iced", false, false);
+    CoffeeOrder order = new CoffeeOrder("", R.id.radioButtonSmall, "", false, false);
+    ArrayList<CoffeeOrder> arrayCoffeeOrder = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,7 @@ public class MainActivity extends Activity {
 
         brewChoices = getResources().getStringArray(R.array.brew_array);
 
+        buttonAddOrder = (Button) findViewById(R.id.buttonAddOrder);
         buttonClear = (Button) findViewById(R.id.buttonClear);
         buttonLoad = (Button) findViewById(R.id.buttonLoadFav);
         buttonOrder = (Button) findViewById(R.id.buttonOrder);
@@ -73,6 +77,7 @@ public class MainActivity extends Activity {
         spinnerBrew = (Spinner) findViewById(R.id.spinnerBrewChoices);
         switchSugar = (Switch) findViewById(R.id.switchSugar);
 
+        buttonAddOrder.setOnClickListener(buttonListener);
         buttonClear.setOnClickListener(buttonListener);
         buttonSave.setOnClickListener(buttonListener);
         buttonLoad.setOnClickListener(buttonListener);
@@ -174,31 +179,69 @@ public class MainActivity extends Activity {
 
                     break;
 
-                case R.id.buttonClear:
-                        clearFields();
-                    break;
                 case R.id.buttonOrder:
-                    Intent i = new Intent(getApplicationContext(), ViewOrderActivity.class);
-                    i.putExtra(ViewOrderActivity.EXTRA_COFFEE_ORDER, order);
-                    startActivityForResult(i,0);
+                    if((arrayCoffeeOrder.size() >0)){
+                        arrayCoffeeOrder.add(order);
+                        Intent i = new Intent(getApplicationContext(), ViewOrderActivity.class);
+                        i.putExtra(ViewOrderActivity.EXTRA_COFFEE_ORDER, order);
+                        i.putExtra(ViewOrderActivity.EXTRA_ARRAY_COFFEE_ORDER, arrayCoffeeOrder);
+                        startActivityForResult(i, 0);
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(),"Please enter a valid Name", Toast.LENGTH_SHORT).show();
+                    }
+
                     break;
+
+                case R.id.buttonAddOrder:
+                    if(arrayCoffeeOrder.size() >0) {
+                        if (order.getName() != "") {
+
+                            CoffeeOrder newOrder = new CoffeeOrder(order.getName(),
+                                    order.getBrewPosition(), order.getBrew(),
+                                    order.isSugar(), order.isMilkOrCream());
+
+                            newOrder.setSpecialInstructions(order.getSpecialInstructions());
+                            arrayCoffeeOrder.add(newOrder);
+
+                            clearFields();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Please enter a valid Name", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                    break;
+
+                case R.id.buttonClear:
+                    clearFields();
+                    break;
+
+
             }
         }
     }
 
     public void clearFields(){
-        order.setName("New Customer");
-        order.setBrew("Iced");
-        order.setSize(R.id.radioButtonSmall);
+        order.setName("");
+//        order.setBrew("");
+        order.setSize(0);
         order.setSpecialInstructions("");
         order.setMilkOrCream(false);
         order.setSugar(false);
         order.setRating(0);
 
+        editName.setText("");
+        order.setSpecialInstructions("");
+        radioGroupSize.check(0);
+        checkMilk.setChecked(false);
+        switchSugar.setChecked(false);
+        spinnerBrew.setSelection(0);
+
         refreshView();
     }
 
     public void refreshView(){
+        editName.setText(order.getName());
         editSpecialInstruction.setText(order.getSpecialInstructions());
         spinnerBrew.setSelection(order.getBrewPosition());
         switchSugar.setChecked(order.isSugar());
@@ -212,8 +255,11 @@ public class MainActivity extends Activity {
         Log.d(TAG, "Returning from ViewOrderActivity and the result is: " + resultCode);
 
         if(resultCode == Activity.RESULT_OK){
-            Toast.makeText(getApplicationContext(), "Thanks for your order!",Toast.LENGTH_SHORT).show();
             clearFields();
+            Toast.makeText(getApplicationContext(), "Thanks for your order!",Toast.LENGTH_SHORT).show();
+            for(int i = 0; i < arrayCoffeeOrder.size(); i++){
+                arrayCoffeeOrder.remove(i);
+            }
         }
         else {
             Toast.makeText(getApplicationContext(), "Order not sent; please try again.",Toast.LENGTH_SHORT).show();

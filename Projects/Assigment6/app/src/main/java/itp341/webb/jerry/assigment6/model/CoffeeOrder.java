@@ -96,12 +96,22 @@ public class CoffeeOrder implements Serializable {
 
     @Override
     public String toString() {
-        return "CoffeeOrder{" +
-                "name='" + name + '\'' +
-                ", size=" + size +
-                ", brew='" + brew + '\'' +
-                ", sugar=" + sugar +
-                ", milkOrCream=" + milkOrCream +
-                '}';
+        String stringSize;
+        if (size == 0){
+            stringSize = "(small)";
+        }
+        else if (size == 1){
+            stringSize = "(medium)";
+        }
+        else {
+            stringSize = "(large)";
+        }
+
+        return "" + name + ": " + brew + " " + stringSize;
+//        return "name = '" + name + '\'' +
+//                ", size = " + size +
+//                ", brew = '" + brew + '\'' +
+//                ", sugar = " + sugar +
+//                ", milk or cream = " + milkOrCream;
     }
 }

@@ -11,7 +11,7 @@
     <string name="extra_small">Extra sugar</string>
 
     <string name="correct_order_a">Is this order correct?</string>
-    <string name="order_fresh_brewed_coffee">Order FRESHLY brewed coffee</string>
+    <string name="order_fresh_brewed_coffee">Order freshly brewed coffee</string>
     <string name="size">Size</string>
     <string name="milk">Milk</string>
     <string name="special_instructions">Special Instructions</string>
@@ -26,6 +26,9 @@
     <string name="cancel">CANCEL</string>
     <string name="order_for">Order for </string>
     <string name="name">Name</string>
+    <string name="add_new_order">Add to Cart</string>
+
+    <string name="current_cart">Current Orders</string>
 
 
 </resources>

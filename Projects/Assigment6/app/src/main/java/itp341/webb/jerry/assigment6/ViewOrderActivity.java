@@ -5,9 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import itp341.webb.jerry.assigment6.model.CoffeeOrder;
 
@@ -17,18 +24,24 @@ import itp341.webb.jerry.assigment6.model.CoffeeOrder;
 public class ViewOrderActivity extends Activity{
     private static final String TAG = MainActivity.class.getSimpleName();
     public static final String EXTRA_COFFEE_ORDER = "itp341.webb.jerry.coffeeOrder";
-
+    public static final String EXTRA_ARRAY_COFFEE_ORDER = "itp341.webb.jerry.arrayCoffeeOrder";
+    int listSelection;
     CoffeeOrder cOrder = new CoffeeOrder("New User", R.id.radioButtonSmall, "iced", false, false);
 
+    ArrayAdapter<CoffeeOrder> adapter;
+//    ExpandableListAdapter expandableListAdapter;
+//    ExpandableListView orderList;
+    Button buttonConfirm;
+    ListView listViewOrder;
+    Button buttonClear;
+
+    String orderForString, msgPart2, msgSize, msgPart4;
     TextView textOrderConfirm;
     TextView textBrew;
     TextView textSize;
     TextView textSpecialInstructions;
-    Button buttonConfirm;
-    Button buttonClear;
-    String orderForString, msgPart2, msgSize, msgPart4;
-
     ButtonListener buttonListener;
+    ArrayList<CoffeeOrder> arrayCoffeeOrder = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +55,36 @@ public class ViewOrderActivity extends Activity{
         textSpecialInstructions = (TextView) findViewById(R.id.textSpecialInstructions);
         buttonClear = (Button) findViewById(R.id.buttonClear);
         buttonConfirm = (Button) findViewById(R.id.buttonConfirm);
+        listViewOrder = (ListView) findViewById(R.id.listViewOrder);
 
+        listSelection = 0;
+        Intent i = getIntent();
+        cOrder = (CoffeeOrder) i.getSerializableExtra(EXTRA_COFFEE_ORDER);
+        arrayCoffeeOrder = (ArrayList<CoffeeOrder>) i.getSerializableExtra(EXTRA_ARRAY_COFFEE_ORDER);
+
+
+
+        adapter = new ArrayAdapter<CoffeeOrder>(this, android.R.layout.simple_list_item_1, arrayCoffeeOrder);
         buttonListener = new ButtonListener();
         buttonClear.setOnClickListener(buttonListener);
         buttonConfirm.setOnClickListener(buttonListener);
+        listViewOrder.setAdapter(adapter);
 
-        Intent i = getIntent();
-        cOrder = (CoffeeOrder) i.getSerializableExtra(EXTRA_COFFEE_ORDER);
+
+        listViewOrder.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                cOrder = arrayCoffeeOrder.get(position);
+                populateView();
+            }
+        });
+
+        populateView();
+    }
+
+    private void populateView(){
+
+
         orderForString = "Order for " + cOrder.getName();
         msgPart2 = cOrder.getBrew();
 
@@ -98,7 +134,6 @@ public class ViewOrderActivity extends Activity{
                 case R.id.buttonClear:
                     setResult(RESULT_CANCELED);
                     Log.d(TAG, "result canceled");
-                    Toast.makeText(getApplicationContext(), "Thanks for nothing!",Toast.LENGTH_SHORT).show();
 
                     finish();
 
