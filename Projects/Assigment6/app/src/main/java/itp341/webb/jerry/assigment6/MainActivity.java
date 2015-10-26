@@ -1,11 +1,9 @@
 package itp341.webb.jerry.assigment6;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -17,12 +15,12 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import itp341.webb.jerry.assigment6.model.CoffeeOrder;
@@ -48,6 +46,7 @@ public class MainActivity extends Activity {
     EditText editSpecialInstruction;
     EditText editName;
     RadioGroup radioGroupSize;
+    RatingBar ratingCoffee;
     Spinner spinnerBrew;
     Switch switchSugar;
 
@@ -74,6 +73,7 @@ public class MainActivity extends Activity {
         editSpecialInstruction = (EditText) findViewById(R.id.editTextSpecialInstruction);
         editName = (EditText) findViewById(R.id.editName);
         radioGroupSize = (RadioGroup) findViewById(R.id.radioGroupSize);
+        ratingCoffee = (RatingBar) findViewById(R.id.ratingCoffee);
         spinnerBrew = (Spinner) findViewById(R.id.spinnerBrewChoices);
         switchSugar = (Switch) findViewById(R.id.switchSugar);
 
@@ -141,6 +141,15 @@ public class MainActivity extends Activity {
             }
         });
 
+        ratingCoffee.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                order.setRating( rating);
+            }
+        });
+
+
+
     }
 
     private class ButtonListener implements View.OnClickListener{
@@ -158,7 +167,7 @@ public class MainActivity extends Activity {
                     preEditor.putString(PREFERENCE_SPECIAL_INSTRUCTIONS, order.getSpecialInstructions());
                     preEditor.putBoolean(PREFERENCE_MILK, order.isMilkOrCream());
                     preEditor.putBoolean(PREFERENCE_SUGAR, order.isSugar());
-                    preEditor.putInt(PREFERENCE_RATING, order.getRating());
+                    preEditor.putFloat(PREFERENCE_RATING, order.getRating());
                     preEditor.commit();
 
                     Toast.makeText(getApplicationContext(),"Saved user preferences!",Toast.LENGTH_SHORT).show();
@@ -168,11 +177,11 @@ public class MainActivity extends Activity {
                     prefs = getSharedPreferences(PREFERENCE_FILENAME, MODE_PRIVATE);
                     order.setName(prefs.getString(PREFERENCE_NAME, "New Customer"));
                     order.setBrew(prefs.getString(PREFERENCE_BREW, "Iced"));
-                    order.setSize(prefs.getInt(PREFERENCE_SIZE, R.id.radioButtonSmall));
+                    order.setSize(prefs.getInt(PREFERENCE_SIZE,2));
                     order.setSpecialInstructions(prefs.getString(PREFERENCE_SPECIAL_INSTRUCTIONS, ""));
                     order.setMilkOrCream(prefs.getBoolean(PREFERENCE_MILK, false));
                     order.setSugar(prefs.getBoolean(PREFERENCE_SUGAR, false));
-                    order.setRating(prefs.getInt(PREFERENCE_RATING, 0));
+                    order.setRating(prefs.getFloat(PREFERENCE_RATING, 0));
 
                     refreshView();
                     Toast.makeText(getApplicationContext(),"Loaded user preferences!",Toast.LENGTH_SHORT).show();
@@ -180,35 +189,23 @@ public class MainActivity extends Activity {
                     break;
 
                 case R.id.buttonOrder:
-                    if((arrayCoffeeOrder.size() >0)){
-                        arrayCoffeeOrder.add(order);
+                        addcoffeOrder();
                         Intent i = new Intent(getApplicationContext(), ViewOrderActivity.class);
                         i.putExtra(ViewOrderActivity.EXTRA_COFFEE_ORDER, order);
                         i.putExtra(ViewOrderActivity.EXTRA_ARRAY_COFFEE_ORDER, arrayCoffeeOrder);
                         startActivityForResult(i, 0);
-                    }
-                    else {
-                        Toast.makeText(getApplicationContext(),"Please enter a valid Name", Toast.LENGTH_SHORT).show();
-                    }
 
                     break;
 
                 case R.id.buttonAddOrder:
-                    if(arrayCoffeeOrder.size() >0) {
                         if (order.getName() != "") {
+                            addcoffeOrder();
+                        }
+                        else if ((arrayCoffeeOrder.size() == 0) && (order.getName() != "") ) {
 
-                            CoffeeOrder newOrder = new CoffeeOrder(order.getName(),
-                                    order.getBrewPosition(), order.getBrew(),
-                                    order.isSugar(), order.isMilkOrCream());
-
-                            newOrder.setSpecialInstructions(order.getSpecialInstructions());
-                            arrayCoffeeOrder.add(newOrder);
-
-                            clearFields();
-                        } else {
                             Toast.makeText(getApplicationContext(), "Please enter a valid Name", Toast.LENGTH_SHORT).show();
 
-                        }
+
                     }
                     break;
 
@@ -228,7 +225,7 @@ public class MainActivity extends Activity {
         order.setSpecialInstructions("");
         order.setMilkOrCream(false);
         order.setSugar(false);
-        order.setRating(0);
+        order.setRating(1);
 
         editName.setText("");
         order.setSpecialInstructions("");
@@ -236,8 +233,20 @@ public class MainActivity extends Activity {
         checkMilk.setChecked(false);
         switchSugar.setChecked(false);
         spinnerBrew.setSelection(0);
+        ratingCoffee.setProgress(0);
 
         refreshView();
+    }
+
+    private void addcoffeOrder(){
+        CoffeeOrder newOrder = new CoffeeOrder(order.getName(), order.getSize(),
+                order.getBrew(), order.isSugar(), order.isMilkOrCream());
+
+        newOrder.setSpecialInstructions(order.getSpecialInstructions());
+        newOrder.setRating(order.getRating());
+        arrayCoffeeOrder.add(newOrder);
+
+        clearFields();
     }
 
     public void refreshView(){
@@ -247,6 +256,7 @@ public class MainActivity extends Activity {
         switchSugar.setChecked(order.isSugar());
         checkMilk.setChecked(order.isMilkOrCream());
         radioGroupSize.check(order.getSize());
+        ratingCoffee.setProgress((int) order.getRating());
     }
 
     @Override

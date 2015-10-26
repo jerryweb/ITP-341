@@ -14,7 +14,7 @@ public class CoffeeOrder implements Serializable {
     private String specialInstructions;
     private boolean sugar;
     private boolean milkOrCream;
-    private int rating;
+    private float rating;
     private int brewPosition;
 
     //Constructor
@@ -37,11 +37,11 @@ public class CoffeeOrder implements Serializable {
         this.specialInstructions = specialInstructions;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 
@@ -96,18 +96,20 @@ public class CoffeeOrder implements Serializable {
 
     @Override
     public String toString() {
-        String stringSize;
+        String stringSize = "";
+
         if (size == 0){
             stringSize = "(small)";
         }
         else if (size == 1){
             stringSize = "(medium)";
         }
-        else {
+        else if (size == 2){
             stringSize = "(large)";
         }
 
-        return "" + name + ": " + brew + " " + stringSize;
+
+        return "" + name + ":  " + brew + " " + stringSize;
 //        return "name = '" + name + '\'' +
 //                ", size = " + size +
 //                ", brew = '" + brew + '\'' +

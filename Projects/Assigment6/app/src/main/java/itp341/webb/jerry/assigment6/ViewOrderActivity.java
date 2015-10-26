@@ -59,10 +59,10 @@ public class ViewOrderActivity extends Activity{
 
         listSelection = 0;
         Intent i = getIntent();
-        cOrder = (CoffeeOrder) i.getSerializableExtra(EXTRA_COFFEE_ORDER);
+//        cOrder = (CoffeeOrder) i.getSerializableExtra(EXTRA_COFFEE_ORDER);
         arrayCoffeeOrder = (ArrayList<CoffeeOrder>) i.getSerializableExtra(EXTRA_ARRAY_COFFEE_ORDER);
 
-
+        cOrder = arrayCoffeeOrder.get(0);
 
         adapter = new ArrayAdapter<CoffeeOrder>(this, android.R.layout.simple_list_item_1, arrayCoffeeOrder);
         buttonListener = new ButtonListener();
@@ -101,7 +101,7 @@ public class ViewOrderActivity extends Activity{
                 msgSize += "large";
                 break;
         }
-        msgSize += ")";
+        msgSize += ")   Rating: " + cOrder.getRating();
 
         msgPart4 = "with ";
         if(cOrder.isMilkOrCream()){
