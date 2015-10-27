@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+android:id/background"
+          android:drawable="@drawable/ratingbar_list_coffee_empty" />
+    <item android:id="@+android:id/secondaryProgress"
+          android:drawable="@drawable/ratingbar_list_coffee_half_filled" />
+    <item android:id="@+android:id/progress"
+          android:drawable="@drawable/ratingbar_list_coffee_filled" />
+</layer-list><!-- From: file:/Users/jerrywebb/Downloads/Week9_List%20Singleton%20Coffee%20(pass%20id%20to%20detail%20view)_start/app/src/main/res/drawable/ratingbar_coffee.xml -->

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/Users/jerrywebb/Downloads/Week9_List%20Singleton%20Coffee%20(pass%20id%20to%20detail%20view)_start/app/src/main/res/values-w820dp/dimens.xml -->
+    <eat-comment/>
+    <dimen name="activity_horizontal_margin">64dp</dimen>
+</resources>
