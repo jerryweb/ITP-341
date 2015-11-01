@@ -1,5 +1,8 @@
 package itp341.exercises.week9_list_singleton.app.model;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 public class CoffeeShop { // serializable added later
@@ -55,6 +58,38 @@ public class CoffeeShop { // serializable added later
 		this.website = website;
 		this.rating = rating;
 	}
+
+    public CoffeeShop(JSONObject json) throws JSONException{
+        name = json.getString(JSON_NAME);
+        address = json.getString(JSON_ADDRESS);
+        city = json.getString(JSON_CITY);
+        state = json.getString(JSON_STATE);
+        zip = json.getString(JSON_ZIP);
+        phone = json.getString(JSON_PHONE);
+        website = json.getString(JSON_PHONE);
+        rating = json.getDouble(JSON_RATING);
+    }
+
+	//JSON - toJSON
+    /**converst CoffeeShop data into JSON object
+     * @retrun JSONObject
+     * @throws JSONException
+     */
+	public JSONObject toJSON() throws JSONException {	//it always has to have throws...
+		JSONObject json = new JSONObject();
+
+        json.put(JSON_NAME, name);
+        json.put(JSON_ADDRESS, address);
+        json.put(JSON_CITY, city);
+        json.put(JSON_ZIP, zip);
+        json.put(JSON_STATE, state);
+        json.put(JSON_PHONE, phone);
+        json.put(JSON_WEBSITE, website);
+        json.put(JSON_RATING, rating);
+
+        return json;
+	}
+
 
 
 	

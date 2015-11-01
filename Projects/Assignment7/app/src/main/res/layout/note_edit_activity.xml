@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="29dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:weightSum="1"
+        android:layout_weight="0.04">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/title"
+            android:id="@+id/textView"
+            android:layout_weight=".85"
+            android:textSize="@dimen/medium_text_size"
+            android:textStyle="bold|normal"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/minimum_space_between_widgets" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTitle"
+            android:layout_weight=".15"
+            android:lines="1"
+            android:textSize="@dimen/medium_text_size"
+            android:hint="@string/enter_title_hint" />
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editContent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/minimum_space_between_widgets"
+        android:scrollIndicators="right"
+        android:layout_weight="0.10" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete"
+            android:id="@+id/buttonDelete"
+            android:layout_weight=".5"
+            android:layout_marginRight="@dimen/minimum_space_between_widgets" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:id="@+id/buttonSave"
+            android:layout_weight=".5"
+            android:layout_marginLeft="@dimen/minimum_space_between_widgets" />
+    </LinearLayout>
+</LinearLayout>

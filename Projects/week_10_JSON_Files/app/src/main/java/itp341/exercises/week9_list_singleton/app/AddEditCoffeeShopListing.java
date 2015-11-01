@@ -136,6 +136,10 @@ public class AddEditCoffeeShopListing extends Activity {
         TextView tv = (TextView) spinnerState.getSelectedView();
         cs.setState(tv.getText().toString());
 
+        if(tv != null){
+            cs.setState(tv.getText().toString());
+        }
+
         if(position != -1){ //existing entry
             CoffeeShopSingleton.get(this).updateCoffeeShop(position, cs);
         }
@@ -146,6 +150,12 @@ public class AddEditCoffeeShopListing extends Activity {
 
         setResult(RESULT_OK);
         finish();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        CoffeeShopSingleton.get(this).saveCoffeeShops();
     }
 
     //TODO Listing should be deleted (only it was an existing entry, not if it was new))
