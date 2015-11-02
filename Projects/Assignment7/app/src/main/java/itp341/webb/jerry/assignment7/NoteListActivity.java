@@ -5,7 +5,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,6 +21,8 @@ import itp341.webb.jerry.assignment7.model.NoteSingleton;
 
 public class NoteListActivity extends Activity {
     public static final String TAG = "itp341.webb.jerry.assignment7.tag";
+    private ActionMode mActionMode;
+    int positionForDelete = 0;
 
     ArrayList <Note> notes;
     NoteAdapter noteAdapter;
@@ -64,18 +68,56 @@ public class NoteListActivity extends Activity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d(TAG, "Long click listener activated");
-//                openContextMenu();
-                return false;
+                if(mActionMode != null){
+                    return false;
+                }
+                positionForDelete = position;
+                // Start the CAB using the ActionMode.Callback defined above
+                mActionMode = startActionMode(mActionModeCallback);
+                view.setSelected(true);
+                return true;
             }
         });
 
     }
 
-//    protected void onPause(){
-//        // Called after onStart() as Activity comes to foreground.
-//        Log.d(TAG, "onResume");
-//        super.onPause();
-//    }
+    private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
+
+        // Called when the action mode is created; startActionMode() was called
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            // Inflate a menu resource providing context menu items
+            MenuInflater menuInflater = mode.getMenuInflater();
+            menuInflater.inflate(R.menu.context_menu, menu);
+            return true;
+        }
+        // Called each time the action mode is shown. Always called after onCreateActionMode, but
+        // may be called multiple times if the mode is invalidated.
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            switch(item.getItemId()){
+                case R.id.contextMenu:
+                    NoteSingleton.get(getApplicationContext()).removeNote(positionForDelete);
+                    noteAdapter.notifyDataSetChanged();
+                    mode.finish(); // Action picked, so close the CAB
+                    return true;
+                default:
+                    return false;
+
+            }
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            mActionMode = null;
+        }
+    };
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -71,12 +71,8 @@ public class NoteEditActivity extends Activity {
     }
 
     private void saveAndClose(){
-//        Calendar calendar = Calendar.getInstance();
-        int[] date = new int[3];
-//        date[0] = calendar.get(Calendar.MONTH);
-//        date[1] = calendar.get(Calendar.DAY_OF_MONTH);
-//        date[2] = calendar.get(Calendar.YEAR);
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+
+        SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
         String formattedDate = df.format(calendar.getTime());
 
         Log.d(TAG, "saving and closing");
@@ -85,7 +81,6 @@ public class NoteEditActivity extends Activity {
         nt.setTitle(editTitle.getText().toString());
         nt.setContent(editContent.getText().toString());
         nt.setDateFormat(formattedDate);
-//        calendar.\
         if(position != -1){ //existing entry
             NoteSingleton.get(this).updateNote(position, nt);
         }

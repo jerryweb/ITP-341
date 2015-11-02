@@ -21,12 +21,8 @@ public class NoteSingleton {
     private NoteSingleton(Context c){
         mNotes = new ArrayList<Note>();
 
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy");
         String formattedDate = df.format(calendar.getTime());
-
-        date[0] = calendar.get(Calendar.MONTH);
-        date[1] = calendar.get(Calendar.DAY_OF_MONTH);
-        date[2] = calendar.get(Calendar.YEAR);
 
         this.mAppContext = c;
 

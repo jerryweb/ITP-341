@@ -13,7 +13,7 @@
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:weightSum="1"
-        android:layout_weight="0.04">
+        android:layout_weight="0.08">
 
         <TextView
             android:layout_width="fill_parent"
@@ -28,7 +28,7 @@
 
         <EditText
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:id="@+id/editTitle"
             android:layout_weight=".15"
             android:lines="1"
@@ -37,7 +37,7 @@
     </LinearLayout>
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:inputType="textMultiLine"
         android:ems="10"
