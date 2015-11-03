@@ -64,6 +64,8 @@ public class NoteListActivity extends Activity {
             }
         });
 
+        //This allows access to an Action Context Menu that allows for direct deletion of notes from
+        //the list activity
         listNotes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
