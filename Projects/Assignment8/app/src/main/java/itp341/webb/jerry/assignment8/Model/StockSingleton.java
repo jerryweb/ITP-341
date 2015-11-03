@@ -61,4 +61,23 @@ public class StockSingleton {
         }
 
     }
+
+    public void removeStock(int position){
+        if(position >= 0 && position < mStocks.size()){
+            mStocks.remove(position);
+        }
+    }
+
+    //TODO JSON -- saving
+    public boolean saveCoffeeShops(){
+        try {
+            mSerializer.saveStocks(mStocks);
+            return true;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
