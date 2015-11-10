@@ -1,23 +1,26 @@
 package itp341.webb.jerry.assignment8;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import itp341.webb.jerry.assignment8.Controller.StockAdapter;
 import itp341.webb.jerry.assignment8.Model.Stock;
 import itp341.webb.jerry.assignment8.Model.StockSingleton;
 
 public class StockManagerActivity extends Activity {
+    public static final String EXTRA_STOCK_POSITION = "itp341.webb.jerry.assignment.position";
 
-    ImageButton imageBtnAdd;
+    public static final String TAG = "itp341.webb.jerry.assignment7.tag";
+    Button buttonAdd;
     ListView listStock;
     ArrayList<Stock> stocks;
     StockAdapter adapter;
@@ -27,26 +30,42 @@ public class StockManagerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stock_manager);
 
-        imageBtnAdd = (ImageButton) findViewById(R.id.imageBtnAdd);
+        buttonAdd = (Button) findViewById(R.id.buttonAdd);
         listStock = (ListView) findViewById(R.id.listStocks);
 
         stocks = StockSingleton.get(this).getmStocks();
         adapter = new StockAdapter(this, stocks);
         listStock.setAdapter(adapter);
 
-        imageBtnAdd.setOnClickListener(new View.OnClickListener() {
+
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(getApplicationContext(),AddStockActivity.class);
+                startActivityForResult(i,0);
             }
         });
+
 
         listStock.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getApplicationContext(), BuySellStock.class);
+                i.putExtra(EXTRA_STOCK_POSITION, position);
+                startActivityForResult(i, 0);
+                Log.d(TAG, "starting buySellStock activity");
 
+//                startActivity(i);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == Activity.RESULT_OK){
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override

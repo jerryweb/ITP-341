@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/jerrywebb/Library/Android/sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="/Users/jerrywebb/Documents/ITP-341/Projects/Week11_Singleton SQLite - start/app/build/intermediates/pre-dexed/debug/support-v4-18.0.0-bc0a3dea795716a6cba65b662cd717e35faa5b3e.jar" />
+    </item>
+
+</items>

@@ -25,12 +25,12 @@ public class NoteSingleton {
         String formattedDate = df.format(calendar.getTime());
 
         this.mAppContext = c;
-
-        for(int i = 0; i<3;i++){
-            Note n = new Note("Blank Note "+i, "  ", date);
-            n.setDateFormat(formattedDate);
-            mNotes.add(n);
-        }
+//
+//        for(int i = 0; i<3;i++){
+//            Note n = new Note("Blank Note "+i, "  ", date);
+//            n.setDateFormat(formattedDate);
+//            mNotes.add(n);
+//        }
     }
 
     public static NoteSingleton get(Context c){

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="shiba_colors">
+        <item>black</item>
+        <item>white</item>
+        <item>sesame</item>
+    </array>
+</resources>

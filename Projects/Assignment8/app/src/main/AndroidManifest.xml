@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="itp341.webb.jerry.assignment8" >
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,12 +12,20 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".StockManagerActivity"
-            android:label="@string/app_name" >
+            android:label="@string/manage_stock_label" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".AddStockActivity"
+            android:label="@string/add_stock_label">
+        </activity>
+        <activity
+            android:name=".BuySellStock"
+            android:label="@string/manage_stock_label">
         </activity>
     </application>
 

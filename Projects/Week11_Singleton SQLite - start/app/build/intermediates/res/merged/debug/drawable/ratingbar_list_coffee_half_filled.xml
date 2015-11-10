@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+ 
+<!-- This is the rating bar drawable that is used to
+show a filled cookie. -->
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+ 
+    <item android:state_pressed="true"
+          android:state_window_focused="true"
+          android:drawable="@drawable/coffee_bean_half_filled" />
+ 
+    <item android:state_focused="true"
+          android:state_window_focused="true"
+          android:drawable="@drawable/coffee_bean_half_filled" />
+ 
+    <item android:state_selected="true"
+          android:state_window_focused="true"
+          android:drawable="@drawable/coffee_bean_half_filled" />
+ 
+    <item android:drawable="@drawable/coffee_bean_half_filled" />
+ 
+</selector><!-- From: file:/Users/jerrywebb/Documents/ITP-341/Projects/Week11_Singleton%20SQLite%20-%20start/app/src/main/res/drawable/ratingbar_list_coffee_half_filled.xml -->

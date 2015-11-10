@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="itp341.exercises.week12_singleton_sqlite_asynctask.test">
+
+    <uses-sdk android:minSdkVersion="22" android:targetSdkVersion="22" />
+
+    <application>
+        <uses-library android:name="android.test.runner" />
+    </application>
+
+    <instrumentation android:name="android.test.InstrumentationTestRunner"
+                     android:targetPackage="itp341.exercises.week12_singleton_sqlite_asynctask"
+                     android:handleProfiling="false"
+                     android:functionalTest="false"
+                     android:label="Tests for itp341.exercises.week12_singleton_sqlite_asynctask"/>
+</manifest>

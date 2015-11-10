@@ -14,6 +14,7 @@ public class Stock {
     private static final String JSON_STOCK = "stock";
     private static final String JSON_COLOR = "color";
     private static final String JSON_BRAND = "brand";
+    private static final String JSON_PRODUCT_NAME = "productName";
 
     //Instance Variables
     private int ID;
@@ -21,28 +22,53 @@ public class Stock {
     private int stock;
     private String color;
     private String brand;
-
+    private String productName;
 
 
     public Stock(){
         super();
     }
 
+
+
     public Stock(int id, int p, int s, String c, String b){
         super();
         this.ID = id;
+        this.productName = "";
         this.price =  p;
         this.stock = s;
         this.color = c;
         this.brand = b;
+
     }
 
-    public Stock(JSONObject json) throws JSONException {
+    public Stock(JSONObject json, String pn) throws JSONException {
         ID = json.getInt(JSON_ID);
-        price = json.getInt(JSON_PRICE);
+        String p = json.getString(JSON_PRICE).substring(1);
+//        String pTemp = "";
+//        for (int i = 1; i < p.length(); i++){
+//            pTemp.charAt(i-1) = p.charAt(i);
+//            //Process char
+//        }
+
+        int myNum = 0;
+
+        try {
+            myNum = Integer.parseInt(String.valueOf(json.getString(JSON_PRICE)));
+        } catch(NumberFormatException nfe) {
+            System.out.println("Could not parse " + nfe);
+        }
+        price = Integer.parseInt(p);  //json.getInt(JSON_PRICE);
+
+//        try {
+//            myNum = Integer.parseInt(String.valueOf(json.getString(JSON_STOCK)));
+//        } catch(NumberFormatException nfe) {
+//            System.out.println("Could not parse " + nfe);
+//        }
         stock = json.getInt(JSON_STOCK);
         color = json.getString(JSON_COLOR);
         brand = json.getString(JSON_BRAND);
+        productName = pn;
     }
 
     public JSONObject toJSON() throws JSONException {
@@ -53,7 +79,7 @@ public class Stock {
         json.put(JSON_STOCK, stock);
         json.put(JSON_COLOR, color);
         json.put(JSON_BRAND, brand);
-
+        json.put(JSON_PRODUCT_NAME, productName);
         return json;
 
     }
@@ -95,9 +121,16 @@ public class Stock {
         return brand;
     }
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
     public void setBrand(String brand) {
         this.brand = brand;
     }
-
 
 }

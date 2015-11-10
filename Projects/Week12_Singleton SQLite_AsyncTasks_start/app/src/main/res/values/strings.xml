@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Coffee Shop</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!-- add_edit_coffee_shop_listing.xml -->
+    <string name="label_name">Shop Name</string>
+    <string name="label_phone">Phone</string>
+    <string name="label_website">Website</string>
+    <string name="label_address">Address</string>
+    <string name="label_city">City</string>
+    <string name="label_state">State</string>
+    <string name="label_zip">Zip</string>
+    <string name="label_rating">Rating</string>
+    <string name="label_save">Save</string>
+    <string name="label_welcome">Welcome to Your Favorite Coffee Shops! Look through the list or add a new one</string>
+    <string name="label_add">Add</string>
+    <string name="label_delete">Delete</string>
+
+
+</resources>

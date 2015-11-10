@@ -71,7 +71,6 @@ public class AddEditCoffeeShopListing extends Activity {
             @Override
             public void onClick(View v) {
                 deleteAndClose();
-
             }
         });
         buttonSaveListing.setOnClickListener(new OnClickListener() {
@@ -79,7 +78,6 @@ public class AddEditCoffeeShopListing extends Activity {
             @Override
             public void onClick(View v) {
                 saveAndClose();
-
             }
         });
 

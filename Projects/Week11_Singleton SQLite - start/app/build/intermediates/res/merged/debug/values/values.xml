@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/Users/jerrywebb/Documents/ITP-341/Projects/Week11_Singleton%20SQLite%20-%20start/app/src/main/res/values/arrays.xml -->
+    <eat-comment/>
+    <string-array name="states">
+        <item>AK</item>
+        <item>AL</item>
+        <item>AR</item>
+        <item>AZ</item>
+        <item>CA</item>
+        <item>CO</item>
+        <item>CT</item>
+        <item>DC</item>
+        <item>DE</item>
+        <item>FL</item>
+        <item>GA</item>
+        <item>HI</item>
+        <item>IA</item>
+        <item>ID</item>
+        <item>IL</item>
+        <item>IN</item>
+        <item>KS</item>
+        <item>KY</item>
+        <item>LA</item>
+        <item>MA</item>
+        <item>MD</item>
+        <item>ME</item>
+        <item>MI</item>
+        <item>MN</item>
+        <item>MO</item>
+        <item>MS</item>
+        <item>MT</item>
+        <item>NC</item>
+        <item>ND</item>
+        <item>NE</item>
+        <item>NH</item>
+        <item>NJ</item>
+        <item>NM</item>
+        <item>NV</item>
+        <item>NY</item>
+        <item>OH</item>
+        <item>OK</item>
+        <item>OR</item>
+        <item>PA</item>
+        <item>RI</item>
+        <item>SC</item>
+        <item>SD</item>
+        <item>TN</item>
+        <item>TX</item>
+        <item>UT</item>
+        <item>VA</item>
+        <item>VT</item>
+        <item>WA</item>
+        <item>WI</item>
+        <item>WV</item>
+        <item>WY</item>
+    </string-array>
+    <!-- From: file:/Users/jerrywebb/Documents/ITP-341/Projects/Week11_Singleton%20SQLite%20-%20start/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="text_heading">#0000ff</color>
+    <!-- From: file:/Users/jerrywebb/Documents/ITP-341/Projects/Week11_Singleton%20SQLite%20-%20start/app/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="widget_padding">48dp</dimen>
+    <!-- From: file:/Users/jerrywebb/Documents/ITP-341/Projects/Week11_Singleton%20SQLite%20-%20start/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="action_settings">Settings</string>
+    <string name="app_name">Coffee Shop</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="label_add">Add</string>
+    <string name="label_address">Address</string>
+    <string name="label_city">City</string>
+    <string name="label_delete">Delete</string>
+    <string name="label_name">Shop Name</string>
+    <string name="label_phone">Phone</string>
+    <string name="label_rating">Rating</string>
+    <string name="label_save">Save</string>
+    <string name="label_state">State</string>
+    <string name="label_website">Website</string>
+    <string name="label_welcome">Welcome to Your Favorite Coffee Shops! Look through the list or add a new one</string>
+    <string name="label_zip">Zip</string>
+</resources>
