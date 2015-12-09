@@ -1,0 +1,151 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_min_widget_distance"
+        android:weightSum="1">
+
+        <TextClock
+            android:layout_width="wrap_content"
+            android:layout_height="27dp"
+            android:id="@+id/textClock" />
+
+        <Button
+            android:layout_width="52dp"
+            android:layout_height="39dp"
+            android:text="Pla"
+            android:id="@+id/button"
+            android:textSize="12sp" />
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar"
+            android:layout_weight="0.22"
+            android:indeterminate="false"
+            android:layout_gravity="center_vertical" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="196dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_weight="0.24">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="98dp"
+            android:layout_height="fill_parent">
+
+            <Button
+                android:layout_width="98dp"
+                android:layout_height="fill_parent"
+                android:text="New Button"
+                android:id="@+id/btn_pad_0"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight=".5" />
+
+            <Button
+                android:layout_width="98dp"
+                android:layout_height="fill_parent"
+                android:text="New Button"
+                android:id="@+id/btn_pad_1"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight=".5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="98dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="New Button"
+                android:id="@+id/btn_pad_2"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight=".5" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="New Button"
+                android:id="@+id/btn_pad_3"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight=".5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="98dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="New Button"
+                android:id="@+id/btn_pad_4"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight=".5" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="New Button"
+                android:id="@+id/btn_pad_5"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight=".5" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="98dp"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="New Button"
+                android:id="@+id/btn_pad_6"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight=".5" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="New Button"
+                android:id="@+id/btn_pad_7"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight=".5" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/soundsList"
+            android:layout_weight="3" />
+
+    </LinearLayout>
+</LinearLayout>
