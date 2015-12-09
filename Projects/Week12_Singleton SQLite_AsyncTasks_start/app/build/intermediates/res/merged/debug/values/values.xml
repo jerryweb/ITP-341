@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/R/Dropbox%20(Personal)/_ITP%20341/_Projects/ITP%20341%20-%20Lectures/Week12_Singleton%20SQLite_AsyncTasks%20-%20start/app/src/main/res/values/arrays.xml -->
+    <!-- From: file:/Users/jerrywebb/Documents/ITP-341/Projects/Week12_Singleton%20SQLite_AsyncTasks_start/app/src/main/res/values/arrays.xml -->
     <eat-comment/>
     <string-array name="states">
         <item>AK</item>
@@ -55,15 +55,15 @@
         <item>WV</item>
         <item>WY</item>
     </string-array>
-    <!-- From: file:/C:/Users/R/Dropbox%20(Personal)/_ITP%20341/_Projects/ITP%20341%20-%20Lectures/Week12_Singleton%20SQLite_AsyncTasks%20-%20start/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/Users/jerrywebb/Documents/ITP-341/Projects/Week12_Singleton%20SQLite_AsyncTasks_start/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="text_heading">#0000ff</color>
-    <!-- From: file:/C:/Users/R/Dropbox%20(Personal)/_ITP%20341/_Projects/ITP%20341%20-%20Lectures/Week12_Singleton%20SQLite_AsyncTasks%20-%20start/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/Users/jerrywebb/Documents/ITP-341/Projects/Week12_Singleton%20SQLite_AsyncTasks_start/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="widget_padding">48dp</dimen>
-    <!-- From: file:/C:/Users/R/Dropbox%20(Personal)/_ITP%20341/_Projects/ITP%20341%20-%20Lectures/Week12_Singleton%20SQLite_AsyncTasks%20-%20start/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/jerrywebb/Documents/ITP-341/Projects/Week12_Singleton%20SQLite_AsyncTasks_start/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Settings</string>
     <string name="app_name">Coffee Shop</string>

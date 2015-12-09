@@ -6,4 +6,4 @@
           android:drawable="@drawable/ratingbar_list_coffee_half_filled" />
     <item android:id="@+android:id/progress"
           android:drawable="@drawable/ratingbar_list_coffee_filled" />
-</layer-list><!-- From: file:/C:/Users/R/Dropbox%20(Personal)/_ITP%20341/_Projects/ITP%20341%20-%20Lectures/Week12_Singleton%20SQLite_AsyncTasks%20-%20start/app/src/main/res/drawable/ratingbar_coffee.xml -->
+</layer-list><!-- From: file:/Users/jerrywebb/Documents/ITP-341/Projects/Week12_Singleton%20SQLite_AsyncTasks_start/app/src/main/res/drawable/ratingbar_coffee.xml -->
