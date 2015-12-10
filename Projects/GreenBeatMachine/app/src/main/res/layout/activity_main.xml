@@ -31,10 +31,14 @@
         <SeekBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/seekBar"
-            android:layout_weight="0.22"
+            android:id="@+id/seekbarMasterVolume"
+            android:layout_weight="0.33"
             android:indeterminate="false"
-            android:layout_gravity="center_vertical" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/activity_min_widget_distance"
+            android:max="10"
+            android:progress="8"
+            android:splitTrack="false" />
 
     </LinearLayout>
     <LinearLayout
