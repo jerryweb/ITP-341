@@ -1,49 +1,49 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:2:1-23:12
-	package
-		ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:3:7-46
-		INJECTED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml
-	android:versionName
-		ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:5:7-32
-	android:versionCode
-		ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:4:7-30
-		INJECTED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml
+ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:2:1-23:12
 	xmlns:android
-		ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:2:11-69
+	package
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:3:7-46
+		INJECTED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:5:7-32
+	android:versionCode
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:4:7-30
+		INJECTED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml
 uses-sdk
-ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:6:5-7:40
+ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:6:5-7:40
 	android:targetSdkVersion
-		ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:7:9-38
-		INJECTED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:7:9-38
+		INJECTED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:6:15-41
-		INJECTED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml
-		INJECTED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:6:15-41
+		INJECTED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml
 application
-ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:9:5-22:19
+ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:9:5-22:19
 	android:label
-		ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:11:9-41
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:11:9-41
 	android:allowBackup
-		ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:12:9-36
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:12:9-36
 	android:icon
-		ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:10:9-45
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:10:9-45
 activity#com.itp.threading.NoThreadingExample
-ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:14:9-20:20
+ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:14:9-20:20
 	android:label
-		ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:15:19-51
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:15:19-51
 	android:name
-		ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:14:19-70
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:14:19-70
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:16:13-19:29
+ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:16:13-19:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:17:17-69
+ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:17:17-69
 	android:name
-		ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:17:25-66
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:17:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:18:17-77
+ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:18:17-77
 	android:name
-		ADDED from C:\Users\R\Dropbox (Personal)\_ITP 341\_Projects\ITP 341 - Lectures\week12_asynctask_threading_start\app\src\main\AndroidManifest.xml:18:27-74
+		ADDED from /Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/AndroidManifest.xml:18:27-74

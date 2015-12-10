@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/R/Dropbox%20(Personal)/_ITP%20341/_Projects/ITP%20341%20-%20Lectures/week12_asynctask_threading_start/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/Users/jerrywebb/Documents/ITP-341/Projects/week12_asynctask_threading_start/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="app_name">ThreadingNoThreading</string>
     <string name="image_desc_string">Image</string>

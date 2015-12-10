@@ -26,7 +26,17 @@
             android:layout_height="39dp"
             android:text="Pla"
             android:id="@+id/button"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:layout_marginRight="@dimen/activity_min_widget_distance" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/master_volume"
+            android:id="@+id/textView"
+            android:layout_marginLeft="@dimen/activity_min_widget_distance"
+            android:textSize="@dimen/medium_text_size"
+            android:textStyle="bold" />
 
         <SeekBar
             android:layout_width="wrap_content"
