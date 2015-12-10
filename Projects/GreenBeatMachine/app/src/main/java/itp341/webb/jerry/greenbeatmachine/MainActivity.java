@@ -77,7 +77,6 @@ public class MainActivity extends Activity {
         btn_pad_6.setOnClickListener(buttonListener);
         btn_pad_7.setOnClickListener(buttonListener);
 
-        loadData();
 
 
         //sets attributes so as to better recognize the audio samples
@@ -92,14 +91,7 @@ public class MainActivity extends Activity {
                 .setAudioAttributes(sampleAttributes)
                 .build();//(20, AudioManager.STREAM_MUSIC,0); //int maxStreams, int streamType,int srcQuality
 
-        bmb_k_id = samplePool.load(this, R.raw.ac_k, 1);
-        phn_clp_id = samplePool.load(this, R.raw.phn_clp,1);
-        dry_ohh_cra_id = samplePool.load(this, R.raw.dry_ohh_cra,1);
-
-        Sound so = new Sound();
-        so.setName("bmb_k_id");
-        so.setType("kick");
-        SoundsSingleton.get(this).addSound(so);
+        addSoundsForTest();
 
         masterVolume =  0.8;
         seekBarMasterVolume =  (SeekBar) findViewById(R.id.seekbarMasterVolume);
@@ -121,27 +113,52 @@ public class MainActivity extends Activity {
 
             }
         });
+//        loadData();
 
+    }
+
+    public void addSoundsForTest(){
+        bmb_k_id = samplePool.load(this, R.raw.ac_k, 1);
+        phn_clp_id = samplePool.load(this, R.raw.phn_clp,1);
+        dry_ohh_cra_id = samplePool.load(this, R.raw.dry_ohh_cra,1);
+
+        Sound so = new Sound();
+        so.setName("bmb_k");
+        so.setSoundId(bmb_k_id);
+        so.setType("kick");
+        SoundsSingleton.get(this).addSound(so);
+
+        Sound s1 = new Sound();
+        s1.setName("phn_clp");
+        s1.setSoundId(phn_clp_id);
+        s1.setType("clap");
+        SoundsSingleton.get(this).addSound(s1);
+
+        Sound s2 = new Sound();
+        s2.setName("dry_ohh_cra");
+        s2.setSoundId(dry_ohh_cra_id);
+        s2.setType("crash");
+        SoundsSingleton.get(this).addSound(s2);
     }
 
     public void playSample( int sampleId){
         samplePool.play(sampleId,(float) masterVolume, (float) masterVolume,1,0,1);
     }
 
-    private void loadData() {
-        //What columns are we pulling from the table and displaying on the screen
-        String[] from = {TABLE_SOUNDS.KEY_NAME};
-        //Array of android ids
-        int[] to = {android.R.id.text1};
-
-        //get cursor
-        c = SoundsSingleton.get(this).getSounds();
-        cursorAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1,
-                c, from, to, 0);    //the last argument is the flag (we can just put 0 for the most part
-
-//        soundList.setAdapter(cursorAdapter);
-
-    }
+//    private void loadData() {
+//        //What columns are we pulling from the table and displaying on the screen
+//        String[] from = {TABLE_SOUNDS.KEY_NAME};
+//        //Array of android ids
+//        int[] to = {android.R.id.text1};
+//
+//        //get cursor
+//        c = SoundsSingleton.get(this).getSounds();
+//        cursorAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1,
+//                c, from, to, 0);    //the last argument is the flag (we can just put 0 for the most part
+//
+////        soundList.setAdapter(cursorAdapter);
+//
+//    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -163,9 +180,18 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-    public playSample(int ){
 
+    public void playSample(long id){
+        Cursor c = SoundsSingleton.get(this).getSound(id);
+        if(c != null) {
+            if (c.moveToFirst()) {
+                samplePool.play(c.getInt(TABLE_SOUNDS.COLUMN_SOUNDID),
+                        (float) masterVolume, (float) masterVolume, 1, 0,1);
+            }
+        }
     }
+
+
     private class ButtonListener implements View.OnClickListener{
 //        float outputVolume = (float)masterVolume;
 
@@ -175,16 +201,17 @@ public class MainActivity extends Activity {
 
             switch (v.getId()){
                 case R.id.btn_pad_0:
-                    playSample(bmb_k_id);
+                    playSample(1); // starts at 1
+                    //Will trigger track 0
                     //int soundID, float leftVolume,
                     // float rightVolume,int priority,int loop,float rate
                     break;
                 case R.id.btn_pad_1:
-//                    playSample(phn_clp_id);
+                    playSample(2);
 //                    samplePool.play(phn_clp_id, (float)masterVolume,(float) masterVolume, 1, 0, 1); //int soundID, float leftVolume,
                     break;
                 case R.id.btn_pad_2:
-//                    playSample(dry_ohh_cra_id);
+                    playSample(3);
 
 //                    samplePool.play(dry_ohh_cra_id, (float)masterVolume, (float)masterVolume, 1, 0, 1); //int soundID, float leftVolume,
                     break;

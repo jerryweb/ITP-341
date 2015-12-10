@@ -13,6 +13,7 @@ public class Sound implements Serializable {
     //Instance variables
     private long _id;
     private String name;
+    private int soundId;
     private String type;
 
     //constructor used for testing
@@ -24,12 +25,14 @@ public class Sound implements Serializable {
      * Overload constructor
      * @param long _id
      * @param String name
+     * @param int soundId
      * @param String type
      */
-    public Sound(String name, long id, String type){
+    public Sound(String name, long id, int sId, String type){
         super();
         this._id = id;
         this.name = name;
+        this.soundId = sId;
         this.type = type;
     }
 
@@ -47,6 +50,14 @@ public class Sound implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getSoundId() {
+        return soundId;
+    }
+
+    public void setSoundId(int soundId) {
+        this.soundId = soundId;
     }
 
     public String getType() {
