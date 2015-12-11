@@ -31,6 +31,7 @@ public class MainActivity extends Activity {
     int phn_clp_id;
     int dry_ohh_cra_id;
     double masterVolume;
+    Button padArray[];
 
     Button btn_pad_0;
     Button btn_pad_1;
@@ -55,28 +56,40 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        padArray = new Button[8];
+//        btn_pad_0 = (Button) findViewById(R.id.btn_pad_0);
+//        btn_pad_1 = (Button) findViewById(R.id.btn_pad_1);
+//        btn_pad_2 = (Button) findViewById(R.id.btn_pad_2);
+//        btn_pad_3 = (Button) findViewById(R.id.btn_pad_3);
+//        btn_pad_4 = (Button) findViewById(R.id.btn_pad_4);
+//        btn_pad_5 = (Button) findViewById(R.id.btn_pad_5);
+//        btn_pad_6 = (Button) findViewById(R.id.btn_pad_6);
+//        btn_pad_7 = (Button) findViewById(R.id.btn_pad_7);
 
-        btn_pad_0 = (Button) findViewById(R.id.btn_pad_0);
-        btn_pad_1 = (Button) findViewById(R.id.btn_pad_1);
-        btn_pad_2 = (Button) findViewById(R.id.btn_pad_2);
-        btn_pad_3 = (Button) findViewById(R.id.btn_pad_3);
-        btn_pad_4 = (Button) findViewById(R.id.btn_pad_4);
-        btn_pad_5 = (Button) findViewById(R.id.btn_pad_5);
-        btn_pad_6 = (Button) findViewById(R.id.btn_pad_6);
-        btn_pad_7 = (Button) findViewById(R.id.btn_pad_7);
+        padArray[0] = (Button) findViewById(R.id.btn_pad_0);
+        padArray[1] = (Button) findViewById(R.id.btn_pad_1);
+        padArray[2] = (Button) findViewById(R.id.btn_pad_2);
+        padArray[3] = (Button) findViewById(R.id.btn_pad_3);
+        padArray[4] = (Button) findViewById(R.id.btn_pad_4);
+        padArray[5] = (Button) findViewById(R.id.btn_pad_5);
+        padArray[6] = (Button) findViewById(R.id.btn_pad_6);
+        padArray[7] = (Button) findViewById(R.id.btn_pad_7);
 
         soundList = (ListView) findViewById(R.id.soundsList);
         buttonListener = new ButtonListener();
 
-        btn_pad_0.setOnClickListener(buttonListener);
-        btn_pad_1.setOnClickListener(buttonListener);
-        btn_pad_2.setOnClickListener(buttonListener);
-        btn_pad_3.setOnClickListener(buttonListener);
-        btn_pad_4.setOnClickListener(buttonListener);
-        btn_pad_5.setOnClickListener(buttonListener);
-        btn_pad_6.setOnClickListener(buttonListener);
-        btn_pad_7.setOnClickListener(buttonListener);
+//        btn_pad_0.setOnClickListener(buttonListener);
+//        btn_pad_1.setOnClickListener(buttonListener);
+//        btn_pad_2.setOnClickListener(buttonListener);
+//        btn_pad_3.setOnClickListener(buttonListener);
+//        btn_pad_4.setOnClickListener(buttonListener);
+//        btn_pad_5.setOnClickListener(buttonListener);
+//        btn_pad_6.setOnClickListener(buttonListener);
+//        btn_pad_7.setOnClickListener(buttonListener);
 
+        for (int i =0; i<8;i++){
+            padArray[i].setOnClickListener(buttonListener);
+        }
 
 
         //sets attributes so as to better recognize the audio samples
@@ -145,20 +158,6 @@ public class MainActivity extends Activity {
         samplePool.play(sampleId,(float) masterVolume, (float) masterVolume,1,0,1);
     }
 
-//    private void loadData() {
-//        //What columns are we pulling from the table and displaying on the screen
-//        String[] from = {TABLE_SOUNDS.KEY_NAME};
-//        //Array of android ids
-//        int[] to = {android.R.id.text1};
-//
-//        //get cursor
-//        c = SoundsSingleton.get(this).getSounds();
-//        cursorAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1,
-//                c, from, to, 0);    //the last argument is the flag (we can just put 0 for the most part
-//
-////        soundList.setAdapter(cursorAdapter);
-//
-//    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

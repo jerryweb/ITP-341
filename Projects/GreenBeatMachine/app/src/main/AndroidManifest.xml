@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MidiSequencerActivity"
+            android:label="@string/midi_view_label">
+        </activity>
     </application>
 
 </manifest>

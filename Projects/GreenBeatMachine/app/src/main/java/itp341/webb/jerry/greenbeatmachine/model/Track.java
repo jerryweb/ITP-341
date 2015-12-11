@@ -11,5 +11,70 @@ public class Track implements Serializable {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     //Instance Variables
+    private String name;
+    private String type;
+    private String sampleName;
+    private int currentSampleId;
+    private double trackVolume;
+    private double trackPan;
 
+    //constructor used for testing
+    public Track() {
+        super();
+    }
+
+    public Track(String n, double tV, double tP) {
+        super();
+        this.name = n;
+        this.trackVolume = tV;
+        this.trackPan = tP;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getSampleName() {
+        return sampleName;
+    }
+
+    public void setSampleName(String sampleName) {
+        this.sampleName = sampleName;
+    }
+
+    public int getCurrentSampleId() {
+        return currentSampleId;
+    }
+
+    public void setCurrentSampleId(int currentSampleId) {
+        this.currentSampleId = currentSampleId;
+    }
+
+    public double getTrackVolume() {
+        return trackVolume;
+    }
+
+    public void setTrackVolume(double trackVolume) {
+        this.trackVolume = trackVolume;
+    }
+
+    public double getTrackPan() {
+        return trackPan;
+    }
+
+    public void setTrackPan(double trackPan) {
+        this.trackPan = trackPan;
+    }
 }
