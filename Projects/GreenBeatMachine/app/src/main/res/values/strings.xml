@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Green Beat Machine</string>
+    <string name="action_settings">Settings</string>
+    <string name="master_volume">Vol</string>
+    <string name="midi_view_label">Midi Sequencer</string>
+
+    <string name="track_1">Track 1</string>
+    <string name="track_2">Track 2</string>
+    <string name="track_3">Track 3</string>
+    <string name="track_4">Track 4</string>
+    <string name="track_5">Track 5</string>
+    <string name="track_6">Track 6</string>
+    <string name="track_7">Track 7</string>
+    <string name="track_8">Track 8</string>
+
+</resources>
