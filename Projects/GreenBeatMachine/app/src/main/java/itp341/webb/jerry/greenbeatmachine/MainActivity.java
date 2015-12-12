@@ -99,7 +99,9 @@ public class MainActivity extends Activity {
         seekBarMasterVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                masterVolume = Double.parseDouble(String.valueOf(progress))/10;
+                TrackSingleton.get(getApplicationContext())
+                        .setMasterVolume(Double.parseDouble(String.valueOf(progress)) / 10);
+
 //                Log.d(TAG,"" + masterVolume);
             }
 

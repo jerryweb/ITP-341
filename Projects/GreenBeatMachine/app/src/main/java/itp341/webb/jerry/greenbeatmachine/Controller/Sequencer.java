@@ -8,8 +8,10 @@ import itp341.webb.jerry.greenbeatmachine.model.TrackSingleton;
  * Created by jerrywebb on 12/11/15.
  * This class is used as a seperate thread to play the audio sequence back.
  * The thread will do nothing when the sequence is not playing. During playback, the
- * thread will sleep for a set time at a constant interval to set the tempo of the
- * beat.
+ * thread will lock using synchronization (similar to an OS lock) for a set time at a
+ * constant interval to set the tempo of the beat. Whenever the user updates the
+ * sequencer UI, the boolean array of step values will update here using the notify
+ * method. Same with the play/stop button.
  */
 public class Sequencer {
     public static final String TAG = "itp341.webb.jerry.finalProject.tag";
@@ -24,13 +26,13 @@ public class Sequencer {
         this.bpm = BPM;
         playing = false;
         mAppContext = c;
-        midiSteps = new boolean[1][16];
+        midiSteps = new boolean[2][16];
 
-//        for (int i = 0; i<8; i++){
+        for (int i = 0; i<2; i++){
             for (int j = 0; j<16; j++){
-                midiSteps[0][j] = false;
+                midiSteps[i][j] = false;
             }
-//        }
+        }
     }
 
     public void playBeat(){
@@ -43,14 +45,15 @@ public class Sequencer {
                     if (midiSteps[0][i]) {
                         TrackSingleton.get(mAppContext).playSound(0);
                     }
-//                if(midiSteps[1][i]){
-//                    TrackSingleton.get(mAppContext).playSound(1);
-//                }
+                    if(midiSteps[1][i]){
+                        TrackSingleton.get(mAppContext).playSound(1);
+                    }
 //                if(midiSteps[2][i]){
 //                    TrackSingleton.get(mAppContext).playSound(2);
 //                }
 
-                    if (playing == false) {    //if
+                    if (playing == false) {     //if the user stopped playback, it will leave
+                                                // the loop
                         break;
                     }
                     try {

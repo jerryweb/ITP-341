@@ -32,8 +32,8 @@ public class TrackSingleton {
     private TrackSingleton(Context context){
         mTracks = new ArrayList<Track>();
         this.mAppContext = context;
-        masterVolume = 0.8;
-        bpm = 85;
+        masterVolume = 0.8;                 //volume of the master fader/whole application
+        bpm = 70;                           //Beats per minute tempo
 
         for(int i = 0; i<8;i++){
             Track t = new Track("track " + i, 0.8, 0.5);
@@ -50,13 +50,13 @@ public class TrackSingleton {
         //Streams are the number of sounds that can be played simultaneously
         samplePoolNew = new SoundPool.Builder().setMaxStreams(25)
                 .setAudioAttributes(sampleAttributes)
-                .build();//(20, AudioManager.STREAM_MUSIC,0); //int maxStreams, int streamType,int srcQuality
+                .build(); //int maxStreams, int streamType,int srcQuality
 
         bmb_k_id = samplePoolNew.load(mAppContext, R.raw.ac_k, 1);
         phn_clp_id = samplePoolNew.load(mAppContext, R.raw.phn_clp,1);
         dry_ohh_cra_id = samplePoolNew.load(mAppContext, R.raw.dry_ohh_cra,1);
 
-        sequencer = new Sequencer(mAppContext, bpm);
+        sequencer = new Sequencer(mAppContext, bpm);        //Creates the sequencer thread
     }
 
 
@@ -97,8 +97,8 @@ public class TrackSingleton {
     public void playSound(int id){
         Log.d(TAG, "isMusted = " + mTracks.get(id).isMuted());
         if(!mTracks.get(id).isMuted()){
-            samplePoolNew.play(id+1, (float)0.8,
-                    (float) 0.8, 1, 0, 1);
+            samplePoolNew.play(id+1, (float) masterVolume,
+                    (float) masterVolume, 1, 0, 1);
         }
     }
 

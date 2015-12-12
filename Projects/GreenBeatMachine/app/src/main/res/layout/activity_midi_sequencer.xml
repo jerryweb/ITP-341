@@ -25,6 +25,7 @@
             android:id="@+id/play" />
 
     </LinearLayout>
+
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -263,7 +264,9 @@
             </TableRow>
 
         </TableLayout>
-
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
         <!--<ScrollView-->
             <!--android:layout_width="528dp"-->
             <!--android:layout_height="wrap_content">-->
@@ -434,82 +437,82 @@
                             android:layout_column="0"
                             android:checked="false" />
 
-                        <!--<CheckBox-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:id="@+id/checkBox2"-->
-                            <!--android:layout_column="2"-->
-                            <!--android:checked="false" />-->
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/checkBoxMidiStep_2_6"
+                            android:layout_column="2"
+                            android:checked="false" />
 
-                        <!--<CheckBox-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:id="@+id/checkBox3"-->
-                            <!--android:layout_column="3"-->
-                            <!--android:checked="false" />-->
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/checkBoxMidiStep_2_7"
+                            android:layout_column="3"
+                            android:checked="false" />
 
-                        <!--<CheckBox-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:id="@+id/checkBox4"-->
-                            <!--android:layout_column="4"-->
-                            <!--android:checked="false" />-->
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/checkBoxMidiStep_2_8"
+                            android:layout_column="4"
+                            android:checked="false" />
 
-                        <!--<CheckBox-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:id="@+id/checkBox"-->
-                            <!--android:layout_column="0"-->
-                            <!--android:checked="false" />-->
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/checkBoxMidiStep_2_9"
+                            android:layout_column="0"
+                            android:checked="false" />
 
-                        <!--<CheckBox-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:id="@+id/checkBox2"-->
-                            <!--android:layout_column="2"-->
-                            <!--android:checked="false" />-->
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/checkBoxMidiStep_2_10"
+                            android:layout_column="2"
+                            android:checked="false" />
 
-                        <!--<CheckBox-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:id="@+id/checkBox3"-->
-                            <!--android:layout_column="3"-->
-                            <!--android:checked="false" />-->
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/checkBoxMidiStep_2_11"
+                            android:layout_column="3"
+                            android:checked="false" />
 
-                        <!--<CheckBox-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:id="@+id/checkBox4"-->
-                            <!--android:layout_column="4"-->
-                            <!--android:checked="false" />-->
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/checkBoxMidiStep_2_12"
+                            android:layout_column="4"
+                            android:checked="false" />
 
-                        <!--<CheckBox-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:id="@+id/checkBox"-->
-                            <!--android:layout_column="0"-->
-                            <!--android:checked="false" />-->
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/checkBoxMidiStep_2_13"
+                            android:layout_column="0"
+                            android:checked="false" />
 
-                        <!--<CheckBox-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:id="@+id/checkBox2"-->
-                            <!--android:layout_column="2"-->
-                            <!--android:checked="false" />-->
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/checkBoxMidiStep_2_14"
+                            android:layout_column="2"
+                            android:checked="false" />
 
-                        <!--<CheckBox-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:id="@+id/checkBox3"-->
-                            <!--android:layout_column="3"-->
-                            <!--android:checked="false" />-->
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/checkBoxMidiStep_2_15"
+                            android:layout_column="3"
+                            android:checked="false" />
 
-                        <!--<CheckBox-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:id="@+id/checkBox4"-->
-                            <!--android:layout_column="4"-->
-                            <!--android:checked="false" />-->
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/checkBoxMidiStep_2_16"
+                            android:layout_column="4"
+                            android:checked="false" />
                     </TableRow>
 
                     <TableRow
@@ -517,7 +520,7 @@
                         android:layout_height="match_parent" />
                 </TableLayout>
             </LinearLayout>
-        <!--</ScrollView>-->
+        <!--</ScrollView>--></HorizontalScrollView>
 
     </LinearLayout>
     </ScrollView>

@@ -48,9 +48,7 @@ public class MidiSequencerActivity extends Activity{
         btn_play = (Button) findViewById(R.id.play);
 
 
-
         textViewTracks = new TextView[8];
-
 
         textViewTracks[0] = (TextView) findViewById(R.id.textViewTrack1);
         textViewTracks[1] = (TextView) findViewById(R.id.textViewTrack2);
@@ -72,7 +70,7 @@ public class MidiSequencerActivity extends Activity{
         checkBoxTrackMutes[6] = (CheckBox) findViewById(R.id.checkBoxMute7);
         checkBoxTrackMutes[7] = (CheckBox) findViewById(R.id.checkBoxMute8);
 
-        checkBoxMidiSteps = new CheckBox[1][16];
+        checkBoxMidiSteps = new CheckBox[2][16];
         initializeMidiSteps();
 
         btn_toMainActivity.setOnClickListener(new View.OnClickListener() {
@@ -103,9 +101,7 @@ public class MidiSequencerActivity extends Activity{
                         .getSequencer().isPlaying());
 
                 if (!TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying()) {
-                    for (int j = 0; j < 16; j++) {
-                        midiSteps[0][j] = checkBoxMidiSteps[0][j].isChecked();
-                    }
+                    addStepsToSequncerController();
 
                     TrackSingleton.get(getApplicationContext()).getSequencer().setMidiSteps(midiSteps);
                     sequencerThread = new Thread(new Runnable() {
@@ -131,26 +127,33 @@ public class MidiSequencerActivity extends Activity{
 
         updateTrackName();
 
-        for (int i = 0; i <16; i++){
-            checkBoxMidiSteps[0][i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                    for (int i = 0; i<8; i++){
-                    for (int j = 0; j < 16; j++) {
-                        midiSteps[0][j] = checkBoxMidiSteps[0][j].isChecked();
-                    }
-//                    }
-                    TrackSingleton.get(getApplicationContext()).getSequencer().setMidiSteps(midiSteps);
-                }
-            });
+        for (int i = 0; i<2;i++) {
+            for (int j = 0; j < 16; j++) {
+                checkBoxMidiSteps[i][j].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        addStepsToSequncerController();
+                        TrackSingleton.get(getApplicationContext()).getSequencer().setMidiSteps(midiSteps);
+                    }
+                });
+
+            }
         }
 
     }
 
+    public void addStepsToSequncerController(){
+        for (int i = 0; i<2;i++) {
+            for (int j = 0; j < 16; j++) {
+                midiSteps[i][j] = checkBoxMidiSteps[i][j].isChecked();
+            }
+        }
+    }
 
     public void initializeMidiSteps(){
-        //this is the set of all the midi steps in the grid
+        //this connects the 2D array of all the midi steps to the checkBoxes in the View
+        //first row for track 1
         checkBoxMidiSteps[0][0] = (CheckBox) findViewById(R.id.checkBoxMidiStep_1_1);
         checkBoxMidiSteps[0][1] = (CheckBox) findViewById(R.id.checkBoxMidiStep_1_2);
         checkBoxMidiSteps[0][2] = (CheckBox) findViewById(R.id.checkBoxMidiStep_1_3);
@@ -167,6 +170,24 @@ public class MidiSequencerActivity extends Activity{
         checkBoxMidiSteps[0][13] = (CheckBox) findViewById(R.id.checkBoxMidiStep_1_14);
         checkBoxMidiSteps[0][14] = (CheckBox) findViewById(R.id.checkBoxMidiStep_1_15);
         checkBoxMidiSteps[0][15] = (CheckBox) findViewById(R.id.checkBoxMidiStep_1_16);
+
+        //second row for track 2
+        checkBoxMidiSteps[1][0] = (CheckBox) findViewById(R.id.checkBoxMidiStep_2_1);
+        checkBoxMidiSteps[1][1] = (CheckBox) findViewById(R.id.checkBoxMidiStep_2_2);
+        checkBoxMidiSteps[1][2] = (CheckBox) findViewById(R.id.checkBoxMidiStep_2_3);
+        checkBoxMidiSteps[1][3] = (CheckBox) findViewById(R.id.checkBoxMidiStep_2_4);
+        checkBoxMidiSteps[1][4] = (CheckBox) findViewById(R.id.checkBoxMidiStep_2_5);
+        checkBoxMidiSteps[1][5] = (CheckBox) findViewById(R.id.checkBoxMidiStep_2_6);
+        checkBoxMidiSteps[1][6] = (CheckBox) findViewById(R.id.checkBoxMidiStep_2_7);
+        checkBoxMidiSteps[1][7] = (CheckBox) findViewById(R.id.checkBoxMidiStep_2_8);
+        checkBoxMidiSteps[1][8] = (CheckBox) findViewById(R.id.checkBoxMidiStep_2_9);
+        checkBoxMidiSteps[1][9] = (CheckBox) findViewById(R.id.checkBoxMidiStep_2_10);
+        checkBoxMidiSteps[1][10] = (CheckBox) findViewById(R.id.checkBoxMidiStep_2_11);
+        checkBoxMidiSteps[1][11] = (CheckBox) findViewById(R.id.checkBoxMidiStep_2_12);
+        checkBoxMidiSteps[1][12] = (CheckBox) findViewById(R.id.checkBoxMidiStep_2_13);
+        checkBoxMidiSteps[1][13] = (CheckBox) findViewById(R.id.checkBoxMidiStep_2_14);
+        checkBoxMidiSteps[1][14] = (CheckBox) findViewById(R.id.checkBoxMidiStep_2_15);
+        checkBoxMidiSteps[1][15] = (CheckBox) findViewById(R.id.checkBoxMidiStep_2_16);
 
     }
 
