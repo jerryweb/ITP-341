@@ -120,31 +120,31 @@ public class MainActivity extends Activity {
     }
 
     public void addSoundsForTest(){
-        bmb_k_id = samplePool.load(this, R.raw.ac_k, 1);
-        phn_clp_id = samplePool.load(this, R.raw.phn_clp,1);
-        dry_ohh_cra_id = samplePool.load(this, R.raw.dry_ohh_cra,1);
-
-
-        Sound so = new Sound("bmb_k",bmb_k_id,"kick");
-        SoundsSingleton.get(this).addSound(so);
-
-        Track t0 = new Track("track 1", 0.8, 0.5);
-        t0.setTrackSample(so);
-        TrackSingleton.get(this).updateTrack(0, t0);
-
-        Sound s1 = new Sound("phn_clp", phn_clp_id, "clap");
-        SoundsSingleton.get(this).addSound(s1);
-
-        Track t1 = new Track("track 2", 0.8, 0.5);
-        t1.setTrackSample(s1);
-        TrackSingleton.get(this).updateTrack(1, t1);
-
-        Sound s2 = new Sound("dry_ohh_cra", dry_ohh_cra_id, "crash");
-        SoundsSingleton.get(this).addSound(s2);
-
-        Track t2 = new Track("track 3", 0.8, 0.5);
-        t2.setTrackSample(s2);
-        TrackSingleton.get(this).updateTrack(2, t2);
+//        bmb_k_id = samplePool.load(this, R.raw.ac_k, 1);
+//        phn_clp_id = samplePool.load(this, R.raw.phn_clp,1);
+//        dry_ohh_cra_id = samplePool.load(this, R.raw.dry_ohh_cra,1);
+//
+//
+//        Sound so = new Sound("bmb_k",bmb_k_id,"kick");
+//        SoundsSingleton.get(this).addSound(so);
+//
+//        Track t0 = new Track("track 1", 0.8, 0.5);
+//        t0.setTrackSample(so);
+//        TrackSingleton.get(this).updateTrack(0, t0);
+//
+//        Sound s1 = new Sound("phn_clp", phn_clp_id, "clap");
+//        SoundsSingleton.get(this).addSound(s1);
+//
+//        Track t1 = new Track("track 2", 0.8, 0.5);
+//        t1.setTrackSample(s1);
+//        TrackSingleton.get(this).updateTrack(1, t1);
+//
+//        Sound s2 = new Sound("dry_ohh_cra", dry_ohh_cra_id, "crash");
+//        SoundsSingleton.get(this).addSound(s2);
+//
+//        Track t2 = new Track("track 3", 0.8, 0.5);
+//        t2.setTrackSample(s2);
+//        TrackSingleton.get(this).updateTrack(2, t2);
 
 
 
@@ -184,15 +184,17 @@ public class MainActivity extends Activity {
 
     public void updateView(){
         tracks = TrackSingleton.get(this).getmTracks();
+        masterVolume = TrackSingleton.get(this).getMasterVolume();
+
         for(int i = 0; i <8; i++) {
             padArray[i].setText(tracks.get(i).getName());
         }
     }
 
     public void playSample(int id){
-
-        samplePool.play(tracks.get(id).getCurrentSampleId(),
-                (float) masterVolume, (float) masterVolume, 1, 0,1);
+        TrackSingleton.get(this).playSound(id);
+//        samplePool.play(tracks.get(id).getCurrentSampleId(),
+//                (float) masterVolume, (float) masterVolume, 1, 0,1);
 
 
 //        int[] f = {TABLE_SOUNDS.COLUMN_ID};
@@ -236,19 +238,19 @@ public class MainActivity extends Activity {
 //                    samplePool.play(dry_ohh_cra_id, (float)masterVolume, (float)masterVolume, 1, 0, 1); //int soundID, float leftVolume,
                     break;
                 case R.id.btn_pad_3:
-                    playSample(4);
+                    playSample(3);
                     break;
                 case R.id.btn_pad_4:
-                    playSample(5);
+                    playSample(4);
                     break;
                 case R.id.btn_pad_5:
-                    playSample(6);
+                    playSample(5);
                     break;
                 case R.id.btn_pad_6:
-                    playSample(7);
+                    playSample(6);
                     break;
                 case R.id.btn_pad_7:
-                    playSample(8);
+                    playSample(7);
                     break;
             }
         }

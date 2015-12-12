@@ -1,11 +1,14 @@
 package itp341.webb.jerry.greenbeatmachine.model;
 
 import android.content.Context;
+import android.media.AudioAttributes;
+import android.media.SoundPool;
 import android.nfc.Tag;
 
 import java.util.ArrayList;
 
 import itp341.webb.jerry.greenbeatmachine.MainActivity;
+import itp341.webb.jerry.greenbeatmachine.R;
 
 /**
  * Created by jerrywebb on 11/28/15.
@@ -17,6 +20,10 @@ public class TrackSingleton {
     private static TrackSingleton sTrackSingleton;
     private Context mAppContext;
     private double masterVolume;
+    int bmb_k_id;
+    int phn_clp_id;
+    int dry_ohh_cra_id;
+    SoundPool samplePoolNew;
 
     private TrackSingleton(Context context){
         mTracks = new ArrayList<Track>();
@@ -27,6 +34,22 @@ public class TrackSingleton {
             Track t = new Track("track " + i, 0.8, 0.5);
             mTracks.add(t);
         }
+
+        //sets attributes so as to better recognize the audio samples
+        AudioAttributes sampleAttributes = new AudioAttributes.Builder()
+                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                .setUsage(AudioAttributes.USAGE_MEDIA)
+                .build();
+
+
+        //Streams are the number of sounds that can be played simultaneously
+        samplePoolNew = new SoundPool.Builder().setMaxStreams(25)
+                .setAudioAttributes(sampleAttributes)
+                .build();//(20, AudioManager.STREAM_MUSIC,0); //int maxStreams, int streamType,int srcQuality
+
+        bmb_k_id = samplePoolNew.load(mAppContext, R.raw.ac_k, 1);
+        phn_clp_id = samplePoolNew.load(mAppContext, R.raw.phn_clp,1);
+        dry_ohh_cra_id = samplePoolNew.load(mAppContext, R.raw.dry_ohh_cra,1);
     }
 
 
@@ -34,6 +57,7 @@ public class TrackSingleton {
         if (sTrackSingleton == null) {
             sTrackSingleton = new TrackSingleton(c.getApplicationContext());
         }
+
         return sTrackSingleton;
     }
 
@@ -61,5 +85,9 @@ public class TrackSingleton {
 
     public void setMasterVolume(double masterVolume) {
         this.masterVolume = masterVolume;
+    }
+
+    public void playSound(int id){
+        samplePoolNew.play(id+1, (float) 0.8, (float) 0.8, 1, 0, 1);
     }
 }

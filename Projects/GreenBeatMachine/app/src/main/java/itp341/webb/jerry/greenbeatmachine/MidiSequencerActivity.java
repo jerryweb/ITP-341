@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+
 import itp341.webb.jerry.greenbeatmachine.model.Track;
 import itp341.webb.jerry.greenbeatmachine.model.TrackSingleton;
-import itp341.webb.jerry.greenbeatmachine.MainActivity;
 /**
  * Created by jerrywebb on 12/10/15.
  */
@@ -21,11 +21,13 @@ public class MidiSequencerActivity extends Activity{
     public static final String TAG = "itp341.webb.jerry.finalProject.tag";
     Activity MainActivity;
     Button btn_toMainActivity;
+    Button btn_play;
     TextView [] textViewTracks;
     CheckBox [] checkBoxTrackMutes;
     CheckBox [][] checkBoxMidiSteps;
     ArrayList<Track> tracks;
-
+    public boolean playing;
+    int bpm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +36,9 @@ public class MidiSequencerActivity extends Activity{
         tracks = TrackSingleton.get(this).getmTracks();
         MainActivity = new MainActivity();
         btn_toMainActivity = (Button) findViewById(R.id.button2);
-
+        btn_play = (Button) findViewById(R.id.play);
         textViewTracks = new TextView[8];
-
+        bpm = 120;
         textViewTracks[0] = (TextView) findViewById(R.id.textViewTrack1);
         textViewTracks[1] = (TextView) findViewById(R.id.textViewTrack2);
         textViewTracks[2] = (TextView) findViewById(R.id.textViewTrack3);
@@ -68,19 +70,52 @@ public class MidiSequencerActivity extends Activity{
             }
         });
 
+        btn_play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rubBeat();
+            }
+        });
+
         updateTrackName();
 
         for (int i = 0; i <16; i++){
             checkBoxMidiSteps[0][i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    ;
+//                    TrackSingleton.get(getApplicationContext()).playSound(0);
                 }
             });
 
         }
 
 //        checkBoxMidiSteps[0][0].setOnCheckedChangeListener();
+    }
+
+    public void rubBeat(){
+        playing = true;
+        while (playing == true) {
+            for (int i = 0; i < 16; i++) {
+
+                if(checkBoxMidiSteps[0][i].isChecked()){
+                    TrackSingleton.get(this).playSound(1);
+                }
+                if(playing ==false){
+                    break;
+                }
+                try {
+                    Thread.sleep(60000/(bpm*4)); //this sets the tempo
+
+
+                    if (i == 15) i = -1;
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        }
     }
 
     public void initializeMidiSteps(){

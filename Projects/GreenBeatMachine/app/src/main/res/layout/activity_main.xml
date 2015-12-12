@@ -16,11 +16,6 @@
         android:layout_marginBottom="@dimen/activity_min_widget_distance"
         android:weightSum="1">
 
-        <TextClock
-            android:layout_width="wrap_content"
-            android:layout_height="27dp"
-            android:id="@+id/textClock" />
-
         <Button
             android:layout_width="52dp"
             android:layout_height="39dp"
@@ -28,6 +23,13 @@
             android:id="@+id/button"
             android:textSize="12sp"
             android:layout_marginRight="@dimen/activity_min_widget_distance" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextBPM"
+            android:layout_weight="0.44"
+            android:autoText="false" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/seekbarMasterVolume"
-            android:layout_weight="0.33"
+            android:layout_weight="0.43"
             android:indeterminate="false"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/activity_min_widget_distance"
