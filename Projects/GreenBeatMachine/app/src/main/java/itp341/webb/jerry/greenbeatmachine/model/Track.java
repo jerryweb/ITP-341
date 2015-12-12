@@ -8,7 +8,7 @@ import itp341.webb.jerry.greenbeatmachine.MainActivity;
  * Created by jerrywebb on 11/28/15.
  */
 public class Track implements Serializable {
-    public static final String TAG = "itp341.webb.jerry.finalProject.tag";
+    public static final String TAG = "itp341.finalProject.tag";
 
     //Instance Variables
     private String name;
@@ -50,6 +50,14 @@ public class Track implements Serializable {
         this.name = trackSample.getName();
         this.type = trackSample.getType();
         this.currentSampleId = trackSample.getSoundId();
+    }
+
+    public boolean isMuted() {
+        return isMuted;
+    }
+
+    public void setIsMuted(boolean isMuted) {
+        this.isMuted = isMuted;
     }
 
     public String getType() {

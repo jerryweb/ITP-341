@@ -25,15 +25,12 @@ import itp341.webb.jerry.greenbeatmachine.model.TrackSingleton;
 
 
 public class MainActivity extends Activity {
-    public static final String TAG = "itp341.webb.jerry.finalProject.tag";
+    public static final String TAG = "itp341.finalProject.tag";
     private MediaPlayer mp = new MediaPlayer();
 
     //used to play sounds simultaneously... best used for sound files < 1MB
-    private SoundPool samplePool;
+//    private SoundPool samplePool;
 
-    int bmb_k_id;
-    int phn_clp_id;
-    int dry_ohh_cra_id;
     double masterVolume;
     Button padArray[];
     Button btn_to_midi_sequencer;
@@ -81,16 +78,16 @@ public class MainActivity extends Activity {
         });
 
         //sets attributes so as to better recognize the audio samples
-        AudioAttributes sampleAttributes = new AudioAttributes.Builder()
-                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                .setUsage(AudioAttributes.USAGE_MEDIA)
-                .build();
-
-
-        //Streams are the number of sounds that can be played simultaneously
-        samplePool = new SoundPool.Builder().setMaxStreams(25)
-                .setAudioAttributes(sampleAttributes)
-                .build();//(20, AudioManager.STREAM_MUSIC,0); //int maxStreams, int streamType,int srcQuality
+//        AudioAttributes sampleAttributes = new AudioAttributes.Builder()
+//                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+//                .setUsage(AudioAttributes.USAGE_MEDIA)
+//                .build();
+//
+//
+//        //Streams are the number of sounds that can be played simultaneously
+//        samplePool = new SoundPool.Builder().setMaxStreams(25)
+//                .setAudioAttributes(sampleAttributes)
+//                .build();//(20, AudioManager.STREAM_MUSIC,0); //int maxStreams, int streamType,int srcQuality
 
         addSoundsForTest();
         updateView();

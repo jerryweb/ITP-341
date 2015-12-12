@@ -18,7 +18,7 @@ import itp341.webb.jerry.greenbeatmachine.database.SoundDbSchema.TABLE_SOUNDS;
  * Created by jerrywebb on 11/28/15.
  */
 public class SoundsSingleton {
-    public static final String TAG = "itp341.webb.jerry.finalProject.tag";
+    public static final String TAG = "itp341.finalProject.tag";
 
     private SQLiteDatabase mDatabase;
 
