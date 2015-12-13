@@ -3,43 +3,46 @@ package itp341.webb.jerry.greenbeatmachine;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.media.AudioAttributes;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.SimpleCursorAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import itp341.webb.jerry.greenbeatmachine.model.Sound;
-import itp341.webb.jerry.greenbeatmachine.model.SoundsSingleton;
 import itp341.webb.jerry.greenbeatmachine.model.Track;
 import itp341.webb.jerry.greenbeatmachine.model.TrackSingleton;
+import itp341.webb.jerry.greenbeatmachine.PadAdapter;
 
 
 public class MainActivity extends Activity {
     public static final String TAG = "itp341.finalProject.tag";
     private MediaPlayer mp = new MediaPlayer();
 
-    //used to play sounds simultaneously... best used for sound files < 1MB
-//    private SoundPool samplePool;
 
     double masterVolume;
     Button padArray[];
     Button btn_to_midi_sequencer;
-
+    EditText editTextBPM;
     ListView soundList;
 
     SeekBar seekBarMasterVolume;
     ButtonListener buttonListener;
     ArrayList<Track> tracks;
+    private RecyclerView beatPadLayout;
+     PadAdapter padAdapter;
+//    private LayoutManager padsLayoutManager;
 
     Cursor c; //CursorWrapper
     SimpleCursorAdapter cursorAdapter;
@@ -48,9 +51,21 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        padArray = new Button[8];
-        btn_to_midi_sequencer = (Button) findViewById(R.id.buttonToMidiSequencer);
 
+        beatPadLayout = (RecyclerView) findViewById(R.id.beatPadLayout);
+
+        padAdapter = new PadAdapter(getApplicationContext(),getData());
+        beatPadLayout.setAdapter(padAdapter);
+
+//        padsLayoutManager = new GridLayoutManager(this, 1);
+        beatPadLayout.setLayoutManager(new GridLayoutManager(this, 4));
+
+
+
+        padArray = new Button[8];
+
+
+        btn_to_midi_sequencer = (Button) findViewById(R.id.buttonToMidiSequencer);
 
         padArray[0] = (Button) findViewById(R.id.btn_pad_0);
         padArray[1] = (Button) findViewById(R.id.btn_pad_1);
@@ -60,6 +75,8 @@ public class MainActivity extends Activity {
         padArray[5] = (Button) findViewById(R.id.btn_pad_5);
         padArray[6] = (Button) findViewById(R.id.btn_pad_6);
         padArray[7] = (Button) findViewById(R.id.btn_pad_7);
+
+        editTextBPM = (EditText) findViewById(R.id.editTextBPM);
 
         soundList = (ListView) findViewById(R.id.soundsList);
         buttonListener = new ButtonListener();
@@ -77,21 +94,8 @@ public class MainActivity extends Activity {
             }
         });
 
-        //sets attributes so as to better recognize the audio samples
-//        AudioAttributes sampleAttributes = new AudioAttributes.Builder()
-//                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-//                .setUsage(AudioAttributes.USAGE_MEDIA)
-//                .build();
-//
-//
-//        //Streams are the number of sounds that can be played simultaneously
-//        samplePool = new SoundPool.Builder().setMaxStreams(25)
-//                .setAudioAttributes(sampleAttributes)
-//                .build();//(20, AudioManager.STREAM_MUSIC,0); //int maxStreams, int streamType,int srcQuality
-
         addSoundsForTest();
         updateView();
-
 
         masterVolume =  TrackSingleton.get(this).getMasterVolume();
         seekBarMasterVolume =  (SeekBar) findViewById(R.id.seekbarMasterVolume);
@@ -116,8 +120,31 @@ public class MainActivity extends Activity {
             }
         });
 
+        editTextBPM.setText(TrackSingleton.get(getApplicationContext()).getBpm());
+
     }
 
+    public static List<PadLayoutInformation> getData(){
+
+        List<PadLayoutInformation> data = new ArrayList<>();
+
+        int[] buttonIds = new int[8];
+        String[] trackNames = new String[8];
+        for (int i = 0; i<8; i++) {
+
+            buttonIds[i] = i;
+            trackNames[i] = "track " +i ;
+        }
+        for (int i = 0; i<buttonIds.length; i++) {
+
+            PadLayoutInformation current = new PadLayoutInformation();
+            current.padId = buttonIds[i];
+            current.trackName = trackNames[i];
+            data.add(current);
+        }
+
+        return data;
+    }
     public void addSoundsForTest(){
 //        bmb_k_id = samplePool.load(this, R.raw.ac_k, 1);
 //        phn_clp_id = samplePool.load(this, R.raw.phn_clp,1);
@@ -146,18 +173,8 @@ public class MainActivity extends Activity {
 //        TrackSingleton.get(this).updateTrack(2, t2);
 
 
-
-//       String[] f = {TABLE_SOUNDS.KEY_ID};
-//
-////        from = f;
-//
-//        int[] to = {android.R.id.text1};
-
     }
 
-//    public void playSample( int sampleId){
-//        samplePool.play(sampleId,(float) masterVolume, (float) masterVolume,1,0,1);
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -190,8 +207,10 @@ public class MainActivity extends Activity {
         }
     }
 
+
+
     public void playSample(int id){
-        TrackSingleton.get(this).playSound(id);
+        TrackSingleton.get(getApplicationContext()).playSound(id);
 //        samplePool.play(tracks.get(id).getCurrentSampleId(),
 //                (float) masterVolume, (float) masterVolume, 1, 0,1);
 
@@ -229,12 +248,9 @@ public class MainActivity extends Activity {
                     break;
                 case R.id.btn_pad_1:
                     playSample(1);
-//                    samplePool.play(phn_clp_id, (float)masterVolume,(float) masterVolume, 1, 0, 1); //int soundID, float leftVolume,
                     break;
                 case R.id.btn_pad_2:
                     playSample(2);
-
-//                    samplePool.play(dry_ohh_cra_id, (float)masterVolume, (float)masterVolume, 1, 0, 1); //int soundID, float leftVolume,
                     break;
                 case R.id.btn_pad_3:
                     playSample(3);

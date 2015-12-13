@@ -12,7 +12,7 @@ import itp341.webb.jerry.greenbeatmachine.database.SoundDbSchema.TABLE_SOUNDS;
  */
 public class SoundsDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "sounds_sqlite.db";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 1;
 
 
     //SQL statement to create table

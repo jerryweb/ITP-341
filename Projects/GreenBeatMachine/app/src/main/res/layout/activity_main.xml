@@ -1,5 +1,8 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent">
+<LinearLayout  android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -29,7 +32,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/editTextBPM"
             android:layout_weight="0.44"
-            android:autoText="false" />
+            android:autoText="false"
+            android:focusable="true"
+            android:inputType="number"
+            android:textStyle="bold"
+            android:backgroundTint="#000000"
+            android:backgroundTintMode="src_atop" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -77,7 +85,7 @@
             android:layout_height="fill_parent">
 
             <Button
-                android:layout_width="98dp"
+                android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="New Button"
                 android:id="@+id/btn_pad_0"
@@ -170,4 +178,14 @@
             android:layout_weight="3" />
 
     </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_height="210dp"
+        android:layout_width="409dp"
+        android:id="@+id/beatPadLayout"
+        android:layout_marginLeft="@dimen/activity_min_widget_distance" />
+
+
 </LinearLayout>
+    </ScrollView>
