@@ -25,9 +25,12 @@ public class TrackSingleton {
     private Context mAppContext;
     private double masterVolume;
     private int bpm;
+
     int bmb_k_id;
     int phn_clp_id;
     int dry_ohh_cra_id;
+    int vb6_shk;
+    int spk_hat;
 
     SoundPool samplePoolNew;   //used to play sounds simultaneously... best used for sound files < 1MB
 
@@ -37,7 +40,7 @@ public class TrackSingleton {
         mTracks = new ArrayList<Track>();
         this.mAppContext = context;
         masterVolume = 0.8;                 //volume of the master fader/whole application
-        bpm = R.integer.default_bpm;                           //tempo in beats per minute
+        bpm = 80;                           //tempo in beats per minute
 
         for(int i = 0; i<8;i++){
             Track t = new Track("track " + i, 0.8, 0.5);
@@ -57,8 +60,11 @@ public class TrackSingleton {
                 .build(); //int maxStreams, int streamType,int srcQuality
 
         bmb_k_id = samplePoolNew.load(mAppContext, R.raw.ac_k, 1);
-        phn_clp_id = samplePoolNew.load(mAppContext, R.raw.phn_clp,1);
-        dry_ohh_cra_id = samplePoolNew.load(mAppContext, R.raw.dry_ohh_cra,1);
+        phn_clp_id = samplePoolNew.load(mAppContext, R.raw.phn_clp, 1);
+        dry_ohh_cra_id = samplePoolNew.load(mAppContext, R.raw.dry_ohh_cra, 1);
+        vb6_shk = samplePoolNew.load(mAppContext, R.raw.vb6_shk, 1);
+        spk_hat = samplePoolNew.load(mAppContext, R.raw.spk_hat, 1);
+
 
         sequencer = new Sequencer(mAppContext, bpm);        //Creates the sequencer thread
     }
@@ -109,8 +115,8 @@ public class TrackSingleton {
     public void playSound(int id){
         Log.d(TAG, "isMusted = " + mTracks.get(id).isMuted());
         if(!mTracks.get(id).isMuted()){
-            samplePoolNew.play(id+1, (float) 1,
-                    (float) 1, 1, 0, 1);
+            samplePoolNew.play(id+1, (float) masterVolume,
+                    (float) masterVolume, 1, 0, 1);
         }
     }
 

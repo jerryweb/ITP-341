@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
@@ -23,7 +22,6 @@ import java.util.List;
 
 import itp341.webb.jerry.greenbeatmachine.model.Track;
 import itp341.webb.jerry.greenbeatmachine.model.TrackSingleton;
-import itp341.webb.jerry.greenbeatmachine.PadAdapter;
 
 
 public class MainActivity extends Activity {
@@ -41,8 +39,7 @@ public class MainActivity extends Activity {
     ButtonListener buttonListener;
     ArrayList<Track> tracks;
     private RecyclerView beatPadLayout;
-     PadAdapter padAdapter;
-//    private LayoutManager padsLayoutManager;
+    private PadAdapter padAdapter;
 
     Cursor c; //CursorWrapper
     SimpleCursorAdapter cursorAdapter;
@@ -53,18 +50,11 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         beatPadLayout = (RecyclerView) findViewById(R.id.beatPadLayout);
-
         padAdapter = new PadAdapter(getApplicationContext(),getData());
         beatPadLayout.setAdapter(padAdapter);
-
-//        padsLayoutManager = new GridLayoutManager(this, 1);
         beatPadLayout.setLayoutManager(new GridLayoutManager(this, 4));
 
-
-
         padArray = new Button[8];
-
-
         btn_to_midi_sequencer = (Button) findViewById(R.id.buttonToMidiSequencer);
 
         padArray[0] = (Button) findViewById(R.id.btn_pad_0);
@@ -88,7 +78,7 @@ public class MainActivity extends Activity {
         btn_to_midi_sequencer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),MidiSequencerActivity.class);
+                Intent i = new Intent(getApplicationContext(), MidiSequencerActivity.class);
                 TrackSingleton.get(getApplicationContext()).setMasterVolume(masterVolume);
                 startActivity(i);
             }
@@ -120,7 +110,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        editTextBPM.setText(TrackSingleton.get(getApplicationContext()).getBpm());
+//        editTextBPM.setText((String)TrackSingleton.get(getApplicationContext()).getBpm());
 
     }
 
@@ -146,6 +136,7 @@ public class MainActivity extends Activity {
         return data;
     }
     public void addSoundsForTest(){
+        padAdapter.notifyDataSetChanged();
 //        bmb_k_id = samplePool.load(this, R.raw.ac_k, 1);
 //        phn_clp_id = samplePool.load(this, R.raw.phn_clp,1);
 //        dry_ohh_cra_id = samplePool.load(this, R.raw.dry_ohh_cra,1);
@@ -231,6 +222,12 @@ public class MainActivity extends Activity {
 //        }
     }
 
+    public void trigger(int id){
+        if(TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying()){
+            TrackSingleton.get(getApplicationContext()).getSequencer().beatTrigger(id);
+        }
+    }
+
 
     private class ButtonListener implements View.OnClickListener{
 //        float outputVolume = (float)masterVolume;
@@ -242,15 +239,17 @@ public class MainActivity extends Activity {
             switch (v.getId()){
                 case R.id.btn_pad_0:
                     playSample(0); // starts at 1
-                    //Will trigger track 0
-                    //int soundID, float leftVolume,
-                    // float rightVolume,int priority,int loop,float rate
+                    trigger(0);
                     break;
                 case R.id.btn_pad_1:
                     playSample(1);
+                    trigger(1);
+
                     break;
                 case R.id.btn_pad_2:
                     playSample(2);
+                    trigger(2);
+
                     break;
                 case R.id.btn_pad_3:
                     playSample(3);

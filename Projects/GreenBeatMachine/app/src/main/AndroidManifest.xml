@@ -23,10 +23,10 @@
             android:screenOrientation="landscape">
         </activity>
 
-        <activity android:name=".MixerActivity"
-            android:label="@string/mixer_view_label"
-            android:screenOrientation="landscape">
-        </activity>
+        <!--<activity android:name=".MixerActivity"-->
+            <!--android:label="@string/mixer_view_label"-->
+            <!--android:screenOrientation="landscape">-->
+        <!--</activity>-->
     </application>
 
 </manifest>

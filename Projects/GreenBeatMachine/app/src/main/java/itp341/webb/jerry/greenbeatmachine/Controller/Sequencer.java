@@ -1,6 +1,7 @@
 package itp341.webb.jerry.greenbeatmachine.Controller;
 
 import android.content.Context;
+import android.util.Log;
 
 import itp341.webb.jerry.greenbeatmachine.model.TrackSingleton;
 
@@ -20,17 +21,18 @@ public class Sequencer {
     private volatile int bpm;
     private boolean midiSteps[][]; //These correspond to the midi step checkboxes in the sequencer
     private final Object lock = new Object();
-
+    private int step;
 
     public Sequencer(Context c, int BPM){
         this.bpm = BPM;
+        step = 0;
         playing = false;
         mAppContext = c;
         midiSteps = new boolean[2][16];
 
         for (int i = 0; i<2; i++){
             for (int j = 0; j<16; j++){
-                midiSteps[i][j] = true;
+                midiSteps[i][j] = false;
             }
         }
     }
@@ -39,18 +41,28 @@ public class Sequencer {
         while (playing) {
             synchronized (lock) {
                 for (int i = 0; i < 16; i++) {
-
+                    step = i;
                     //This checks whether the steps are checked; if true, then it will tell the track
                     // to play the corresponding sound
-                    if (midiSteps[0][i]) {
+//                    Log.d(TAG,"kick: " + i + " "+ midiSteps[0][i] + "   clap: " + midiSteps[1][i]);
+                    if(midiSteps[0][i]) {
                         TrackSingleton.get(mAppContext).playSound(0);
                     }
                     if(midiSteps[1][i]){
                         TrackSingleton.get(mAppContext).playSound(1);
                     }
-//                if(midiSteps[2][i]){
-//                    TrackSingleton.get(mAppContext).playSound(2);
-//                }
+                    if(midiSteps[2][i]){
+                        TrackSingleton.get(mAppContext).playSound(2);
+                    }
+                    if(midiSteps[3][i]) {
+                        TrackSingleton.get(mAppContext).playSound(3);
+                    }
+                    if(midiSteps[4][i]){
+                        TrackSingleton.get(mAppContext).playSound(4);
+                    }
+//                    if(midiSteps[5][i]){
+//                        TrackSingleton.get(mAppContext).playSound(5);
+//                    }
 
                     if (playing == false) {     //if the user stopped playback, it will leave
                                                 // the loop
@@ -79,9 +91,18 @@ public class Sequencer {
         }
     }
     public void stopPlayback(){
+        synchronized (lock) {
+            lock.notify();
 
             this.playing = false;
         }
+    }
+    public void beatTrigger(int id) {
+        synchronized (lock) {
+            lock.notify();
+            this.midiSteps[id][step] = true;
+        }
+    }
 
     public boolean[][] getMidiSteps() {
         return midiSteps;
