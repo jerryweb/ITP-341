@@ -51,6 +51,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         beatPadLayout = (RecyclerView) findViewById(R.id.beatPadLayout);
         padAdapter = new PadAdapter(getApplicationContext(),getData());
         beatPadLayout.setAdapter(padAdapter);
@@ -77,7 +79,7 @@ public class MainActivity extends Activity {
 
         masterVolume =  TrackSingleton.get(this).getMasterVolume();
         seekBarMasterVolume =  (SeekBar) findViewById(R.id.seekbarMasterVolume);
-
+        seekBarMasterVolume.setProgress(80);
         seekBarMasterVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -98,7 +100,7 @@ public class MainActivity extends Activity {
             }
         });
 
-//        editTextBPM.setText(TrackSingleton.get(getApplicationContext()).getBpm());
+        editTextBPM.setText(String.valueOf(TrackSingleton.get(getApplicationContext()).getBpm()));
         editTextBPM.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -109,6 +111,8 @@ public class MainActivity extends Activity {
         });
 
     }
+
+
 
     public static List<PadLayoutInformation> getData(){
 
@@ -218,34 +222,12 @@ public class MainActivity extends Activity {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
 
-
-    public void playSample(int id){
-        TrackSingleton.get(getApplicationContext()).playSound(id);
-//        samplePool.play(tracks.get(id).getCurrentSampleId(),
-//                (float) masterVolume, (float) masterVolume, 1, 0,1);
-
-
-//        int[] f = {TABLE_SOUNDS.COLUMN_ID};
-////        int[] to = {android.R.id.text1};
-//
-////        Log.d(TAG, "long id is: " + to[0]);
-//        c = SoundsSingleton.get(this).getSound(id);
-//
-//        if(c != null) {
-//            if (c.moveToFirst()) {
-//                Log.d(TAG, "id is: " + c.getInt(TABLE_SOUNDS.COLUMN_SOUNDID) +1 + ", and wav id is: " + phn_clp_id);
-//                Toast.makeText(getApplicationContext(), "soundId is: " + c.getInt(TABLE_SOUNDS.COLUMN_SOUNDID), Toast.LENGTH_SHORT).show();
-//                samplePool.play(c.getInt(TABLE_SOUNDS.COLUMN_SOUNDID)+1,
-//                        (float) masterVolume, (float) masterVolume, 1, 0,1);
-//            }
-//        }
-    }
-
-    public void trigger(int id){
-        if(TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying()){
-            TrackSingleton.get(getApplicationContext()).getSequencer().beatTrigger(id);
-        }
+        seekBarMasterVolume.setProgress((int) (TrackSingleton.get(getApplicationContext()).getMasterVolume()*10));
+        playingIndicator.setChecked(TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying());
     }
 
     @Override
@@ -255,6 +237,7 @@ public class MainActivity extends Activity {
 
             padAdapter.notifyDataSetChanged();
         }
+
         seekBarMasterVolume.setProgress((int) (TrackSingleton.get(getApplicationContext()).getMasterVolume()*10));
         playingIndicator.setChecked(TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying());
     }

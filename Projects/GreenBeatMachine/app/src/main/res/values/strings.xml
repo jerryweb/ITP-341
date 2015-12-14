@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Green Beat Machine</string>
     <string name="action_settings">Settings</string>
-    <string name="master_volume">Vol</string>
+    <string name="master_volume">Volume</string>
     <string name="midi_view_label">Midi Sequencer</string>
     <string name="mixer_view_label">Mixer</string>
     <string name="play">Play</string>
@@ -23,5 +23,6 @@
 
     <string name="master">Master</string>
     <string name="mute">Mute</string>
+    <string name="pan">Pan</string>
 
 </resources>

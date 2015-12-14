@@ -63,7 +63,7 @@ public class MixerActivity extends Activity {
         verticalSlidersTrackVolume[0].setProgress((int) (TrackSingleton.get(getApplicationContext())
                 .getTrack(0).getTrackVolume() * 100));
 
-        //Track 1 channel Section
+        //Track 2 channel Section
         verticalSlidersTrackVolume[1] = (VerticalSlider) findViewById(R.id.seekBarTrack2Volume);
         seekBarTrackPans[1] = (SeekBar) findViewById(R.id.seekBarTrack2Pan);
         textViewTrackVolumeFaderLevel[1] = (TextView) findViewById(R.id.textViewTrack2VolPercentage);
@@ -73,6 +73,15 @@ public class MixerActivity extends Activity {
         verticalSlidersTrackVolume[1].setProgress((int) (TrackSingleton.get(getApplicationContext())
                 .getTrack(1).getTrackVolume()*100));
 
+        //Track 3 channel Section
+        verticalSlidersTrackVolume[2] = (VerticalSlider) findViewById(R.id.seekBarTrack3Volume);
+        seekBarTrackPans[2] = (SeekBar) findViewById(R.id.seekBarTrack3Pan);
+        textViewTrackVolumeFaderLevel[2] = (TextView) findViewById(R.id.textViewTrack3VolPercentage);
+        checkBoxTrackMutes[2] = (CheckBox) findViewById(R.id.checkBoxMute3);
+        seekBarTrackPans[2].setProgress(50);
+
+        verticalSlidersTrackVolume[2].setProgress((int) (TrackSingleton.get(getApplicationContext())
+                .getTrack(2).getTrackVolume() * 100));
 
         connectMuteCheckBoxListeners();
         connectSeekBars();
@@ -188,7 +197,52 @@ public class MixerActivity extends Activity {
 
             }
         });
+
+
+        //Channel section for track 2
+        verticalSlidersTrackVolume[2].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                TrackSingleton.get(getApplicationContext())
+                        .getTrack(2).setTrackVolume(Double
+                        .parseDouble(String.valueOf(progress)) / 10);
+
+                textViewTrackVolumeFaderLevel[2].setText(String.valueOf(TrackSingleton.get(getApplicationContext())
+                        .getTrack(2).getTrackVolume()))
+                ;
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        seekBarTrackPans[2].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                TrackSingleton.get(getApplicationContext()).getTrack(2).setTrackPan(progress / 10);
+                Log.d(TAG, " pan amount is: " + TrackSingleton.get(getApplicationContext()).getTrack(2).getTrackPan());
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
+
+
     //this connects the mute 
     public void connectMuteCheckBoxListeners(){
 
@@ -206,12 +260,12 @@ public class MixerActivity extends Activity {
             }
         });
 //
-//        checkBoxTrackMutes[2].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                TrackSingleton.get(getApplicationContext()).getTrack(2).setIsMuted(isChecked);
-//            }
-//        });
+        checkBoxTrackMutes[2].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                TrackSingleton.get(getApplicationContext()).getTrack(2).setIsMuted(isChecked);
+            }
+        });
 //
 //        checkBoxTrackMutes[3].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 //            @Override
@@ -248,6 +302,43 @@ public class MixerActivity extends Activity {
 //            }
 //        });
     }
+
+    //called to refresh the ui if the user switches between the 3 activities after they are created
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        seekbarMasterVolume.setProgress((int) (TrackSingleton.get(getApplicationContext()).getMasterVolume() * 10));
+
+        //Updates channel 1 UI
+        verticalSlidersTrackVolume[0].setProgress((int)
+                (TrackSingleton.get(getApplicationContext()).getTrack(0).getTrackVolume()) * 10);
+        seekBarTrackPans[0].setProgress((int)
+                (TrackSingleton.get(getApplicationContext()).getTrack(0).getTrackPan() * 10));
+        checkBoxTrackMutes[0].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(0).isMuted());
+
+
+        //Updates Channel 2 UI
+        verticalSlidersTrackVolume[1].setProgress((int)
+                (TrackSingleton.get(getApplicationContext()).getTrack(1).getTrackVolume()) * 10);
+        seekBarTrackPans[1].setProgress((int)
+                (TrackSingleton.get(getApplicationContext()).getTrack(1).getTrackPan() * 10));
+        checkBoxTrackMutes[1].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(1).isMuted());
+
+        //Updates Channel 3 UI
+        verticalSlidersTrackVolume[2].setProgress((int)
+                (TrackSingleton.get(getApplicationContext()).getTrack(2).getTrackVolume()) * 10);
+        seekBarTrackPans[2].setProgress((int)
+                (TrackSingleton.get(getApplicationContext()).getTrack(2).getTrackPan() * 10));
+        checkBoxTrackMutes[2].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(2).isMuted());
+//        checkBoxTrackMutes[3].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(3).isMuted());
+//        checkBoxTrackMutes[4].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(4).isMuted());
+//        checkBoxTrackMutes[5].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(5).isMuted());
+//        checkBoxTrackMutes[6].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(6).isMuted());
+//        checkBoxTrackMutes[7].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(7).isMuted());
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

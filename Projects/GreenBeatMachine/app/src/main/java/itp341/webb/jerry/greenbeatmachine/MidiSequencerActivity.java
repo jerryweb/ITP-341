@@ -82,50 +82,7 @@ public class MidiSequencerActivity extends Activity{
         checkBoxMidiSteps = new CheckBox[8][16];
         initializeMidiSteps();
 
-//        btn_toMainActivity.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-////                startActivity(i);
-//                setResult(RESULT_OK);
-//                finish();
-//            }
-//        });
-//
         connectMuteCheckBoxListeners();
-//
-//
-//        btn_play.setOnClickListener(new View.OnClickListener() {
-//            @SuppressLint("LongLogTag")
-//            @Override
-//            public void onClick(View v) {
-////                Log.d(TAG, "isPlaying = " + !TrackSingleton.get(getApplicationContext())
-////                        .getSequencer().isPlaying());
-//
-//                if (!TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying()) {
-//                    addStepsToSequncerController();
-//
-//                    TrackSingleton.get(getApplicationContext()).getSequencer().setMidiSteps(midiSteps);
-//                    sequencerThread = new Thread(new Runnable() {
-//
-//                        @Override
-//                        public void run() {
-//                            TrackSingleton.get(getApplicationContext()).getSequencer().startPlayback();
-//                            handler.post(new Runnable() {
-//
-//                                @Override
-//                                public void run() {
-//
-//                                }
-//                            });
-//                        }
-//                    });
-//                    sequencerThread.start();
-//                } else {
-//                    TrackSingleton.get(getApplicationContext()).getSequencer().stopPlayback();
-//                }
-//            }
-//        });
 
         updateTrackName();
 
@@ -317,11 +274,8 @@ public class MidiSequencerActivity extends Activity{
     public void connectMuteCheckBoxListeners(){
 
         checkBoxTrackMutes[0].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            int i = 0;
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                tracks.get(i).setIsMuted(isChecked);
-//                TrackSingleton.get(getApplicationContext()).updateTrack(i,tracks.get(i));
                 TrackSingleton.get(getApplicationContext()).getTrack(0).setIsMuted(isChecked);
             }
         });
@@ -381,6 +335,22 @@ public class MidiSequencerActivity extends Activity{
         for(int i = 0; i<8; i++){
             textViewTracks[i].setText(tracks.get(i).getName());
         }
+    }
+
+    //called to refresh the ui if the user switches between the 3 activities after they are created
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        checkBoxTrackMutes[0].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(0).isMuted());
+        checkBoxTrackMutes[1].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(1).isMuted());
+        checkBoxTrackMutes[2].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(2).isMuted());
+        checkBoxTrackMutes[3].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(3).isMuted());
+        checkBoxTrackMutes[4].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(4).isMuted());
+        checkBoxTrackMutes[5].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(5).isMuted());
+        checkBoxTrackMutes[6].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(6).isMuted());
+        checkBoxTrackMutes[7].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(7).isMuted());
+
     }
 
     @Override
