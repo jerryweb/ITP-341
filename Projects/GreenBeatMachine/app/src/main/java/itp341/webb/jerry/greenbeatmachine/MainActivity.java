@@ -17,6 +17,7 @@ import android.widget.SeekBar;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        tracks = TrackSingleton.get(this).getmTracks();
 
         beatPadLayout = (RecyclerView) findViewById(R.id.beatPadLayout);
         padAdapter = new PadAdapter(getApplicationContext(),getData());
@@ -89,7 +90,15 @@ public class MainActivity extends Activity {
         editTextBPM.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                TrackSingleton.get(getApplicationContext()).setBpm(Integer.parseInt(editTextBPM.getText().toString()));
+                if(50 <= Integer.parseInt(editTextBPM.getText().toString())
+                        && Integer.parseInt(editTextBPM.getText().toString()) <= 140) {
+                    TrackSingleton.get(getApplicationContext())
+                            .setBpm(Integer.parseInt(editTextBPM.getText().toString()));
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),
+                            "Pleae enter a valid Integer BPM", Toast.LENGTH_SHORT).show();
+                }
 
                 return false;
             }
@@ -102,7 +111,6 @@ public class MainActivity extends Activity {
     public static List<PadLayoutInformation> getData(){
 
         List<PadLayoutInformation> data = new ArrayList<>();
-
         int[] buttonIds = new int[8];
         String[] trackNames = new String[8];
         for (int i = 0; i<8; i++) {
@@ -117,6 +125,7 @@ public class MainActivity extends Activity {
             current.trackName = trackNames[i];
             data.add(current);
         }
+
 
         return data;
     }
@@ -175,13 +184,19 @@ public class MainActivity extends Activity {
         }
 
         if (id == R.id.action_play_track){
-            TrackSingleton.get(getApplicationContext()).togglePlay();
-            playingIndicator.setChecked(true);
+
+            if(!TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying()) {
+                TrackSingleton.get(getApplicationContext()).togglePlay();
+                playingIndicator.setChecked(true);
+            }
+
         }
 
         if(id == R.id.action_pause_track){
-            TrackSingleton.get(getApplicationContext()).togglePlay();
-            playingIndicator.setChecked(false);
+            if(TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying()) {
+                TrackSingleton.get(getApplicationContext()).togglePlay();
+                playingIndicator.setChecked(false);
+            }
         }
 
         if(id == R.id.action_go_to_midi_sequencer){
@@ -191,7 +206,7 @@ public class MainActivity extends Activity {
 
         if(id == R.id.action_go_to_mixer){
             Intent i = new Intent(getApplicationContext(), MixerActivity.class);
-            startActivityForResult(i, 0);
+            startActivityForResult(i, 1);
         }
 
         if(id == R.id.action_toggle_metronome){
@@ -210,61 +225,21 @@ public class MainActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-
-        seekBarMasterVolume.setProgress((int) (TrackSingleton.get(getApplicationContext()).getMasterVolume()*10));
+        padAdapter.notifyDataSetChanged();
+        seekBarMasterVolume.setProgress((int) TrackSingleton.get(getApplicationContext()).getMasterVolume());
         playingIndicator.setChecked(TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying());
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
 
+        if (resultCode == Activity.RESULT_OK) {
+            Log.d(TAG, "Worked : " + requestCode);
             padAdapter.notifyDataSetChanged();
         }
-
-        seekBarMasterVolume.setProgress((int) (TrackSingleton.get(getApplicationContext()).getMasterVolume()*10));
+        seekBarMasterVolume.setProgress((int) TrackSingleton.get(getApplicationContext()).getMasterVolume());
         playingIndicator.setChecked(TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying());
     }
 
-    //    private class ButtonListener implements View.OnClickListener{
-////        float outputVolume = (float)masterVolume;
-//
-//        @Override
-//        public void onClick(View v) {
-//            Log.d(TAG,"outputVolume = "+ masterVolume);
-//
-//            switch (v.getId()){
-//                case R.id.btn_pad_0:
-//                    playSample(0); // starts at 1
-//                    trigger(0);
-//                    break;
-//                case R.id.btn_pad_1:
-//                    playSample(1);
-//                    trigger(1);
-//
-//                    break;
-//                case R.id.btn_pad_2:
-//                    playSample(2);
-//                    trigger(2);
-//
-//                    break;
-//                case R.id.btn_pad_3:
-//                    playSample(3);
-//                    break;
-//                case R.id.btn_pad_4:
-//                    playSample(4);
-//                    break;
-//                case R.id.btn_pad_5:
-//                    playSample(5);
-//                    break;
-//                case R.id.btn_pad_6:
-//                    playSample(6);
-//                    break;
-//                case R.id.btn_pad_7:
-//                    playSample(7);
-//                    break;
-//            }
-//        }
-//    }
 }

@@ -6,6 +6,7 @@ import itp341.webb.jerry.greenbeatmachine.MainActivity;
 
 /**
  * Created by jerrywebb on 11/28/15.
+ * This is the Track Object template for each of the 8 tracks
  */
 public class Track implements Serializable {
     public static final String TAG = "itp341.finalProject.tag";

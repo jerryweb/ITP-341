@@ -36,10 +36,10 @@
             android:layout_weight="0.44"
             android:autoText="false"
             android:focusable="true"
-            android:inputType="number"
             android:textStyle="bold"
             android:backgroundTint="#000000"
-            android:backgroundTintMode="src_atop" />
+            android:backgroundTintMode="src_atop"
+            android:inputType="number" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -58,8 +58,7 @@
             android:indeterminate="false"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/activity_min_widget_distance"
-            android:max="100"
-            android:splitTrack="false" />
+            android:max="100" />
 
     </LinearLayout>
     <LinearLayout

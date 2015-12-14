@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,8 +44,8 @@ public static final String TAG = "itp341.finalProject.tag";
 
     @Override
     public void onBindViewHolder(PadViewHolder holder, int position) {
-        PadLayoutInformation current = data.get(position);
-        holder.btn_pad_item.setText(current.trackName);
+        ArrayList<Track> tracks = TrackSingleton.get(mAppContext).getmTracks();
+        holder.btn_pad_item.setText(tracks.get(position).getName());
         holder.textView3.setText(Integer.toString(position)); //this holds the
         // individual ids for each of the pads
 

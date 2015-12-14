@@ -28,17 +28,13 @@ import itp341.webb.jerry.greenbeatmachine.model.TrackSingleton;
 public class MidiSequencerActivity extends Activity{
     public static final String TAG = "itp341.finalProject.tag";
     Activity MainActivity;
-//    Button btn_toMainActivity;
-//    Button btn_play;
     TextView [] textViewTracks;
     CheckBox [] checkBoxTrackMutes;
     CheckBox [][] checkBoxMidiSteps;
 
 
     ArrayList<Track> tracks;
-    Thread sequencerThread;         //This is the thread for the midi sequencer (playback)
-//    private RecyclerView midiStepLayout;
-//    private MidiStepAdapter midiStepAdapter;
+
     private boolean midiSteps[][]; //These correspond to the midi step checkboxes in the sequencer
     int bpm;
     Handler handler;                //This is used to access the sequencer thread when it's locked
@@ -376,22 +372,29 @@ public class MidiSequencerActivity extends Activity{
         }
 
         if (id == R.id.action_play_track){
-            addStepsToSequncerController();
-            TrackSingleton.get(getApplicationContext()).togglePlay();
+            if(!TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying()) {
+                TrackSingleton.get(getApplicationContext()).togglePlay();
+            }
         }
 
         if(id == R.id.action_pause_track){
-            TrackSingleton.get(getApplicationContext()).togglePlay();
+            if(TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying()) {
+                TrackSingleton.get(getApplicationContext()).togglePlay();
+            }
         }
 
         if(id == R.id.action_to_beat_pad){
+            setResult(RESULT_OK);
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
-            startActivityForResult(i, 1);
+            startActivity(i);
+            finish();
         }
 
         if(id == R.id.action_go_to_mixer){
             Intent i = new Intent(getApplicationContext(), MixerActivity.class);
             startActivityForResult(i, 1);
+            finish();
+
         }
 
         if(id == R.id.action_toggle_metronome){

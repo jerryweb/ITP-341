@@ -60,12 +60,12 @@ public class TrackSingleton {
         handler = new Handler();
         mTracks = new ArrayList<Track>();
         this.mAppContext = context;
-        masterVolume = 0.8;                 //volume of the master fader/whole application
+        masterVolume = 80;                 //volume of the master fader/whole application
         bpm = 95;                           //tempo in beats per minute
         loaded = false;
 
         for(int i = 0; i<8;i++){
-            Track t = new Track("track " + i, 80.0, 50.0);
+            Track t = new Track("Track " + (i+1), 80.0, 50.0);
             mTracks.add(t);
         }
 
@@ -163,14 +163,15 @@ public class TrackSingleton {
         return mTracks.get(position);
     }
 
-    public void addTrack(Track t){
-        mTracks.add(t);
-    }
-    public void updateTrack(int position, Track n){
-        if(position >= 0 && position < mTracks.size()){
-            mTracks.set(position, n);
-        }
-    }
+//    public void addTrack(Track t){
+//        mTracks.add(t);
+//    }
+
+//    public void updateTrack(int position, Track n){
+//        if(position >= 0 && position < mTracks.size()){
+//            mTracks.set(position, n);
+//        }
+//    }
 
 
     //This will toggle either play or pause depending on what the sequencer thread is doing
@@ -218,9 +219,9 @@ public class TrackSingleton {
 
         if(!mTracks.get(id).isMuted()){
             /*This calculates the pan and volume of track 1 Left channel*/
-            double leftChannelOutput = (mTracks.get(id).getTrackVolume()/100)*(1 - mTracks.get(id).getTrackPan()/100);
+            double leftChannelOutput = (this.masterVolume/100)*(mTracks.get(id).getTrackVolume()/100)*(1 - mTracks.get(id).getTrackPan()/100);
             /*This calculates the pan and volume of track 1 Right channel*/
-            double rightChannelOutput = (mTracks.get(id).getTrackVolume()/100)*(mTracks.get(id).getTrackPan()/100);
+            double rightChannelOutput = (this.masterVolume/100)*(mTracks.get(id).getTrackVolume()/100)*(mTracks.get(id).getTrackPan()/100);
 
             switch (id){
                 case 0:
@@ -238,24 +239,24 @@ public class TrackSingleton {
                             (float) rightChannelOutput, 1, 0, 1);
                     break;
                 case 3:
-                    track4SamplePool.play(1,(float) masterVolume/100,
-                            (float) masterVolume/100, 1, 0, 1);
+                    track4SamplePool.play(1,(float) leftChannelOutput,
+                            (float) rightChannelOutput, 1, 0, 1);
                     break;
                 case 4:
-                    track5SamplePool.play(1,(float) masterVolume/100,
-                            (float) masterVolume/100, 1, 0, 1);
+                    track5SamplePool.play(1,(float) leftChannelOutput,
+                            (float) rightChannelOutput, 1, 0, 1);
                     break;
                 case 5:
-                    track6SamplePool.play(1,(float) masterVolume/100,
-                            (float) masterVolume/100, 1, 0, 1);
+                    track6SamplePool.play(1,(float) leftChannelOutput,
+                            (float) rightChannelOutput, 1, 0, 1);
                     break;
                 case 6:
-                    track7SamplePool.play(1,(float) masterVolume/100,
-                            (float) masterVolume/100, 1, 0, 1);
+                    track7SamplePool.play(1,(float) leftChannelOutput,
+                            (float) rightChannelOutput, 1, 0, 1);
                     break;
                 case 7:
-                    track8SamplePool.play(1,(float) masterVolume/100,
-                            (float) masterVolume/100, 1, 0, 1);
+                    track8SamplePool.play(1,(float) leftChannelOutput,
+                            (float) rightChannelOutput, 1, 0, 1);
                     break;
 
             }

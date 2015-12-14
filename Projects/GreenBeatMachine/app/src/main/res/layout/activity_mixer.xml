@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:weightSum="1"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
@@ -16,9 +16,8 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="81dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.02"
             android:weightSum="1">
 
             <LinearLayout
@@ -86,370 +85,993 @@
                 android:textSize="@dimen/medium_text_size" />
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
+        <HorizontalScrollView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.06"
-            android:layout_marginLeft="@dimen/activity_min_widget_distance"
-            android:weightSum="1">
+            android:layout_height="wrap_content"
+            android:scrollbars="horizontal"
+            >
+            <!--android:layout_weight="0.20">-->
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:weightSum="1"
-                android:layout_weight=".1">
-
-                <TextView
+                <TableRow
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="L"
-                    android:id="@+id/textViewL1"
-                    android:layout_weight=".10"
-                    android:textStyle="bold|italic" />
+                    android:layout_height="wrap_content">
 
-                <SeekBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/seekBarTrack1Pan"
-                    android:layout_weight=".8"
-                    android:progress="50"
-                    android:max="100"
-                    android:indeterminate="false" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="R"
-                    android:id="@+id/textViewR1"
-                    android:layout_weight=".10"
-                    android:textStyle="bold|italic" />
-
-            </LinearLayout>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/pan"
-                android:id="@+id/textViewPan1"
-                android:layout_weight=".1"
-                android:layout_gravity="center_horizontal"
-                android:textIsSelectable="false"
-                android:textSize="@dimen/medium_text_size"
-                android:gravity="center" />
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="204dp"
-                android:layout_weight=".7"
-                android:weightSum="1">
-
-                <itp341.webb.jerry.greenbeatmachine.VerticalSlider
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:max="100"
-                    android:id="@+id/seekBarTrack1Volume"
-                    android:layout_weight=".7"
-                    android:orientation="vertical"
-                    android:gravity="top"
-                    android:indeterminate="false" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".3"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:text="80"
-                        android:id="@+id/textViewTrack1VolPercentage"
-                        android:layout_gravity="center"
-                        android:gravity="center" />
-
-                    <CheckBox
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkBoxMute1"
-                        android:button="@drawable/custom_checkbox_selector"
-                        android:layout_column="7"
-                        android:checked="false"
-                        android:layout_margin="@dimen/activity_min_widget_distance"
-                        android:textAlignment="center"
-                        android:textSize="@dimen/medium_text_size"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="12dp"
-                        android:layout_gravity="center" />
+                        android:layout_height="fill_parent"
+                        android:weightSum="1"
+                        android:layout_marginLeft="@dimen/activity_min_widget_distance"
+                        android:layout_marginRight="@dimen/activity_min_widget_distance">
 
-                    <TextView
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:weightSum="1"
+                            android:layout_weight=".1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="L"
+                                android:id="@+id/textViewL1"
+                                android:layout_weight=".10"
+                                android:textStyle="bold|italic" />
+
+                            <SeekBar
+                                android:layout_width="88dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/seekBarTrack1Pan"
+                                android:progress="50"
+                                android:max="100"
+                                android:indeterminate="false"
+                                android:layout_weight=".8" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R"
+                                android:id="@+id/textViewR1"
+                                android:layout_weight=".10"
+                                android:textStyle="bold|italic" />
+
+                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pan"
+                            android:id="@+id/textViewPan1"
+                            android:layout_weight=".1"
+                            android:layout_gravity="center_horizontal"
+                            android:textIsSelectable="false"
+                            android:textSize="@dimen/medium_text_size"
+                            android:gravity="center" />
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="204dp"
+                            android:layout_weight=".7"
+                            android:weightSum="1">
+
+                            <itp341.webb.jerry.greenbeatmachine.VerticalSlider
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:max="100"
+                                android:id="@+id/seekBarTrack1Volume"
+                                android:layout_weight=".7"
+                                android:orientation="vertical"
+                                android:gravity="top"
+                                android:indeterminate="false" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="fill_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".3"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="80"
+                                    android:id="@+id/textViewTrack1VolPercentage"
+                                    android:layout_gravity="center"
+                                    android:gravity="center" />
+
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/checkBoxMute1"
+                                    android:button="@drawable/custom_checkbox_selector"
+                                    android:layout_column="7"
+                                    android:checked="false"
+                                    android:layout_margin="@dimen/activity_min_widget_distance"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/medium_text_size"
+                                    android:textStyle="bold"
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_gravity="center" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Mute"
+                                    android:id="@+id/textViewMute1"
+                                    android:layout_gravity="center_horizontal" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/track_1"
+                            android:id="@+id/textViewTrack1"
+                            android:textStyle="bold|italic"
+                            android:textSize="@dimen/medium_text_size"
+                            android:layout_weight=".1"
+                            android:gravity="center_horizontal|top" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mute"
-                        android:id="@+id/textView4"
-                        android:layout_gravity="center_horizontal" />
-                </LinearLayout>
+                        android:layout_height="fill_parent"
+                        android:weightSum="1"
+                        android:layout_marginLeft="@dimen/activity_min_widget_distance"
+                        android:layout_marginRight="@dimen/activity_min_widget_distance">
 
-            </LinearLayout>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:weightSum="1"
+                            android:layout_weight=".1">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/track_1"
-                android:id="@+id/textViewTrack1"
-                android:textStyle="bold|italic"
-                android:textSize="@dimen/medium_text_size"
-                android:layout_weight=".1"
-                android:gravity="center_horizontal|top" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="L"
+                                android:id="@+id/textViewL2"
+                                android:layout_weight=".10"
+                                android:textStyle="bold|italic" />
+
+                            <SeekBar
+                                android:layout_width="88dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/seekBarTrack2Pan"
+                                android:progress="50"
+                                android:max="100"
+                                android:indeterminate="false"
+                                android:layout_weight=".8" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R"
+                                android:id="@+id/textViewR2"
+                                android:layout_weight=".10"
+                                android:textStyle="bold|italic" />
+
+                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pan"
+                            android:id="@+id/textViewPan2"
+                            android:layout_weight=".1"
+                            android:layout_gravity="center_horizontal"
+                            android:textIsSelectable="false"
+                            android:textSize="@dimen/medium_text_size"
+                            android:gravity="center" />
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="204dp"
+                            android:layout_weight=".7"
+                            android:weightSum="1">
+
+                            <itp341.webb.jerry.greenbeatmachine.VerticalSlider
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:max="100"
+                                android:id="@+id/seekBarTrack2Volume"
+                                android:layout_weight=".7"
+                                android:orientation="vertical"
+                                android:gravity="top"
+                                android:indeterminate="false" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="fill_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".3"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="80"
+                                    android:id="@+id/textViewTrack2VolPercentage"
+                                    android:layout_gravity="center"
+                                    android:gravity="center" />
+
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/checkBoxMute2"
+                                    android:button="@drawable/custom_checkbox_selector"
+                                    android:layout_column="7"
+                                    android:checked="false"
+                                    android:layout_margin="@dimen/activity_min_widget_distance"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/medium_text_size"
+                                    android:textStyle="bold"
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_gravity="center" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Mute"
+                                    android:id="@+id/textViewMuteLable2"
+                                    android:layout_gravity="center_horizontal" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/track_2"
+                            android:id="@+id/textViewTrack2"
+                            android:textStyle="bold|italic"
+                            android:textSize="@dimen/medium_text_size"
+                            android:layout_weight=".1"
+                            android:gravity="center_horizontal|top" />
 
 
-        </LinearLayout>
+                    </LinearLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.06"
-            android:layout_marginLeft="@dimen/activity_min_widget_distance"
-            android:weightSum="1">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:weightSum="1"
-                android:layout_weight=".1">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="L"
-                    android:id="@+id/textViewL2"
-                    android:layout_weight=".10"
-                    android:textStyle="bold|italic" />
-
-                <SeekBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/seekBarTrack2Pan"
-                    android:layout_weight=".8"
-                    android:progress="50"
-                    android:max="100"
-                    android:indeterminate="false" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="R"
-                    android:id="@+id/textViewR2"
-                    android:layout_weight=".10"
-                    android:textStyle="bold|italic" />
-
-            </LinearLayout>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/pan"
-                android:id="@+id/textViewPan2"
-                android:layout_weight=".1"
-                android:layout_gravity="center_horizontal"
-                android:textIsSelectable="false"
-                android:textSize="@dimen/medium_text_size"
-                android:gravity="center" />
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="204dp"
-                android:layout_weight=".8"
-                android:weightSum="1">
-
-                <itp341.webb.jerry.greenbeatmachine.VerticalSlider
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:max="100"
-                    android:id="@+id/seekBarTrack2Volume"
-                    android:layout_weight=".7"
-                    android:orientation="vertical"
-                    android:gravity="top"
-                    android:progress="80"
-                    android:indeterminate="false" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".3"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:text="80"
-                        android:id="@+id/textViewTrack2VolPercentage"
-                        android:layout_gravity="center"
-                        android:gravity="center" />
-
-                    <CheckBox
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkBoxMute2"
-                        android:button="@drawable/custom_checkbox_selector"
-                        android:layout_column="7"
-                        android:checked="false"
-                        android:layout_margin="@dimen/activity_min_widget_distance"
-                        android:textAlignment="center"
-                        android:textSize="@dimen/medium_text_size"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="12dp"
-                        android:layout_gravity="center" />
+                        android:layout_height="fill_parent"
+                        android:weightSum="1"
+                        android:layout_marginLeft="@dimen/activity_min_widget_distance"
+                        android:layout_marginRight="@dimen/activity_min_widget_distance">
 
-                    <TextView
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:weightSum="1"
+                            android:layout_weight=".1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="L"
+                                android:id="@+id/textViewL3"
+                                android:layout_weight=".10"
+                                android:textStyle="bold|italic" />
+
+                            <SeekBar
+                                android:layout_width="88dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/seekBarTrack3Pan"
+                                android:progress="50"
+                                android:max="100"
+                                android:indeterminate="false"
+                                android:layout_weight=".8" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R"
+                                android:id="@+id/textViewR3"
+                                android:layout_weight=".10"
+                                android:textStyle="bold|italic" />
+
+                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pan"
+                            android:id="@+id/textViewPan3"
+                            android:layout_weight=".1"
+                            android:layout_gravity="center_horizontal"
+                            android:textIsSelectable="false"
+                            android:textSize="@dimen/medium_text_size"
+                            android:gravity="center" />
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="204dp"
+                            android:layout_weight=".7"
+                            android:weightSum="1">
+
+                            <itp341.webb.jerry.greenbeatmachine.VerticalSlider
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:max="100"
+                                android:id="@+id/seekBarTrack3Volume"
+                                android:layout_weight=".7"
+                                android:orientation="vertical"
+                                android:gravity="top"
+                                android:indeterminate="false" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="fill_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".3"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="80"
+                                    android:id="@+id/textViewTrack3VolPercentage"
+                                    android:layout_gravity="center"
+                                    android:gravity="center" />
+
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/checkBoxMute3"
+                                    android:button="@drawable/custom_checkbox_selector"
+                                    android:layout_column="7"
+                                    android:checked="false"
+                                    android:layout_margin="@dimen/activity_min_widget_distance"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/medium_text_size"
+                                    android:textStyle="bold"
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_gravity="center" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Mute"
+                                    android:id="@+id/textViewMuteLabel3"
+                                    android:layout_gravity="center_horizontal" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/track_3"
+                            android:id="@+id/textViewTrack3"
+                            android:textStyle="bold|italic"
+                            android:textSize="@dimen/medium_text_size"
+                            android:layout_weight=".1"
+                            android:gravity="center_horizontal|top" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mute"
-                        android:id="@+id/textViewMuteLabel2"
-                        android:layout_gravity="center_horizontal" />
-                </LinearLayout>
+                        android:layout_height="fill_parent"
+                        android:weightSum="1"
+                        android:layout_marginLeft="@dimen/activity_min_widget_distance"
+                        android:layout_marginRight="@dimen/activity_min_widget_distance">
 
-            </LinearLayout>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:weightSum="1"
+                            android:layout_weight=".1">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/track_2"
-                android:id="@+id/textViewTrack2"
-                android:textStyle="bold|italic"
-                android:textSize="@dimen/medium_text_size"
-                android:gravity="center_horizontal"
-                android:layout_weight=".1" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="L"
+                                android:id="@+id/textViewL4"
+                                android:layout_weight=".10"
+                                android:textStyle="bold|italic" />
+
+                            <SeekBar
+                                android:layout_width="88dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/seekBarTrack4Pan"
+                                android:progress="50"
+                                android:max="100"
+                                android:indeterminate="false"
+                                android:layout_weight=".8" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R"
+                                android:id="@+id/textViewR4"
+                                android:layout_weight=".10"
+                                android:textStyle="bold|italic" />
+
+                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pan"
+                            android:id="@+id/textViewPan4"
+                            android:layout_weight=".1"
+                            android:layout_gravity="center_horizontal"
+                            android:textIsSelectable="false"
+                            android:textSize="@dimen/medium_text_size"
+                            android:gravity="center" />
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="204dp"
+                            android:layout_weight=".7"
+                            android:weightSum="1">
+
+                            <itp341.webb.jerry.greenbeatmachine.VerticalSlider
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:max="100"
+                                android:id="@+id/seekBarTrack4Volume"
+                                android:layout_weight=".7"
+                                android:orientation="vertical"
+                                android:gravity="top"
+                                android:indeterminate="false" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="fill_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".3"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="80"
+                                    android:id="@+id/textViewTrack4VolPercentage"
+                                    android:layout_gravity="center"
+                                    android:gravity="center" />
+
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/checkBoxMute4"
+                                    android:button="@drawable/custom_checkbox_selector"
+                                    android:layout_column="7"
+                                    android:checked="false"
+                                    android:layout_margin="@dimen/activity_min_widget_distance"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/medium_text_size"
+                                    android:textStyle="bold"
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_gravity="center" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Mute"
+                                    android:id="@+id/textViewMute4"
+                                    android:layout_gravity="center_horizontal" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/track_4"
+                            android:id="@+id/textViewTrack4"
+                            android:textStyle="bold|italic"
+                            android:textSize="@dimen/medium_text_size"
+                            android:layout_weight=".1"
+                            android:gravity="center_horizontal|top" />
 
 
-        </LinearLayout>
+                    </LinearLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.06"
-            android:layout_marginLeft="@dimen/activity_min_widget_distance"
-            android:weightSum="1">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:weightSum="1"
-                android:layout_weight=".1">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="L"
-                    android:id="@+id/textViewL3"
-                    android:layout_weight=".10"
-                    android:textStyle="bold|italic" />
-
-                <SeekBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/seekBarTrack3Pan"
-                    android:layout_weight=".8"
-                    android:progress="50"
-                    android:max="100"
-                    android:indeterminate="false" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="R"
-                    android:id="@+id/textViewR3"
-                    android:layout_weight=".10"
-                    android:textStyle="bold|italic" />
-
-            </LinearLayout>
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/pan"
-                android:id="@+id/textViewPan3"
-                android:layout_weight=".1"
-                android:layout_gravity="center_horizontal"
-                android:textIsSelectable="false"
-                android:textSize="@dimen/medium_text_size"
-                android:gravity="center" />
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="204dp"
-                android:layout_weight=".8"
-                android:weightSum="1">
-
-                <itp341.webb.jerry.greenbeatmachine.VerticalSlider
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:max="100"
-                    android:id="@+id/seekBarTrack3Volume"
-                    android:layout_weight=".7"
-                    android:orientation="vertical"
-                    android:gravity="top"
-                    android:progress="80"
-                    android:indeterminate="false" />
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".3"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:text="80"
-                        android:id="@+id/textViewTrack3VolPercentage"
-                        android:layout_gravity="center"
-                        android:gravity="center" />
-
-                    <CheckBox
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkBoxMute3"
-                        android:button="@drawable/custom_checkbox_selector"
-                        android:layout_column="7"
-                        android:checked="false"
-                        android:layout_margin="@dimen/activity_min_widget_distance"
-                        android:textAlignment="center"
-                        android:textSize="@dimen/medium_text_size"
-                        android:textStyle="bold"
-                        android:layout_marginLeft="12dp"
-                        android:layout_gravity="center" />
+                        android:layout_height="fill_parent"
+                        android:weightSum="1"
+                        android:layout_marginLeft="@dimen/activity_min_widget_distance"
+                        android:layout_marginRight="@dimen/activity_min_widget_distance">
 
-                    <TextView
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:weightSum="1"
+                            android:layout_weight=".1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="L"
+                                android:id="@+id/textViewL5"
+                                android:layout_weight=".10"
+                                android:textStyle="bold|italic" />
+
+                            <SeekBar
+                                android:layout_width="88dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/seekBarTrack5Pan"
+                                android:progress="50"
+                                android:max="100"
+                                android:indeterminate="false"
+                                android:layout_weight=".8" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R"
+                                android:id="@+id/textViewR5"
+                                android:layout_weight=".10"
+                                android:textStyle="bold|italic" />
+
+                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pan"
+                            android:id="@+id/textViewPa51"
+                            android:layout_weight=".1"
+                            android:layout_gravity="center_horizontal"
+                            android:textIsSelectable="false"
+                            android:textSize="@dimen/medium_text_size"
+                            android:gravity="center" />
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="204dp"
+                            android:layout_weight=".7"
+                            android:weightSum="1">
+
+                            <itp341.webb.jerry.greenbeatmachine.VerticalSlider
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:max="100"
+                                android:id="@+id/seekBarTrack5Volume"
+                                android:layout_weight=".7"
+                                android:orientation="vertical"
+                                android:gravity="top"
+                                android:indeterminate="false" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="fill_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".3"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="80"
+                                    android:id="@+id/textViewTrack5VolPercentage"
+                                    android:layout_gravity="center"
+                                    android:gravity="center" />
+
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/checkBoxMute5"
+                                    android:button="@drawable/custom_checkbox_selector"
+                                    android:layout_column="7"
+                                    android:checked="false"
+                                    android:layout_margin="@dimen/activity_min_widget_distance"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/medium_text_size"
+                                    android:textStyle="bold"
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_gravity="center" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Mute"
+                                    android:id="@+id/textViewMuteLabel5"
+                                    android:layout_gravity="center_horizontal" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/track_5"
+                            android:id="@+id/textViewTrack5"
+                            android:textStyle="bold|italic"
+                            android:textSize="@dimen/medium_text_size"
+                            android:layout_weight=".1"
+                            android:gravity="center_horizontal|top" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mute"
-                        android:id="@+id/textViewMuteLabel3"
-                        android:layout_gravity="center_horizontal" />
-                </LinearLayout>
+                        android:layout_height="fill_parent"
+                        android:weightSum="1"
+                        android:layout_marginLeft="@dimen/activity_min_widget_distance"
+                        android:layout_marginRight="@dimen/activity_min_widget_distance">
 
-            </LinearLayout>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:weightSum="1"
+                            android:layout_weight=".1">
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/track_3"
-                android:id="@+id/textViewTrack3"
-                android:textStyle="bold|italic"
-                android:textSize="@dimen/medium_text_size"
-                android:gravity="center_horizontal"
-                android:layout_weight=".1" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="L"
+                                android:id="@+id/textViewL6"
+                                android:layout_weight=".10"
+                                android:textStyle="bold|italic" />
+
+                            <SeekBar
+                                android:layout_width="88dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/seekBarTrack6Pan"
+                                android:progress="50"
+                                android:max="100"
+                                android:indeterminate="false"
+                                android:layout_weight=".8" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R"
+                                android:id="@+id/textViewR6"
+                                android:layout_weight=".10"
+                                android:textStyle="bold|italic" />
+
+                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pan"
+                            android:id="@+id/textViewPan6"
+                            android:layout_weight=".1"
+                            android:layout_gravity="center_horizontal"
+                            android:textIsSelectable="false"
+                            android:textSize="@dimen/medium_text_size"
+                            android:gravity="center" />
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="204dp"
+                            android:layout_weight=".7"
+                            android:weightSum="1">
+
+                            <itp341.webb.jerry.greenbeatmachine.VerticalSlider
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:max="100"
+                                android:id="@+id/seekBarTrack6Volume"
+                                android:layout_weight=".7"
+                                android:orientation="vertical"
+                                android:gravity="top"
+                                android:indeterminate="false" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="fill_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".3"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="80"
+                                    android:id="@+id/textViewTrack6VolPercentage"
+                                    android:layout_gravity="center"
+                                    android:gravity="center" />
+
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/checkBoxMute6"
+                                    android:button="@drawable/custom_checkbox_selector"
+                                    android:layout_column="7"
+                                    android:checked="false"
+                                    android:layout_margin="@dimen/activity_min_widget_distance"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/medium_text_size"
+                                    android:textStyle="bold"
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_gravity="center" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Mute"
+                                    android:id="@+id/textViewMuteLabel6"
+                                    android:layout_gravity="center_horizontal" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/track_6"
+                            android:id="@+id/textViewTrack6"
+                            android:textStyle="bold|italic"
+                            android:textSize="@dimen/medium_text_size"
+                            android:layout_weight=".1"
+                            android:gravity="center_horizontal|top" />
 
 
-        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:weightSum="1"
+                        android:layout_marginLeft="@dimen/activity_min_widget_distance"
+                        android:layout_marginRight="@dimen/activity_min_widget_distance">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:weightSum="1"
+                            android:layout_weight=".1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="L"
+                                android:id="@+id/textViewL7"
+                                android:layout_weight=".10"
+                                android:textStyle="bold|italic" />
+
+                            <SeekBar
+                                android:layout_width="88dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/seekBarTrack7Pan"
+                                android:progress="50"
+                                android:max="100"
+                                android:indeterminate="false"
+                                android:layout_weight=".8" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R"
+                                android:id="@+id/textViewR7"
+                                android:layout_weight=".10"
+                                android:textStyle="bold|italic" />
+
+                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pan"
+                            android:id="@+id/textViewPan7"
+                            android:layout_weight=".1"
+                            android:layout_gravity="center_horizontal"
+                            android:textIsSelectable="false"
+                            android:textSize="@dimen/medium_text_size"
+                            android:gravity="center" />
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="204dp"
+                            android:layout_weight=".7"
+                            android:weightSum="1">
+
+                            <itp341.webb.jerry.greenbeatmachine.VerticalSlider
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:max="100"
+                                android:id="@+id/seekBarTrack7Volume"
+                                android:layout_weight=".7"
+                                android:orientation="vertical"
+                                android:gravity="top"
+                                android:indeterminate="false" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="fill_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".3"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="80"
+                                    android:id="@+id/textViewTrack7VolPercentage"
+                                    android:layout_gravity="center"
+                                    android:gravity="center" />
+
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/checkBoxMute7"
+                                    android:button="@drawable/custom_checkbox_selector"
+                                    android:layout_column="7"
+                                    android:checked="false"
+                                    android:layout_margin="@dimen/activity_min_widget_distance"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/medium_text_size"
+                                    android:textStyle="bold"
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_gravity="center" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Mute"
+                                    android:id="@+id/textViewMuteLabel7"
+                                    android:layout_gravity="center_horizontal" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/track_7"
+                            android:id="@+id/textViewTrack7"
+                            android:textStyle="bold|italic"
+                            android:textSize="@dimen/medium_text_size"
+                            android:layout_weight=".1"
+                            android:gravity="center_horizontal|top" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:weightSum="1"
+                        android:layout_marginLeft="@dimen/activity_min_widget_distance"
+                        android:layout_marginRight="@dimen/activity_min_widget_distance">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:weightSum="1"
+                            android:layout_weight=".1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="L"
+                                android:id="@+id/textViewL8"
+                                android:layout_weight=".10"
+                                android:textStyle="bold|italic" />
+
+                            <SeekBar
+                                android:layout_width="88dp"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/seekBarTrack8Pan"
+                                android:progress="50"
+                                android:max="100"
+                                android:indeterminate="false"
+                                android:layout_weight=".8" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="R"
+                                android:id="@+id/textViewR8"
+                                android:layout_weight=".10"
+                                android:textStyle="bold|italic" />
+
+                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pan"
+                            android:id="@+id/textViewPan8"
+                            android:layout_weight=".1"
+                            android:layout_gravity="center_horizontal"
+                            android:textIsSelectable="false"
+                            android:textSize="@dimen/medium_text_size"
+                            android:gravity="center" />
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="204dp"
+                            android:layout_weight=".7"
+                            android:weightSum="1">
+
+                            <itp341.webb.jerry.greenbeatmachine.VerticalSlider
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent"
+                                android:max="100"
+                                android:id="@+id/seekBarTrack8Volume"
+                                android:layout_weight=".7"
+                                android:orientation="vertical"
+                                android:gravity="top"
+                                android:indeterminate="false" />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="fill_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight=".3"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="80"
+                                    android:id="@+id/textViewTrack8VolPercentage"
+                                    android:layout_gravity="center"
+                                    android:gravity="center" />
+
+                                <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/checkBoxMute8"
+                                    android:button="@drawable/custom_checkbox_selector"
+                                    android:layout_column="7"
+                                    android:checked="false"
+                                    android:layout_margin="@dimen/activity_min_widget_distance"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/medium_text_size"
+                                    android:textStyle="bold"
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_gravity="center" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Mute"
+                                    android:id="@+id/textViewMuteLabel8"
+                                    android:layout_gravity="center_horizontal" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/track_8"
+                            android:id="@+id/textViewTrack8"
+                            android:textStyle="bold|italic"
+                            android:textSize="@dimen/medium_text_size"
+                            android:layout_weight=".1"
+                            android:gravity="center_horizontal|top" />
+
+
+                    </LinearLayout>
+
+
+                </TableRow>
+            </TableLayout>
+        </HorizontalScrollView>
+
     </LinearLayout>
 
 </LinearLayout>

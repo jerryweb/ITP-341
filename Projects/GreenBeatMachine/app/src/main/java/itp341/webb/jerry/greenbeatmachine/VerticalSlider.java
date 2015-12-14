@@ -5,7 +5,9 @@ package itp341.webb.jerry.greenbeatmachine;
         import android.util.AttributeSet;
         import android.view.MotionEvent;
         import android.widget.SeekBar;
-
+/*
+* Custom imported class
+* */
 public class VerticalSlider extends SeekBar {
 
     public VerticalSlider(Context context) {
