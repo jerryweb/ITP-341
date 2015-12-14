@@ -28,7 +28,7 @@ public class Sequencer {
         step = 0;
         playing = false;
         mAppContext = c;
-        midiSteps = new boolean[2][16];
+        midiSteps = new boolean[8][16];
 
         for (int i = 0; i<2; i++){
             for (int j = 0; j<16; j++){
@@ -60,9 +60,15 @@ public class Sequencer {
                     if(midiSteps[4][i]){
                         TrackSingleton.get(mAppContext).playSound(4);
                     }
-//                    if(midiSteps[5][i]){
-//                        TrackSingleton.get(mAppContext).playSound(5);
-//                    }
+                    if(midiSteps[5][i]){
+                        TrackSingleton.get(mAppContext).playSound(5);
+                    }
+                    if(midiSteps[6][i]){
+                        TrackSingleton.get(mAppContext).playSound(6);
+                    }
+                    if(midiSteps[7][i]){
+                        TrackSingleton.get(mAppContext).playSound(7);
+                    }
 
                     if (playing == false) {     //if the user stopped playback, it will leave
                                                 // the loop
@@ -123,22 +129,5 @@ public class Sequencer {
         }
 
     }
-
-
-
-//    public boolean getMidiStep(int iIndex, int jIndex){
-//        return midiSteps[iIndex][jIndex];
-//    }
-//
-//    public void setMidiStep(int iIndex)
-
-    public int getBpm() {
-        return bpm;
-    }
-
-    public void setBpm(int bpm) {
-        this.bpm = bpm;
-    }
-
 
 }

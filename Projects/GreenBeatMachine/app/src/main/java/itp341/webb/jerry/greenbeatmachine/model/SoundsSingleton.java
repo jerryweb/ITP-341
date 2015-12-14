@@ -26,7 +26,7 @@ public class SoundsSingleton {
     private Context mAppContext;
 
 
-//    SoundPool samplePoolNew;
+//    SoundPool track1SamplePool;
     private SoundsSingleton(Context appContext) {
         mAppContext = appContext;
         mDatabase = new SoundsDbHelper(mAppContext).getWritableDatabase();
@@ -36,7 +36,7 @@ public class SoundsSingleton {
 
 
 //    public void playSound(int id){
-//        samplePoolNew.play(id+1, (float) 0.8, (float) 0.8, 1, 0, 1);
+//        track1SamplePool.play(id+1, (float) 0.8, (float) 0.8, 1, 0, 1);
 //    }
 
     public static SoundsSingleton get(Context c) {

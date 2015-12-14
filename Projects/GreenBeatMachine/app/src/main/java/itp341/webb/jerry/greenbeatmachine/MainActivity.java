@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,13 +32,11 @@ public class MainActivity extends Activity {
 
 
     double masterVolume;
-    Button padArray[];
     Button btn_to_midi_sequencer;
     EditText editTextBPM;
     ListView soundList;
 
     SeekBar seekBarMasterVolume;
-    ButtonListener buttonListener;
     ArrayList<Track> tracks;
     private RecyclerView beatPadLayout;
     private PadAdapter padAdapter;
@@ -54,33 +54,19 @@ public class MainActivity extends Activity {
         beatPadLayout.setAdapter(padAdapter);
         beatPadLayout.setLayoutManager(new GridLayoutManager(this, 4));
 
-        padArray = new Button[8];
         btn_to_midi_sequencer = (Button) findViewById(R.id.buttonToMidiSequencer);
 
-        padArray[0] = (Button) findViewById(R.id.btn_pad_0);
-        padArray[1] = (Button) findViewById(R.id.btn_pad_1);
-        padArray[2] = (Button) findViewById(R.id.btn_pad_2);
-        padArray[3] = (Button) findViewById(R.id.btn_pad_3);
-        padArray[4] = (Button) findViewById(R.id.btn_pad_4);
-        padArray[5] = (Button) findViewById(R.id.btn_pad_5);
-        padArray[6] = (Button) findViewById(R.id.btn_pad_6);
-        padArray[7] = (Button) findViewById(R.id.btn_pad_7);
 
         editTextBPM = (EditText) findViewById(R.id.editTextBPM);
 
         soundList = (ListView) findViewById(R.id.soundsList);
-        buttonListener = new ButtonListener();
-
-        for (int i =0; i<8;i++){
-            padArray[i].setOnClickListener(buttonListener);
-        }
 
         btn_to_midi_sequencer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), MidiSequencerActivity.class);
-                TrackSingleton.get(getApplicationContext()).setMasterVolume(masterVolume);
-                startActivity(i);
+//                TrackSingleton.get(getApplicationContext()).setMasterVolume(masterVolume);
+                startActivityForResult(i, 0);
             }
         });
 
@@ -110,7 +96,15 @@ public class MainActivity extends Activity {
             }
         });
 
-//        editTextBPM.setText((String)TrackSingleton.get(getApplicationContext()).getBpm());
+//        editTextBPM.setText(TrackSingleton.get(getApplicationContext()).getBpm());
+        editTextBPM.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                TrackSingleton.get(getApplicationContext()).setBpm(Integer.parseInt(editTextBPM.getText().toString()));
+
+                return false;
+            }
+        });
 
     }
 
@@ -170,7 +164,10 @@ public class MainActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.play_menu, menu);
+
         getMenuInflater().inflate(R.menu.menu_main, menu);
+//        getMenuInflater().inflate(R.menu.play_menu, menu);
         return true;
     }
 
@@ -186,6 +183,24 @@ public class MainActivity extends Activity {
             return true;
         }
 
+        if (id == R.id.action_play_track){
+            TrackSingleton.get(getApplicationContext()).togglePlay();
+        }
+
+        if(id == R.id.action_pause_track){
+            TrackSingleton.get(getApplicationContext()).togglePlay();
+        }
+
+        if(id == R.id.action_go_to_midi_sequencer){
+            Intent i = new Intent(getApplicationContext(), MidiSequencerActivity.class);
+            startActivityForResult(i, 0);
+        }
+
+        if(id == R.id.action_go_to_mixer){
+            Intent i = new Intent(getApplicationContext(), MixerActivity.class);
+            startActivityForResult(i, 0);
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -193,9 +208,6 @@ public class MainActivity extends Activity {
         tracks = TrackSingleton.get(this).getmTracks();
         masterVolume = TrackSingleton.get(this).getMasterVolume();
 
-        for(int i = 0; i <8; i++) {
-            padArray[i].setText(tracks.get(i).getName());
-        }
     }
 
 
@@ -228,45 +240,54 @@ public class MainActivity extends Activity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
 
-    private class ButtonListener implements View.OnClickListener{
-//        float outputVolume = (float)masterVolume;
-
-        @Override
-        public void onClick(View v) {
-            Log.d(TAG,"outputVolume = "+ masterVolume);
-
-            switch (v.getId()){
-                case R.id.btn_pad_0:
-                    playSample(0); // starts at 1
-                    trigger(0);
-                    break;
-                case R.id.btn_pad_1:
-                    playSample(1);
-                    trigger(1);
-
-                    break;
-                case R.id.btn_pad_2:
-                    playSample(2);
-                    trigger(2);
-
-                    break;
-                case R.id.btn_pad_3:
-                    playSample(3);
-                    break;
-                case R.id.btn_pad_4:
-                    playSample(4);
-                    break;
-                case R.id.btn_pad_5:
-                    playSample(5);
-                    break;
-                case R.id.btn_pad_6:
-                    playSample(6);
-                    break;
-                case R.id.btn_pad_7:
-                    playSample(7);
-                    break;
-            }
+            padAdapter.notifyDataSetChanged();
         }
+        seekBarMasterVolume.setProgress((int) (TrackSingleton.get(getApplicationContext()).getMasterVolume()*10));
     }
+
+    //    private class ButtonListener implements View.OnClickListener{
+////        float outputVolume = (float)masterVolume;
+//
+//        @Override
+//        public void onClick(View v) {
+//            Log.d(TAG,"outputVolume = "+ masterVolume);
+//
+//            switch (v.getId()){
+//                case R.id.btn_pad_0:
+//                    playSample(0); // starts at 1
+//                    trigger(0);
+//                    break;
+//                case R.id.btn_pad_1:
+//                    playSample(1);
+//                    trigger(1);
+//
+//                    break;
+//                case R.id.btn_pad_2:
+//                    playSample(2);
+//                    trigger(2);
+//
+//                    break;
+//                case R.id.btn_pad_3:
+//                    playSample(3);
+//                    break;
+//                case R.id.btn_pad_4:
+//                    playSample(4);
+//                    break;
+//                case R.id.btn_pad_5:
+//                    playSample(5);
+//                    break;
+//                case R.id.btn_pad_6:
+//                    playSample(6);
+//                    break;
+//                case R.id.btn_pad_7:
+//                    playSample(7);
+//                    break;
+//            }
+//        }
+//    }
 }

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.Collections;
 import java.util.List;
 
+import itp341.webb.jerry.greenbeatmachine.model.Track;
 import itp341.webb.jerry.greenbeatmachine.model.TrackSingleton;
 
 /**
@@ -76,7 +77,8 @@ public static final String TAG = "itp341.finalProject.tag";
         public void onClick(View v) {
             TrackSingleton.get(mAppContext)
                     .playSound(Integer.parseInt(textView3.getText().toString()));
-
+            TrackSingleton.get(mAppContext)
+                    .callTriggerBeat(Integer.parseInt(textView3.getText().toString()));
         }
     }
 }

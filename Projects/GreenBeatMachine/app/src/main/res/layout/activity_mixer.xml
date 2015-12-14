@@ -3,4 +3,36 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:weightSum="1"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_vertical_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+        <ProgressBar
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_centerInParent="true"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:id="@+id/masterVolLeft"
+            android:max="100"
+            android:progress="33"
+            android:progressDrawable="@drawable/progress_drawable" />
+
+        <ProgressBar
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_centerInParent="true"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:id="@+id/masterVolRight"
+            android:max="100"
+            android:progress="33"
+            android:progressDrawable="@drawable/progress_drawable"
+            android:layout_marginLeft="@dimen/activity_min_widget_distance" />
+
+    </LinearLayout>
 </LinearLayout>

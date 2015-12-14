@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_play_track"
+        android:icon="@drawable/toolbar___play"
+        android:title="@string/play"
+        android:showAsAction="always"/>
+
+    <item android:id="@+id/action_pause_track"
+        android:icon="@drawable/toolbar___pause"
+        android:title="@string/pause"
+        android:showAsAction="always"/>
+
+    <item android:id="@+id/action_go_to_midi_sequencer"
+        android:icon="@drawable/keyboard"
+        android:title="@string/to_midi_sequencer"
+        android:showAsAction="always"/>
+
+    <item android:id="@+id/action_go_to_mixer"
+        android:icon="@drawable/toolbar___mixer"
+        android:title="@string/to_mixer"
+        android:showAsAction="always"/>
+
+    <item android:id="@+id/action_to_beat_pad"
+        android:icon="@drawable/toolbar_beat_pad"
+        android:title="@string/to_mixer"
+        android:showAsAction="always"/>
+
+
+</menu>

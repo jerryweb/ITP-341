@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -46,11 +48,6 @@ public class MidiSequencerActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_midi_sequencer);
 
-//        midiStepLayout = (RecyclerView) findViewById(R.id.midiSequencerLayout);
-//        midiStepAdapter = new MidiStepAdapter(getApplicationContext(),getData());
-//        midiStepLayout.setAdapter(midiStepAdapter);
-//        midiStepLayout.setLayoutManager(new GridLayoutManager(this, 16));
-
         handler = new Handler();
         bpm = 80;
         midiSteps = new boolean[8][16];
@@ -88,36 +85,24 @@ public class MidiSequencerActivity extends Activity{
         btn_toMainActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(i);
+//                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+//                startActivity(i);
+                setResult(RESULT_OK);
+                finish();
             }
         });
 
         connectMuteCheckBoxListeners();
-//        for(int i = 0; i<8; i++){
-//            checkBoxTrackMutes[i].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//                @Override
-//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                    tracks = TrackSingleton.get(getApplicationContext()).getmTracks();
-//                tracks.get(i).setIsMuted(isChecked);
-//                TrackSingleton.get(getApplicationContext()).updateTrack(i,tracks.get(i));
-//                }
-//            });
-//        }
+
 
         btn_play.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("LongLogTag")
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "isPlaying = " + !TrackSingleton.get(getApplicationContext())
-                        .getSequencer().isPlaying());
+//                Log.d(TAG, "isPlaying = " + !TrackSingleton.get(getApplicationContext())
+//                        .getSequencer().isPlaying());
 
                 if (!TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying()) {
-//                    for (int i = 0; i<3;i++) {
-//                        for (int j = 0; j < 16; j++) {
-//                            midiSteps[i][j] = checkBoxMidiSteps[i][j].isChecked();
-//                        }
-//                    }
                     addStepsToSequncerController();
 
                     TrackSingleton.get(getApplicationContext()).getSequencer().setMidiSteps(midiSteps);
@@ -151,17 +136,14 @@ public class MidiSequencerActivity extends Activity{
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         addStepsToSequncerController();
-//                        for (int i = 0; i<2;i++) {
-//                            for (int j = 0; j < 16; j++) {
-//                                midiSteps[i][j] = checkBoxMidiSteps[i][j].isChecked();
-//                            }
-//                        }
                         TrackSingleton.get(getApplicationContext()).getSequencer().setMidiSteps(midiSteps);
                     }
                 });
 
             }
         }
+
+        updateStepsVisual();
 
     }
 
@@ -171,6 +153,7 @@ public class MidiSequencerActivity extends Activity{
                 midiSteps[i][j] = checkBoxMidiSteps[i][j].isChecked();
             }
         }
+        TrackSingleton.get(getApplicationContext()).getSequencer().setMidiSteps(midiSteps);
     }
 
     public void initializeMidiSteps(){
@@ -318,21 +301,17 @@ public class MidiSequencerActivity extends Activity{
         checkBoxMidiSteps[7][13] = (CheckBox) findViewById(R.id.checkBoxMidiStep_8_14);
         checkBoxMidiSteps[7][14] = (CheckBox) findViewById(R.id.checkBoxMidiStep_8_15);
         checkBoxMidiSteps[7][15] = (CheckBox) findViewById(R.id.checkBoxMidiStep_8_16);
+
+        updateStepsVisual();
     }
 
-    public static List<MidiStepInformation>getData(){
-
-        List<MidiStepInformation> data = new ArrayList<>();
-
-        for (int i = 0; i<8;i++) {
-            for (int j = 0; j < 16; j++) {
-                MidiStepInformation current =  new MidiStepInformation();
-                current.isChecked = false;
-//                        j + 16*i;
-                data.add(current);
+    public void updateStepsVisual(){
+        midiSteps = TrackSingleton.get(getApplicationContext()).getSequencer().getMidiSteps();
+        for(int i = 0; i<8; i++){
+            for (int j = 0; j<16; j++){
+                checkBoxMidiSteps[i][j].setChecked(midiSteps[i][j]);
             }
         }
-        return data;
     }
 
     public void connectMuteCheckBoxListeners(){
@@ -397,16 +376,55 @@ public class MidiSequencerActivity extends Activity{
         });
     }
 
-//    public void updateTracks(){
-//        TrackSingleton.
-//    }
-
     public void updateTrackName(){
         tracks = TrackSingleton.get(this).getmTracks();
-
         for(int i = 0; i<8; i++){
             textViewTracks[i].setText(tracks.get(i).getName());
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.play_menu, menu);
+
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        getMenuInflater().inflate(R.menu.play_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if (id == R.id.action_play_track){
+            addStepsToSequncerController();
+            TrackSingleton.get(getApplicationContext()).togglePlay();
+        }
+
+        if(id == R.id.action_pause_track){
+            TrackSingleton.get(getApplicationContext()).togglePlay();
+        }
+
+        if(id == R.id.action_to_beat_pad){
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivityForResult(i, 1);
+        }
+
+        if(id == R.id.action_go_to_mixer){
+            Intent i = new Intent(getApplicationContext(), MixerActivity.class);
+            startActivityForResult(i, 1);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

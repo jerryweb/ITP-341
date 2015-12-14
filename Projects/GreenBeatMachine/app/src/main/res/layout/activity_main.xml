@@ -1,4 +1,4 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="fill_parent">
@@ -18,14 +18,6 @@
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginBottom="@dimen/activity_min_widget_distance"
         android:weightSum="1">
-
-        <Button
-            android:layout_width="52dp"
-            android:layout_height="39dp"
-            android:text="Pla"
-            android:id="@+id/button"
-            android:textSize="12sp"
-            android:layout_marginRight="@dimen/activity_min_widget_distance" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -60,132 +52,36 @@
             android:progress="8"
             android:splitTrack="false" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Midi Place Holder"
-            android:id="@+id/buttonToMidiSequencer" />
-
     </LinearLayout>
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="196dp"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_weight="0.24">
+        android:layout_weight="0.24"
+        android:weightSum="1">
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:layout_weight=".25">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="98dp"
-            android:layout_height="fill_parent">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="New Button"
-                android:id="@+id/btn_pad_0"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight=".5" />
-
-            <Button
-                android:layout_width="98dp"
-                android:layout_height="fill_parent"
-                android:text="New Button"
-                android:id="@+id/btn_pad_1"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight=".5" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="98dp"
+        <android.support.v7.widget.RecyclerView
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="New Button"
-                android:id="@+id/btn_pad_2"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight=".5" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="New Button"
-                android:id="@+id/btn_pad_3"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight=".5" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="98dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="New Button"
-                android:id="@+id/btn_pad_4"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight=".5" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="New Button"
-                android:id="@+id/btn_pad_5"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight=".5" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="98dp"
-            android:layout_height="match_parent" >
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="New Button"
-                android:id="@+id/btn_pad_6"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight=".5" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:text="New Button"
-                android:id="@+id/btn_pad_7"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight=".5" />
-        </LinearLayout>
-
+            android:layout_width="wrap_content"
+            android:id="@+id/beatPadLayout"
+            android:layout_marginLeft="@dimen/activity_min_widget_distance" />
     </LinearLayout>
 
         <ListView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:id="@+id/soundsList"
-            android:layout_weight="3" />
+            android:layout_weight=".75" />
 
     </LinearLayout>
 
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_height="210dp"
-        android:layout_width="409dp"
-        android:id="@+id/beatPadLayout"
-        android:layout_marginLeft="@dimen/activity_min_widget_distance" />
-
-
 </LinearLayout>
-    </ScrollView>
+</LinearLayout>

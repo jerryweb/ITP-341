@@ -4,6 +4,11 @@
     <string name="master_volume">Vol</string>
     <string name="midi_view_label">Midi Sequencer</string>
     <string name="mixer_view_label">Mixer</string>
+    <string name="play">Play</string>
+    <string name="to_midi_sequencer">Midi Sequencer</string>
+    <string name="to_mixer">Mixer</string>
+    <string name="pause">Pause</string>
+    <string name="to_beat_pad">To Beat Pad</string>
 
     <string name="track_1">Track 1</string>
     <string name="track_2">Track 2</string>
