@@ -38,18 +38,26 @@ public class MixerActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mixer);
+
+
         checkBoxTrackMutes = new CheckBox[8];
         seekBarTrackPans = new SeekBar[8];
         verticalSlidersTrackVolume = new VerticalSlider[8];
         textViewTrackVolumeFaderLevel = new TextView[8];
         
+        initializeChannels();
+
+        
+    }
+
+    public void initializeChannels(){
         //Master channel Section
         textViewMasterVolume = (TextView) findViewById(R.id.textViewMasterVolume);
         progressBarMasterVolumeLeft = (ProgressBar) findViewById(R.id.progressBarMasterVolLeft);
         progressBarMasterVolumeRight = (ProgressBar) findViewById(R.id.progressBarMasterVolRight);
         seekbarMasterVolume = (VerticalSlider) findViewById(R.id.seekbarMasterVolume);
         seekbarMasterVolume.setProgress((int)
-                (TrackSingleton.get(getApplicationContext()).getMasterVolume() * 100));
+                TrackSingleton.get(getApplicationContext()).getMasterVolume());
 
 
         //Track 1 channel Section
@@ -57,50 +65,53 @@ public class MixerActivity extends Activity {
         seekBarTrackPans[0] = (SeekBar) findViewById(R.id.seekBarTrack1Pan);
         textViewTrackVolumeFaderLevel[0] = (TextView) findViewById(R.id.textViewTrack1VolPercentage);
         checkBoxTrackMutes[0] = (CheckBox) findViewById(R.id.checkBoxMute1);
-        seekBarTrackPans[0].setProgress(50);
-//        Log.d(TAG, "track vol: "+ TrackSingleton.get(getApplicationContext())
-//                .getTrack(1).getTrackVolume());
-        verticalSlidersTrackVolume[0].setProgress((int) (TrackSingleton.get(getApplicationContext())
-                .getTrack(0).getTrackVolume() * 100));
+        seekBarTrackPans[0].setProgress((int) TrackSingleton.get(getApplicationContext()).getTrack(0).getTrackPan());
+        verticalSlidersTrackVolume[0].setProgress((int) TrackSingleton.get(getApplicationContext()).getTrack(0).getTrackVolume());
+        textViewTrackVolumeFaderLevel[0].setText(String.valueOf(TrackSingleton.get(getApplicationContext())
+                .getTrack(0).getTrackVolume()));
+
+
 
         //Track 2 channel Section
         verticalSlidersTrackVolume[1] = (VerticalSlider) findViewById(R.id.seekBarTrack2Volume);
         seekBarTrackPans[1] = (SeekBar) findViewById(R.id.seekBarTrack2Pan);
         textViewTrackVolumeFaderLevel[1] = (TextView) findViewById(R.id.textViewTrack2VolPercentage);
         checkBoxTrackMutes[1] = (CheckBox) findViewById(R.id.checkBoxMute2);
-        seekBarTrackPans[1].setProgress(50);
+        seekBarTrackPans[1].setProgress((int)
+                TrackSingleton.get(getApplicationContext()).getTrack(1).getTrackPan());
 
-        verticalSlidersTrackVolume[1].setProgress((int) (TrackSingleton.get(getApplicationContext())
-                .getTrack(1).getTrackVolume()*100));
+        verticalSlidersTrackVolume[1].setProgress((int)
+                TrackSingleton.get(getApplicationContext()).getTrack(1).getTrackVolume());
+
+
 
         //Track 3 channel Section
         verticalSlidersTrackVolume[2] = (VerticalSlider) findViewById(R.id.seekBarTrack3Volume);
         seekBarTrackPans[2] = (SeekBar) findViewById(R.id.seekBarTrack3Pan);
         textViewTrackVolumeFaderLevel[2] = (TextView) findViewById(R.id.textViewTrack3VolPercentage);
         checkBoxTrackMutes[2] = (CheckBox) findViewById(R.id.checkBoxMute3);
-        seekBarTrackPans[2].setProgress(50);
+        seekBarTrackPans[2].setProgress((int)
+                TrackSingleton.get(getApplicationContext()).getTrack(2).getTrackPan());
+        verticalSlidersTrackVolume[2].setProgress((int)
+                TrackSingleton.get(getApplicationContext()).getTrack(2).getTrackVolume());
 
-        verticalSlidersTrackVolume[2].setProgress((int) (TrackSingleton.get(getApplicationContext())
-                .getTrack(2).getTrackVolume() * 100));
 
         connectMuteCheckBoxListeners();
         connectSeekBars();
-        
     }
-
     public void connectSeekBars(){
 
         seekbarMasterVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 TrackSingleton.get(getApplicationContext())
-                        .setMasterVolume(Double.parseDouble(String.valueOf(progress)) / 10);
+                        .setMasterVolume(progress);
 
                 textViewMasterVolume.setText(String.valueOf(TrackSingleton.get(getApplicationContext()).getMasterVolume()));
-                progressBarMasterVolumeLeft.setProgress((int) (TrackSingleton
-                        .get(getApplicationContext()).getMasterVolume() * 10));
-                progressBarMasterVolumeRight.setProgress((int) (TrackSingleton
-                        .get(getApplicationContext()).getMasterVolume() * 10));
+                progressBarMasterVolumeLeft.setProgress((int) TrackSingleton
+                        .get(getApplicationContext()).getMasterVolume());
+                progressBarMasterVolumeRight.setProgress((int) TrackSingleton
+                        .get(getApplicationContext()).getMasterVolume());
             }
 
             @Override
@@ -118,13 +129,12 @@ public class MixerActivity extends Activity {
         verticalSlidersTrackVolume[0].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
                 TrackSingleton.get(getApplicationContext())
-                        .getTrack(0).setTrackVolume(Double
-                        .parseDouble(String.valueOf(progress)) / 10);
+                        .getTrack(0).setTrackVolume(progress);
 
                 textViewTrackVolumeFaderLevel[0].setText(String.valueOf(TrackSingleton.get(getApplicationContext())
-                        .getTrack(0).getTrackVolume()))
-                ;
+                        .getTrack(0).getTrackVolume()));
             }
 
             @Override
@@ -141,8 +151,8 @@ public class MixerActivity extends Activity {
         seekBarTrackPans[0].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                TrackSingleton.get(getApplicationContext()).getTrack(0).setTrackPan(progress / 10);
-                Log.d(TAG, " pan amount is: " + TrackSingleton.get(getApplicationContext()).getTrack(0).getTrackPan());
+
+                TrackSingleton.get(getApplicationContext()).getTrack(0).setTrackPan(progress);
             }
 
             @Override
@@ -161,12 +171,10 @@ public class MixerActivity extends Activity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 TrackSingleton.get(getApplicationContext())
-                        .getTrack(1).setTrackVolume(Double
-                        .parseDouble(String.valueOf(progress)) / 10);
+                        .getTrack(1).setTrackVolume(progress);
 
                 textViewTrackVolumeFaderLevel[1].setText(String.valueOf(TrackSingleton.get(getApplicationContext())
-                        .getTrack(1).getTrackVolume()))
-                ;
+                        .getTrack(1).getTrackVolume()));
             }
 
             @Override
@@ -183,8 +191,7 @@ public class MixerActivity extends Activity {
         seekBarTrackPans[1].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                TrackSingleton.get(getApplicationContext()).getTrack(1).setTrackPan(progress/10);
-                Log.d(TAG," pan amount is: " + TrackSingleton.get(getApplicationContext()).getTrack(1).getTrackPan());
+                TrackSingleton.get(getApplicationContext()).getTrack(1).setTrackPan(progress);
             }
 
             @Override
@@ -203,13 +210,12 @@ public class MixerActivity extends Activity {
         verticalSlidersTrackVolume[2].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
                 TrackSingleton.get(getApplicationContext())
-                        .getTrack(2).setTrackVolume(Double
-                        .parseDouble(String.valueOf(progress)) / 10);
+                        .getTrack(2).setTrackVolume(progress);//Double.parseDouble(String.valueOf(progress)) / 10);
 
                 textViewTrackVolumeFaderLevel[2].setText(String.valueOf(TrackSingleton.get(getApplicationContext())
-                        .getTrack(2).getTrackVolume()))
-                ;
+                        .getTrack(2).getTrackVolume()));
             }
 
             @Override
@@ -226,8 +232,9 @@ public class MixerActivity extends Activity {
         seekBarTrackPans[2].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                TrackSingleton.get(getApplicationContext()).getTrack(2).setTrackPan(progress / 10);
-                Log.d(TAG, " pan amount is: " + TrackSingleton.get(getApplicationContext()).getTrack(2).getTrackPan());
+
+                TrackSingleton.get(getApplicationContext()).getTrack(2).setTrackPan(progress);
+
             }
 
             @Override
@@ -308,29 +315,20 @@ public class MixerActivity extends Activity {
     public void onResume() {
         super.onResume();
 
-        seekbarMasterVolume.setProgress((int) (TrackSingleton.get(getApplicationContext()).getMasterVolume() * 10));
+        seekbarMasterVolume.setProgress((int) TrackSingleton.get(getApplicationContext()).getMasterVolume());
 
         //Updates channel 1 UI
-        verticalSlidersTrackVolume[0].setProgress((int)
-                (TrackSingleton.get(getApplicationContext()).getTrack(0).getTrackVolume()) * 10);
-        seekBarTrackPans[0].setProgress((int)
-                (TrackSingleton.get(getApplicationContext()).getTrack(0).getTrackPan() * 10));
-        checkBoxTrackMutes[0].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(0).isMuted());
+//        verticalsetProgress((int) (TrackSingleton.get(getApplicationContext()).getTrack(0).getTrackVolume() * 100));
+//        seekBarTrackPans[0].setProgress((int)
+//                (TrackSingleton.get(getApplicationContext()).getTrack(0).getTrackPan() * 10));
+//        checkBoxTrackMutes[0].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(0).isMuted());
 
 
         //Updates Channel 2 UI
-        verticalSlidersTrackVolume[1].setProgress((int)
-                (TrackSingleton.get(getApplicationContext()).getTrack(1).getTrackVolume()) * 10);
-        seekBarTrackPans[1].setProgress((int)
-                (TrackSingleton.get(getApplicationContext()).getTrack(1).getTrackPan() * 10));
-        checkBoxTrackMutes[1].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(1).isMuted());
+//
 
-        //Updates Channel 3 UI
-        verticalSlidersTrackVolume[2].setProgress((int)
-                (TrackSingleton.get(getApplicationContext()).getTrack(2).getTrackVolume()) * 10);
-        seekBarTrackPans[2].setProgress((int)
-                (TrackSingleton.get(getApplicationContext()).getTrack(2).getTrackPan() * 10));
-        checkBoxTrackMutes[2].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(2).isMuted());
+
+
 //        checkBoxTrackMutes[3].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(3).isMuted());
 //        checkBoxTrackMutes[4].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(4).isMuted());
 //        checkBoxTrackMutes[5].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(5).isMuted());

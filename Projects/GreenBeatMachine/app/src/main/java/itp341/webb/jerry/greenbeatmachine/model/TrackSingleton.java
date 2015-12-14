@@ -65,7 +65,7 @@ public class TrackSingleton {
         loaded = false;
 
         for(int i = 0; i<8;i++){
-            Track t = new Track("track " + i, 0.8, 0.5);
+            Track t = new Track("track " + i, 80.0, 50.0);
             mTracks.add(t);
         }
 
@@ -152,6 +152,7 @@ public class TrackSingleton {
 
     public void setBpm(int bpm) {
         this.bpm = bpm;
+        sequencer.setBpm(bpm);
     }
 
     public ArrayList<Track> getmTracks(){
@@ -214,39 +215,47 @@ public class TrackSingleton {
     //play sample back
     public void playSound(int id){
 
+
         if(!mTracks.get(id).isMuted()){
+            /*This calculates the pan and volume of track 1 Left channel*/
+            double leftChannelOutput = (mTracks.get(id).getTrackVolume()/100)*(1 - mTracks.get(id).getTrackPan()/100);
+            /*This calculates the pan and volume of track 1 Right channel*/
+            double rightChannelOutput = (mTracks.get(id).getTrackVolume()/100)*(mTracks.get(id).getTrackPan()/100);
+
             switch (id){
                 case 0:
-                    track1SamplePool.play(1, (float) masterVolume,
-                        (float) masterVolume, 1, 0, 1);
+                    //int soundID, float leftVolume, float rightVolume, int priority, int loop, float rate)
+
+                    track1SamplePool.play(1, (float) leftChannelOutput,
+                            (float) rightChannelOutput, 1, 0, 1);
                     break;
                 case 1:
-                    track2SamplePool.play(1,(float) masterVolume,
-                            (float) masterVolume, 1, 0, 1);
+                    track2SamplePool.play(1,(float) leftChannelOutput,
+                            (float) rightChannelOutput, 1, 0, 1);
                     break;
                 case 2:
-                    track3SamplePool.play(1,(float) masterVolume,
-                            (float) masterVolume, 1, 0, 1);
+                    track3SamplePool.play(1, (float) leftChannelOutput,
+                            (float) rightChannelOutput, 1, 0, 1);
                     break;
                 case 3:
-                    track4SamplePool.play(1,(float) masterVolume,
-                            (float) masterVolume, 1, 0, 1);
+                    track4SamplePool.play(1,(float) masterVolume/100,
+                            (float) masterVolume/100, 1, 0, 1);
                     break;
                 case 4:
-                    track5SamplePool.play(1,(float) masterVolume,
-                            (float) masterVolume, 1, 0, 1);
+                    track5SamplePool.play(1,(float) masterVolume/100,
+                            (float) masterVolume/100, 1, 0, 1);
                     break;
                 case 5:
-                    track6SamplePool.play(1,(float) masterVolume,
-                            (float) masterVolume, 1, 0, 1);
+                    track6SamplePool.play(1,(float) masterVolume/100,
+                            (float) masterVolume/100, 1, 0, 1);
                     break;
                 case 6:
-                    track7SamplePool.play(1,(float) masterVolume,
-                            (float) masterVolume, 1, 0, 1);
+                    track7SamplePool.play(1,(float) masterVolume/100,
+                            (float) masterVolume/100, 1, 0, 1);
                     break;
                 case 7:
-                    track8SamplePool.play(1,(float) masterVolume,
-                            (float) masterVolume, 1, 0, 1);
+                    track8SamplePool.play(1,(float) masterVolume/100,
+                            (float) masterVolume/100, 1, 0, 1);
                     break;
 
             }
@@ -254,8 +263,8 @@ public class TrackSingleton {
     }
 
     public void playMetronome(){
-            metronomeSamplePool.play(1,(float) masterVolume,
-                    (float) masterVolume, 1, 0, 1);
+            metronomeSamplePool.play(1,(float) masterVolume/100,
+                    (float) masterVolume/100, 1, 0, 1);
     }
 
     //allows other classes to access the sequencer class

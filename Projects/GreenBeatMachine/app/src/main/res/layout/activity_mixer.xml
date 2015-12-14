@@ -153,7 +153,6 @@
                     android:layout_weight=".7"
                     android:orientation="vertical"
                     android:gravity="top"
-                    android:progress="80"
                     android:indeterminate="false" />
 
                 <LinearLayout

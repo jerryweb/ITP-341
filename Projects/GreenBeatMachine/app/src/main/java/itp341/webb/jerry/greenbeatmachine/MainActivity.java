@@ -11,8 +11,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SeekBar;
@@ -58,35 +56,22 @@ public class MainActivity extends Activity {
         beatPadLayout.setAdapter(padAdapter);
         beatPadLayout.setLayoutManager(new GridLayoutManager(this, 4));
 
-//        btn_to_midi_sequencer = (Button) findViewById(R.id.buttonToMidiSequencer);
-
-
         editTextBPM = (EditText) findViewById(R.id.editTextBPM);
         playingIndicator = (Switch) findViewById(R.id.playingIndicator);
         soundList = (ListView) findViewById(R.id.soundsList);
 
-//        btn_to_midi_sequencer.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(getApplicationContext(), MidiSequencerActivity.class);
-////                TrackSingleton.get(getApplicationContext()).setMasterVolume(masterVolume);
-//                startActivityForResult(i, 0);
-//            }
-//        });
 
         addSoundsForTest();
         updateView();
 
         masterVolume =  TrackSingleton.get(this).getMasterVolume();
         seekBarMasterVolume =  (SeekBar) findViewById(R.id.seekbarMasterVolume);
-        seekBarMasterVolume.setProgress(80);
+        seekBarMasterVolume.setProgress((int) TrackSingleton.get(getApplicationContext()).getMasterVolume());
         seekBarMasterVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 TrackSingleton.get(getApplicationContext())
-                        .setMasterVolume(Double.parseDouble(String.valueOf(progress)) / 10);
-
-//                Log.d(TAG,"" + masterVolume);
+                        .setMasterVolume(progress);
             }
 
             @Override

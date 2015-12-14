@@ -10,6 +10,11 @@
         android:title="@string/pause"
         android:showAsAction="always"/>
 
+    <item android:id="@+id/action_to_beat_pad"
+        android:icon="@drawable/toolbar_beat_pad"
+        android:title="@string/to_beat_pad"
+        android:showAsAction="always" />
+
     <item android:id="@+id/action_go_to_midi_sequencer"
         android:icon="@drawable/keyboard"
         android:title="@string/to_midi_sequencer"
@@ -20,15 +25,9 @@
         android:title="@string/to_mixer"
         android:showAsAction="always"/>
 
-    <item android:id="@+id/action_to_beat_pad"
-        android:icon="@drawable/toolbar_beat_pad"
-        android:title="@string/to_mixer"
-        android:showAsAction="always"/>
-
     <item android:id="@+id/action_toggle_metronome"
         android:icon="@drawable/metronome"
         android:title="@string/to_mixer"
         android:showAsAction="always"/>
-
 
 </menu>

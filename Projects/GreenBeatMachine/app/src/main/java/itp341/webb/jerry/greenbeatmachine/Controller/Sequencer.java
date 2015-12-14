@@ -143,6 +143,14 @@ public class Sequencer {
 
     }
 
+    public int getBpm() {
+        return bpm;
+    }
+
+    public void setBpm(int bpm) {
+        this.bpm = bpm;
+    }
+
     public void toggleMetronome() {
         synchronized (lock) {
             lock.notify();
