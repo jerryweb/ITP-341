@@ -19,6 +19,16 @@
         android:layout_marginBottom="@dimen/activity_min_widget_distance"
         android:weightSum="1">
 
+        <Switch
+            android:layout_width="84dp"
+            android:layout_height="wrap_content"
+            android:text="@string/playing"
+            android:id="@+id/playingIndicator"
+            android:checked="false"
+            android:layout_weight="0.07"
+            android:enabled="true"
+            android:clickable="false" />
+
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

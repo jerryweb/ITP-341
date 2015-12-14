@@ -25,5 +25,10 @@
         android:title="@string/to_mixer"
         android:showAsAction="always"/>
 
+    <item android:id="@+id/action_toggle_metronome"
+        android:icon="@drawable/metronome"
+        android:title="@string/to_mixer"
+        android:showAsAction="always"/>
+
 
 </menu>

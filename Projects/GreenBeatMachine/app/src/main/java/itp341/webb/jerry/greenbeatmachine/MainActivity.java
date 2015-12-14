@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class MainActivity extends Activity {
 
 
     double masterVolume;
-    Button btn_to_midi_sequencer;
+//    Button btn_to_midi_sequencer;
     EditText editTextBPM;
     ListView soundList;
 
@@ -40,6 +41,7 @@ public class MainActivity extends Activity {
     ArrayList<Track> tracks;
     private RecyclerView beatPadLayout;
     private PadAdapter padAdapter;
+    Switch playingIndicator;
 
     Cursor c; //CursorWrapper
     SimpleCursorAdapter cursorAdapter;
@@ -54,21 +56,21 @@ public class MainActivity extends Activity {
         beatPadLayout.setAdapter(padAdapter);
         beatPadLayout.setLayoutManager(new GridLayoutManager(this, 4));
 
-        btn_to_midi_sequencer = (Button) findViewById(R.id.buttonToMidiSequencer);
+//        btn_to_midi_sequencer = (Button) findViewById(R.id.buttonToMidiSequencer);
 
 
         editTextBPM = (EditText) findViewById(R.id.editTextBPM);
-
+        playingIndicator = (Switch) findViewById(R.id.playingIndicator);
         soundList = (ListView) findViewById(R.id.soundsList);
 
-        btn_to_midi_sequencer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), MidiSequencerActivity.class);
-//                TrackSingleton.get(getApplicationContext()).setMasterVolume(masterVolume);
-                startActivityForResult(i, 0);
-            }
-        });
+//        btn_to_midi_sequencer.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(getApplicationContext(), MidiSequencerActivity.class);
+////                TrackSingleton.get(getApplicationContext()).setMasterVolume(masterVolume);
+//                startActivityForResult(i, 0);
+//            }
+//        });
 
         addSoundsForTest();
         updateView();
@@ -185,10 +187,12 @@ public class MainActivity extends Activity {
 
         if (id == R.id.action_play_track){
             TrackSingleton.get(getApplicationContext()).togglePlay();
+            playingIndicator.setChecked(true);
         }
 
         if(id == R.id.action_pause_track){
             TrackSingleton.get(getApplicationContext()).togglePlay();
+            playingIndicator.setChecked(false);
         }
 
         if(id == R.id.action_go_to_midi_sequencer){
@@ -199,6 +203,10 @@ public class MainActivity extends Activity {
         if(id == R.id.action_go_to_mixer){
             Intent i = new Intent(getApplicationContext(), MixerActivity.class);
             startActivityForResult(i, 0);
+        }
+
+        if(id == R.id.action_toggle_metronome){
+            TrackSingleton.get(getApplicationContext()).getSequencer().toggleMetronome();
         }
 
         return super.onOptionsItemSelected(item);
@@ -248,6 +256,7 @@ public class MainActivity extends Activity {
             padAdapter.notifyDataSetChanged();
         }
         seekBarMasterVolume.setProgress((int) (TrackSingleton.get(getApplicationContext()).getMasterVolume()*10));
+        playingIndicator.setChecked(TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying());
     }
 
     //    private class ButtonListener implements View.OnClickListener{

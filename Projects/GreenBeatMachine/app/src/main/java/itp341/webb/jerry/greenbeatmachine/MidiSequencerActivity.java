@@ -28,8 +28,8 @@ import itp341.webb.jerry.greenbeatmachine.model.TrackSingleton;
 public class MidiSequencerActivity extends Activity{
     public static final String TAG = "itp341.finalProject.tag";
     Activity MainActivity;
-    Button btn_toMainActivity;
-    Button btn_play;
+//    Button btn_toMainActivity;
+//    Button btn_play;
     TextView [] textViewTracks;
     CheckBox [] checkBoxTrackMutes;
     CheckBox [][] checkBoxMidiSteps;
@@ -53,8 +53,8 @@ public class MidiSequencerActivity extends Activity{
         midiSteps = new boolean[8][16];
         tracks = TrackSingleton.get(this).getmTracks();
         MainActivity = new MainActivity();
-        btn_toMainActivity = (Button) findViewById(R.id.button2);
-        btn_play = (Button) findViewById(R.id.play);
+//        btn_toMainActivity = (Button) findViewById(R.id.button2);
+//        btn_play = (Button) findViewById(R.id.play);
 
 
         textViewTracks = new TextView[8];
@@ -82,50 +82,50 @@ public class MidiSequencerActivity extends Activity{
         checkBoxMidiSteps = new CheckBox[8][16];
         initializeMidiSteps();
 
-        btn_toMainActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-//                startActivity(i);
-                setResult(RESULT_OK);
-                finish();
-            }
-        });
-
+//        btn_toMainActivity.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+////                startActivity(i);
+//                setResult(RESULT_OK);
+//                finish();
+//            }
+//        });
+//
         connectMuteCheckBoxListeners();
-
-
-        btn_play.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("LongLogTag")
-            @Override
-            public void onClick(View v) {
-//                Log.d(TAG, "isPlaying = " + !TrackSingleton.get(getApplicationContext())
-//                        .getSequencer().isPlaying());
-
-                if (!TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying()) {
-                    addStepsToSequncerController();
-
-                    TrackSingleton.get(getApplicationContext()).getSequencer().setMidiSteps(midiSteps);
-                    sequencerThread = new Thread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            TrackSingleton.get(getApplicationContext()).getSequencer().startPlayback();
-                            handler.post(new Runnable() {
-
-                                @Override
-                                public void run() {
-
-                                }
-                            });
-                        }
-                    });
-                    sequencerThread.start();
-                } else {
-                    TrackSingleton.get(getApplicationContext()).getSequencer().stopPlayback();
-                }
-            }
-        });
+//
+//
+//        btn_play.setOnClickListener(new View.OnClickListener() {
+//            @SuppressLint("LongLogTag")
+//            @Override
+//            public void onClick(View v) {
+////                Log.d(TAG, "isPlaying = " + !TrackSingleton.get(getApplicationContext())
+////                        .getSequencer().isPlaying());
+//
+//                if (!TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying()) {
+//                    addStepsToSequncerController();
+//
+//                    TrackSingleton.get(getApplicationContext()).getSequencer().setMidiSteps(midiSteps);
+//                    sequencerThread = new Thread(new Runnable() {
+//
+//                        @Override
+//                        public void run() {
+//                            TrackSingleton.get(getApplicationContext()).getSequencer().startPlayback();
+//                            handler.post(new Runnable() {
+//
+//                                @Override
+//                                public void run() {
+//
+//                                }
+//                            });
+//                        }
+//                    });
+//                    sequencerThread.start();
+//                } else {
+//                    TrackSingleton.get(getApplicationContext()).getSequencer().stopPlayback();
+//                }
+//            }
+//        });
 
         updateTrackName();
 
@@ -422,6 +422,10 @@ public class MidiSequencerActivity extends Activity{
         if(id == R.id.action_go_to_mixer){
             Intent i = new Intent(getApplicationContext(), MixerActivity.class);
             startActivityForResult(i, 1);
+        }
+
+        if(id == R.id.action_toggle_metronome){
+            TrackSingleton.get(getApplicationContext()).getSequencer().toggleMetronome();
         }
 
         return super.onOptionsItemSelected(item);

@@ -9,6 +9,8 @@
     <string name="to_mixer">Mixer</string>
     <string name="pause">Pause</string>
     <string name="to_beat_pad">To Beat Pad</string>
+    <string name="toggle_metronome">Toggle Metronome</string>
+    <string name="playing">PLAYING</string>
 
     <string name="track_1">Track 1</string>
     <string name="track_2">Track 2</string>
@@ -18,5 +20,8 @@
     <string name="track_6">Track 6</string>
     <string name="track_7">Track 7</string>
     <string name="track_8">Track 8</string>
+
+    <string name="master">Master</string>
+    <string name="mute">Mute</string>
 
 </resources>

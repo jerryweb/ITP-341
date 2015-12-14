@@ -1,8 +1,10 @@
 package itp341.webb.jerry.greenbeatmachine.Controller;
 
 import android.content.Context;
-import android.util.Log;
+import android.media.AudioAttributes;
+import android.media.SoundPool;
 
+import itp341.webb.jerry.greenbeatmachine.R;
 import itp341.webb.jerry.greenbeatmachine.model.TrackSingleton;
 
 /**
@@ -20,21 +22,26 @@ public class Sequencer {
     private volatile boolean playing;
     private volatile int bpm;
     private boolean midiSteps[][]; //These correspond to the midi step checkboxes in the sequencer
+    private boolean metronome;
     private final Object lock = new Object();
     private int step;
+
+
 
     public Sequencer(Context c, int BPM){
         this.bpm = BPM;
         step = 0;
         playing = false;
+        metronome = false;
         mAppContext = c;
         midiSteps = new boolean[8][16];
 
         for (int i = 0; i<2; i++){
             for (int j = 0; j<16; j++){
-                midiSteps[i][j] = false;
+                this.midiSteps[i][j] = false;
             }
         }
+
     }
 
     public void playBeat(){
@@ -45,6 +52,11 @@ public class Sequencer {
                     //This checks whether the steps are checked; if true, then it will tell the track
                     // to play the corresponding sound
 //                    Log.d(TAG,"kick: " + i + " "+ midiSteps[0][i] + "   clap: " + midiSteps[1][i]);
+
+                    if(this.metronome){
+                        TrackSingleton.get(mAppContext).playMetronome();
+                    }
+
                     if(midiSteps[0][i]) {
                         TrackSingleton.get(mAppContext).playSound(0);
                     }
@@ -69,6 +81,7 @@ public class Sequencer {
                     if(midiSteps[7][i]){
                         TrackSingleton.get(mAppContext).playSound(7);
                     }
+
 
                     if (playing == false) {     //if the user stopped playback, it will leave
                                                 // the loop
@@ -130,4 +143,11 @@ public class Sequencer {
 
     }
 
+    public void toggleMetronome() {
+        synchronized (lock) {
+            lock.notify();
+            this.metronome = !metronome;
+        }
+
+    }
 }
