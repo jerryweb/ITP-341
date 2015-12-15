@@ -29,5 +29,6 @@
     <string name="sounds">Sounds</string>
     <string name="action_load">Load</string>
     <string name="action_save">Save</string>
+    <string name="BPM">BPM</string>
 
 </resources>

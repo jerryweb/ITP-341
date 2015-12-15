@@ -29,17 +29,27 @@
             android:enabled="true"
             android:clickable="false" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/BPM"
+            android:id="@+id/textViewBPMLabel"
+            android:layout_weight="0.07"
+            android:textSize="@dimen/medium_text_size"
+            android:textStyle="bold" />
+
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/editTextBPM"
             android:layout_weight="0.44"
             android:autoText="false"
-            android:focusable="true"
+            android:focusable="false"
             android:textStyle="bold"
             android:backgroundTint="#000000"
             android:backgroundTintMode="src_atop"
-            android:inputType="number" />
+            android:inputType="number"
+            android:allowUndo="true" />
 
         <TextView
             android:layout_width="wrap_content"

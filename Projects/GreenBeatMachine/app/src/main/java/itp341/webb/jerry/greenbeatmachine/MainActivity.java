@@ -15,14 +15,10 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SeekBar;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import java.io.File;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +33,8 @@ public class MainActivity extends Activity {
 
 
     double masterVolume;
-//    Button btn_to_midi_sequencer;
     EditText editTextBPM;
-    ListView soundList;
+    ListView soundList;             //List that shows
     SoundAdapter soundAdapter;
 
     SeekBar seekBarMasterVolume;
@@ -70,12 +65,12 @@ public class MainActivity extends Activity {
         soundAdapter = new SoundAdapter(getApplicationContext(),soundBank);
         soundList.setAdapter(soundAdapter);
 
+        //This si the
         soundList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView getChoiceText;
                 padAdapter.setPadSound(position, soundBank.get(position).getName());
-//                padAdapter.notifyDataSetChanged();
                 getChoiceText = (TextView)view.findViewById(R.id.textViewSoundName);
 
 
@@ -94,6 +89,8 @@ public class MainActivity extends Activity {
         updateView();
 
         masterVolume =  TrackSingleton.get(this).getMasterVolume();
+
+        //Allows the user to control the master track volume output from main screen
         seekBarMasterVolume =  (SeekBar) findViewById(R.id.seekbarMasterVolume);
         seekBarMasterVolume.setProgress((int) TrackSingleton.get(getApplicationContext()).getMasterVolume());
         seekBarMasterVolume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -115,6 +112,9 @@ public class MainActivity extends Activity {
         });
 
         editTextBPM.setText(String.valueOf(TrackSingleton.get(getApplicationContext()).getBpm()));
+
+        //The user must enter an integer beats per minute value between 50 and 140
+        //This will set the tempo according to the users input
         editTextBPM.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {

@@ -32,6 +32,7 @@ public class Track implements Serializable {
         this.trackVolume = tV;
         this.trackPan = tP;
         this.isMuted = false;
+        this.currentSampleId = -1;
     }
 
     public String getName() {

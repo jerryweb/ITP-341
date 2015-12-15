@@ -39,10 +39,10 @@ public class Sound implements Serializable {
 
     public Sound(String Name, int sId, String Type, int rp){
         super();
-        this.name = Name;
+        name = Name;
         this.soundId = sId;
-        this.type = Type;
-        this.resourceArrayPosition = rp;
+        type = Type;
+        resourceArrayPosition = rp;
     }
 
     public int getResourceArrayPosition() {
@@ -70,7 +70,7 @@ public class Sound implements Serializable {
     }
 
     public int getSoundId() {
-        return soundId;
+        return this.soundId;
     }
 
     public void setSoundId(int soundId) {
