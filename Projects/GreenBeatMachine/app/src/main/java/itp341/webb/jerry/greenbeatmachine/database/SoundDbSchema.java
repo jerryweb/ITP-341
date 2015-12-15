@@ -10,7 +10,7 @@ public class SoundDbSchema {
         // Column Names
         public static final String KEY_ID = "_id"; // follow this convention
         public static final String KEY_NAME = "name"; //this will be stored as an int value
-        public static final String KEY_SOUNDID = "sounds"; //this is the id for each sound to be played
+        public static final String KEY_SOUNDID = "soundIds"; //this is the id for each sound to be played
         public static final String KEY_TYPE = "type";
 
         // Column indexes (good enumeration style)

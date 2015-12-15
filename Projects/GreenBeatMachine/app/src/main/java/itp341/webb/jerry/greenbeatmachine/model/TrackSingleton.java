@@ -1,6 +1,7 @@
 package itp341.webb.jerry.greenbeatmachine.model;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.os.Handler;
@@ -8,10 +9,12 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.concurrent.locks.LockSupport;
 
 import itp341.webb.jerry.greenbeatmachine.Controller.Sequencer;
 import itp341.webb.jerry.greenbeatmachine.MainActivity;
 import itp341.webb.jerry.greenbeatmachine.R;
+import itp341.webb.jerry.greenbeatmachine.database.SoundDbSchema.TABLE_SOUNDS;
 
 /**
  * Created by jerrywebb on 11/28/15.
@@ -123,7 +126,8 @@ public class TrackSingleton {
 
 
         //These load the sound files into the sound pools
-        bmb_k_id = track1SamplePool.load(mAppContext, R.raw.ac_k, 1);
+        ac_k_id = track1SamplePool.load(mAppContext, R.raw.ac_k, 1);
+        bmb_k_id = track1SamplePool.load(mAppContext, R.raw.bmb_k, 1);
         phn_clp_id = track2SamplePool.load(mAppContext, R.raw.phn_clp, 1);
         dry_ohh_cra_id = track3SamplePool.load(mAppContext, R.raw.dry_ohh_cra, 1);
         vb6_shk_id = track4SamplePool.load(mAppContext, R.raw.vb6_shk, 1);
@@ -133,6 +137,9 @@ public class TrackSingleton {
         wsh_clp1_id = track7SamplePool.load(mAppContext, R.raw.wsh_clp1, 1);
         fm_ohh_cra_id = track8SamplePool.load(mAppContext, R.raw.fm_ohh_cra, 1);
         lex_rim_id = metronomeSamplePool.load(mAppContext, R.raw.lex_rim, 1);
+
+
+
 
         sequencer = new Sequencer(mAppContext, bpm);        //Creates the sequencer thread
     }
@@ -176,6 +183,7 @@ public class TrackSingleton {
 
     //This will toggle either play or pause depending on what the sequencer thread is doing
     public void togglePlay(){
+
         if (!TrackSingleton.get(mAppContext).getSequencer().isPlaying()) {
 
             sequencerThread = new Thread(new Runnable() {
@@ -203,6 +211,7 @@ public class TrackSingleton {
     public double getMasterVolume() {
         return masterVolume;
     }
+
     public void setMasterVolume(double masterVolume) {
         this.masterVolume = masterVolume;
     }
@@ -215,19 +224,39 @@ public class TrackSingleton {
 
     //play sample back
     public void playSound(int id){
+//        Sound so = new Sound("bmb_k",bmb_k_id,"kick");
+//        SoundsSingleton.get(mAppContext).addSound(so);
+//
+//        Sound s1 = new Sound("ac_k",ac_k_id,"kick");
+//        SoundsSingleton.get(mAppContext).addSound(s1);
+//
+//
+//        int sound =0;
+//        Cursor c = SoundsSingleton.get(mAppContext).getSound(mTracks.get(0).getName());
+//        if (c != null) { // this means we are editing old record
+//
+//            if (c.moveToFirst()) {
+//                sound = c.getInt(TABLE_SOUNDS.COLUMN_SOUNDID);
+//                Log.d(TAG, "soundId is = " + sound);
+//                Log.d(TAG, "type is: " + c.getString(TABLE_SOUNDS.COLUMN_TYPE));
+//                Log.d(TAG, "name is : " + c.getString(TABLE_SOUNDS.COLUMN_NAME));
+//                Log.d(TAG, "soundID = " +c.getInt(TABLE_SOUNDS.COLUMN_SOUNDID));
+//            }
+//        }
 
-
-        if(!mTracks.get(id).isMuted()){
+                if(!mTracks.get(id).isMuted()){
             /*This calculates the pan and volume of track 1 Left channel*/
-            double leftChannelOutput = (this.masterVolume/100)*(mTracks.get(id).getTrackVolume()/100)*(1 - mTracks.get(id).getTrackPan()/100);
+            double leftChannelOutput = (this.masterVolume/100)*
+                    (mTracks.get(id).getTrackVolume()/100)*(1 - mTracks.get(id).getTrackPan()/100);
             /*This calculates the pan and volume of track 1 Right channel*/
-            double rightChannelOutput = (this.masterVolume/100)*(mTracks.get(id).getTrackVolume()/100)*(mTracks.get(id).getTrackPan()/100);
+            double rightChannelOutput = (this.masterVolume/100)*
+                    (mTracks.get(id).getTrackVolume()/100)*(mTracks.get(id).getTrackPan()/100);
 
             switch (id){
                 case 0:
                     //int soundID, float leftVolume, float rightVolume, int priority, int loop, float rate)
 
-                    track1SamplePool.play(1, (float) leftChannelOutput,
+                    track1SamplePool.play(sound, (float) leftChannelOutput,
                             (float) rightChannelOutput, 1, 0, 1);
                     break;
                 case 1:
@@ -235,10 +264,14 @@ public class TrackSingleton {
                             (float) rightChannelOutput, 1, 0, 1);
                     break;
                 case 2:
+//                    mTracks.get(0).setTrackSample(s1);
+
                     track3SamplePool.play(1, (float) leftChannelOutput,
                             (float) rightChannelOutput, 1, 0, 1);
                     break;
                 case 3:
+//                    mTracks.get(0).setTrackSample(so);
+
                     track4SamplePool.play(1,(float) leftChannelOutput,
                             (float) rightChannelOutput, 1, 0, 1);
                     break;

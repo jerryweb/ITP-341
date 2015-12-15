@@ -36,11 +36,11 @@ public class Sound implements Serializable {
         this.type = type;
     }
 
-    public Sound(String name, int sId, String type){
+    public Sound(String Name, int sId, String Type){
         super();
-        this.name = name;
-        this.soundId = sId;
-        this.type = type;
+        name = Name;
+        soundId = sId;
+        type = Type;
     }
 
     public long get_id() {
@@ -55,8 +55,8 @@ public class Sound implements Serializable {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String Name) {
+        name = Name;
     }
 
     public int getSoundId() {

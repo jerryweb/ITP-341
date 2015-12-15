@@ -51,7 +51,7 @@ public class SoundsSingleton {
 
         ContentValues cv = new ContentValues();
         cv.put(TABLE_SOUNDS.KEY_NAME, s.getName());
-        Log.d(TAG, "sound id: " + s.getSoundId());
+        Log.d(TAG, "sound add id: " + s.getSoundId());
 
         cv.put(TABLE_SOUNDS.KEY_SOUNDID, s.getSoundId());
         cv.put(TABLE_SOUNDS.KEY_TYPE, s.getType());
@@ -85,8 +85,8 @@ public class SoundsSingleton {
         return c;
     }
 
-    public Cursor getSound(long id) {
-        Log.d(TAG, "getSound: id = " + id);
+    public Cursor getSound(String name) {
+        Log.d(TAG, "getSound: id = " + name);
 
         String [] projection =  {
                 TABLE_SOUNDS.KEY_ID,
@@ -96,9 +96,9 @@ public class SoundsSingleton {
         };
 
         String sortOrder = TABLE_SOUNDS.KEY_NAME + " asc";
-        String selection = TABLE_SOUNDS.KEY_ID + " = ?";  //_id = ?
-        Log.d(TAG, "key id = "+ TABLE_SOUNDS.KEY_ID);
-        String [] selectionArgs = {Long.toString(id)};
+        String selection = TABLE_SOUNDS.KEY_NAME + " = ?";  //_id = ?
+        Log.d(TAG, "key id = "+ TABLE_SOUNDS.KEY_NAME);
+        String [] selectionArgs = {name};
 
 
 
