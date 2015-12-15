@@ -208,334 +208,50 @@ public class MixerActivity extends Activity {
             }
         });
 
-        //Channel section for track 1
-        verticalSlidersTrackVolume[0].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        //This connects the volume faders and pan seekbars for each of the 8 tracks
+        for(int i = 0; i<8; i++){
+            final int finali = i;
+            verticalSlidersTrackVolume[finali].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-                TrackSingleton.get(getApplicationContext())
-                        .getTrack(0).setTrackVolume(progress);
+                    TrackSingleton.get(getApplicationContext())
+                            .getTrack(finali).setTrackVolume(progress);
 
-                textViewTrackVolumeFaderLevel[0].setText(String.valueOf(TrackSingleton.get(getApplicationContext())
-                        .getTrack(0).getTrackVolume()));
-            }
+                    textViewTrackVolumeFaderLevel[finali].setText(String.valueOf(TrackSingleton.get(getApplicationContext())
+                            .getTrack(finali).getTrackVolume()));
+                }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
 
-            }
+                }
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
 
-            }
-        });
+                }
+            });
 
-        seekBarTrackPans[0].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            seekBarTrackPans[finali].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-                TrackSingleton.get(getApplicationContext()).getTrack(0).setTrackPan(progress);
-            }
+                    TrackSingleton.get(getApplicationContext()).getTrack(finali).setTrackPan(progress);
+                }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
 
-            }
+                }
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
 
-            }
-        });
+                }
+            });
 
-        //Channel section for track 2
-        verticalSlidersTrackVolume[1].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                TrackSingleton.get(getApplicationContext())
-                        .getTrack(1).setTrackVolume(progress);
-
-                textViewTrackVolumeFaderLevel[1].setText(String.valueOf(TrackSingleton.get(getApplicationContext())
-                        .getTrack(1).getTrackVolume()));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        seekBarTrackPans[1].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                TrackSingleton.get(getApplicationContext()).getTrack(1).setTrackPan(progress);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-
-        //Channel section for track 3
-        verticalSlidersTrackVolume[2].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                TrackSingleton.get(getApplicationContext())
-                        .getTrack(2).setTrackVolume(progress);//Double.parseDouble(String.valueOf(progress)) / 10);
-
-                textViewTrackVolumeFaderLevel[2].setText(String.valueOf(TrackSingleton.get(getApplicationContext())
-                        .getTrack(2).getTrackVolume()));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        seekBarTrackPans[2].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                TrackSingleton.get(getApplicationContext()).getTrack(2).setTrackPan(progress);
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        //Channel section for track 4
-        verticalSlidersTrackVolume[3].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                TrackSingleton.get(getApplicationContext())
-                        .getTrack(3).setTrackVolume(progress);//Double.parseDouble(String.valueOf(progress)) / 10);
-
-                textViewTrackVolumeFaderLevel[3].setText(String.valueOf(TrackSingleton.get(getApplicationContext())
-                        .getTrack(3).getTrackVolume()));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        seekBarTrackPans[3].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                TrackSingleton.get(getApplicationContext()).getTrack(3).setTrackPan(progress);
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        //Channel section for track 5
-        verticalSlidersTrackVolume[4].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                TrackSingleton.get(getApplicationContext())
-                        .getTrack(4).setTrackVolume(progress);
-
-                textViewTrackVolumeFaderLevel[4].setText(String.valueOf(TrackSingleton.get(getApplicationContext())
-                        .getTrack(4).getTrackVolume()));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        seekBarTrackPans[4].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                TrackSingleton.get(getApplicationContext()).getTrack(4).setTrackPan(progress);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        //Channel section for track 6
-        verticalSlidersTrackVolume[5].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                TrackSingleton.get(getApplicationContext())
-                        .getTrack(5).setTrackVolume(progress);
-
-                textViewTrackVolumeFaderLevel[5].setText(String.valueOf(TrackSingleton.get(getApplicationContext())
-                        .getTrack(5).getTrackVolume()));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        seekBarTrackPans[5].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                TrackSingleton.get(getApplicationContext()).getTrack(5).setTrackPan(progress);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        //Channel section for track 7
-        verticalSlidersTrackVolume[6].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                TrackSingleton.get(getApplicationContext())
-                        .getTrack(6).setTrackVolume(progress);
-
-                textViewTrackVolumeFaderLevel[6].setText(String.valueOf(TrackSingleton.get(getApplicationContext())
-                        .getTrack(6).getTrackVolume()));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        seekBarTrackPans[6].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                TrackSingleton.get(getApplicationContext()).getTrack(6).setTrackPan(progress);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        //Channel section for track 8
-        verticalSlidersTrackVolume[7].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                TrackSingleton.get(getApplicationContext())
-                        .getTrack(7).setTrackVolume(progress);
-
-                textViewTrackVolumeFaderLevel[7].setText(String.valueOf(TrackSingleton.get(getApplicationContext())
-                        .getTrack(7).getTrackVolume()));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        seekBarTrackPans[7].setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                TrackSingleton.get(getApplicationContext()).getTrack(7).setTrackPan(progress);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
+        }
 
     }
 
@@ -618,18 +334,10 @@ public class MixerActivity extends Activity {
         seekbarMasterVolume.setProgress((int) TrackSingleton.get(getApplicationContext()).getMasterVolume());
         Log.d(TAG, "mixer called onResume");
 
-        checkBoxTrackMutes[0].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(0).isMuted());
-
-        checkBoxTrackMutes[1].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(1).isMuted());
-
-        checkBoxTrackMutes[2].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(2).isMuted());
-
-        checkBoxTrackMutes[3].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(3).isMuted());
-       checkBoxTrackMutes[4].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(4).isMuted());
-       checkBoxTrackMutes[5].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(5).isMuted());
-       checkBoxTrackMutes[6].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(6).isMuted());
-       checkBoxTrackMutes[7].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(7).isMuted());
-
+        for(int i = 0; i<8; i++) {
+            final int finali = i;
+            checkBoxTrackMutes[finali].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(finali).isMuted());
+        }
     }
 
     @Override

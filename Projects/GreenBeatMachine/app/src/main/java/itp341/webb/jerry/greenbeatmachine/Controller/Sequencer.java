@@ -139,6 +139,11 @@ public class Sequencer {
 
     }
 
+    public void setMidiStep(boolean midiStep, int indexI, int indexJ){
+        //lock.notify();
+        this.midiSteps[indexI][indexJ] = midiStep;
+    }
+
     public void setBpm(int bpm) {
         this.bpm = bpm;
     }

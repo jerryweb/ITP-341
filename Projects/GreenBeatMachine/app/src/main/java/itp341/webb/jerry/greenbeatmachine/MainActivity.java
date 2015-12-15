@@ -65,7 +65,7 @@ public class MainActivity extends Activity {
         soundAdapter = new SoundAdapter(getApplicationContext(),soundBank);
         soundList.setAdapter(soundAdapter);
 
-        //This si the
+        //This is the list of the current sounds given to the user
         soundList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -139,18 +139,12 @@ public class MainActivity extends Activity {
     public static List<PadLayoutInformation> getData(){
 
         List<PadLayoutInformation> data = new ArrayList<>();
-        int[] buttonIds = new int[8];
-        String[] trackNames = new String[8];
+
         for (int i = 0; i<8; i++) {
 
-            buttonIds[i] = i;
-            trackNames[i] = "track " +i ;
-        }
-        for (int i = 0; i<buttonIds.length; i++) {
-
             PadLayoutInformation current = new PadLayoutInformation();
-            current.padId = buttonIds[i];
-            current.trackName = trackNames[i];
+            current.padId = i;
+            current.trackName = "track " +i ;
             data.add(current);
         }
 

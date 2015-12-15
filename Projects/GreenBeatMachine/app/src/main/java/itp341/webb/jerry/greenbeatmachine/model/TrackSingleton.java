@@ -20,6 +20,7 @@ import itp341.webb.jerry.greenbeatmachine.database.SoundDbSchema.TABLE_SOUNDS;
  * Created by jerrywebb on 11/28/15.
  * This singleton holds the information for the 8 tracks and the set of sounds used during playback.
  * The sequencer controller is also located here as it is used for tempo playback.
+ * Sound samples must not exceed 1 MB in size in order to properly play from sound pool.
  */
 public class TrackSingleton {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -153,7 +154,7 @@ public class TrackSingleton {
 
     //This pre-loads all of the sound samples and stores them into the database
     //each sound needs a context, resource id, and a playback priority when loaded into the
-    // soundpool. soundResourceIds holds the resource ids for the sounds
+    // sound pool. soundResourceIds holds the resource ids for the sounds
     public void setSamplesToTracks(){
 
         int[] dummySoundId = new int[12];//place holder for assigned id by sound pool
@@ -215,6 +216,7 @@ public class TrackSingleton {
 
     }
 
+    //This loads the sounds from the database to the corresponding tracks and pads
     public void loadSample(int id, String name){
 
         Sound s = new Sound();
@@ -228,7 +230,6 @@ public class TrackSingleton {
                 s.setResourceArrayPosition(c.getInt(TABLE_SOUNDS.COLUMN_RESOURCE_ARRAY_POSTION));
 
                 mTracks.get(id).setTrackSample(s);
-//                SoundsSingleton.get(mAppContext).updateSound(s.getName(), s);
             }
 
             }
@@ -251,7 +252,6 @@ public class TrackSingleton {
                         switch (id) {
                             case 0:
                                 //int soundID, float leftVolume, float rightVolume, int priority, int loop, float rate)
-
                                 soundPool.play(soundId, (float) leftChannelOutput,
                                         (float) rightChannelOutput, 1, 0, 1);
                                 break;
@@ -260,14 +260,10 @@ public class TrackSingleton {
                                         (float) rightChannelOutput, 1, 0, 1);
                                 break;
                             case 2:
-//                    mTracks.get(0).setTrackSample(s1);
-
                                 soundPool.play(soundId, (float) leftChannelOutput,
                                         (float) rightChannelOutput, 1, 0, 1);
                                 break;
                             case 3:
-//                    mTracks.get(0).setTrackSample(so);
-
                                 soundPool.play(soundId, (float) leftChannelOutput,
                                         (float) rightChannelOutput, 1, 0, 1);
                                 break;

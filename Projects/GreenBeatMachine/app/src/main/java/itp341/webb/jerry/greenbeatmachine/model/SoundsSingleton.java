@@ -65,11 +65,7 @@ public class SoundsSingleton {
 
 
         mDatabase.insert(TABLE_SOUNDS.NAME, null, cv);
-
-
-        if(sounds.size() < 12) {
             sounds.add(s);
-        }
         return 0;
     }
 

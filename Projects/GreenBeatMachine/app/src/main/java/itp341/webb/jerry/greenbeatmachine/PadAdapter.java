@@ -95,7 +95,6 @@ public static final String TAG = "itp341.finalProject.tag";
 
     public void setPadSound(int id, String name){
         holders.get(lastPadClicked).btn_pad_item.setText(name);
-        TrackSingleton.get(mAppContext).setSamplesToTracks();
 
     }
 
