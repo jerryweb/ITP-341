@@ -32,6 +32,7 @@ public class TrackSingleton {
     private int bpm;
     boolean loaded;
     int [] soundResourceIds;
+    int metronomeSound;
 
 
     SoundPool metronomeSamplePool;
@@ -48,8 +49,8 @@ public class TrackSingleton {
         masterVolume = 80;                 //volume of the master fader/whole application
         bpm = 95;                           //tempo in beats per minute
         loaded = false;
-        trackSamplePool = new SoundPool[8];
         soundResourceIds = new int[32];
+        metronomeSound = 1;
 
         for(int i = 0; i<8;i++){
             Track t = new Track("Track " + (i+1), 80.0, 50.0);
@@ -63,20 +64,15 @@ public class TrackSingleton {
                 .setUsage(AudioAttributes.USAGE_MEDIA)
                 .build();
 
-        metronomeSamplePool = new SoundPool.Builder().setMaxStreams(1)
+        metronomeSamplePool = new SoundPool.Builder().setMaxStreams(5)
                 .setAudioAttributes(sampleAttributes)
-                .build(); //int maxStreams, int streamType,int srcQuality
+                .build();
+
+        //int maxStreams, int streamType,int srcQuality
         soundPool = new SoundPool.Builder().setMaxStreams(25)
         .setAudioAttributes(sampleAttributes)
         .build();
         //Streams are the number of sounds that can be played simultaneously
-
-        for(int i = 0; i<8; i++){
-            trackSamplePool[i] = new SoundPool.Builder().setMaxStreams(5)
-                    .setAudioAttributes(sampleAttributes)
-                    .build(); //int maxStreams, int streamType,int srcQuality
-        }
-
 
         setSamplesToTracks();
 
@@ -214,6 +210,7 @@ public class TrackSingleton {
         sTemp = new Sound("vb6_shk",dummySoundId[11],"shaker",11);
         SoundsSingleton.get(mAppContext).addSound(sTemp);
 
+       metronomeSound =  metronomeSamplePool.load(mAppContext, R.raw.lex_rim,1);
     }
 
     //This loads the sounds from the database to the corresponding tracks and pads
@@ -291,7 +288,7 @@ public class TrackSingleton {
     }
 
     public void playMetronome(){
-            metronomeSamplePool.play(1,(float) masterVolume/100,
+            metronomeSamplePool.play(metronomeSound,(float) masterVolume/100,
                     (float) masterVolume/100, 1, 0, 1);
     }
 

@@ -131,14 +131,6 @@ public class Sequencer {
     }
 
 
-    public void setMidiSteps(boolean[][] midiSteps) {
-        synchronized (lock) {
-            lock.notify();
-            this.midiSteps = midiSteps;
-        }
-
-    }
-
     public void setMidiStep(boolean midiStep, int indexI, int indexJ){
         //lock.notify();
         this.midiSteps[indexI][indexJ] = midiStep;
@@ -149,10 +141,10 @@ public class Sequencer {
     }
 
     public void toggleMetronome() {
-        synchronized (lock) {
-            lock.notify();
+//        synchronized (lock) {
+//            lock.notify();
             this.metronome = !metronome;
-        }
+//        }
 
     }
 }

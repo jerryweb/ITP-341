@@ -345,8 +345,6 @@ public class MixerActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.play_menu, menu);
 
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        getMenuInflater().inflate(R.menu.play_menu, menu);
         return true;
     }
 
@@ -356,11 +354,6 @@ public class MixerActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         if (id == R.id.action_play_track){
             if(!TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying()) {
