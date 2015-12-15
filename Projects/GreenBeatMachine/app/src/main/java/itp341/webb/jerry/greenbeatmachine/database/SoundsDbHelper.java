@@ -21,7 +21,8 @@ public class SoundsDbHelper extends SQLiteOpenHelper {
             TABLE_SOUNDS.KEY_ID + " integer primary key autoincrement, " +
             TABLE_SOUNDS.KEY_NAME + " TEXT, " +
             TABLE_SOUNDS.KEY_SOUNDID + " REAL, " +
-            TABLE_SOUNDS.KEY_TYPE + " TEXT"
+            TABLE_SOUNDS.KEY_TYPE + " TEXT, " +
+            TABLE_SOUNDS.KEY_RESOURCE_ARRAY_POSTION + " REAL"
             + ");";
 
     public SoundsDbHelper(Context context){

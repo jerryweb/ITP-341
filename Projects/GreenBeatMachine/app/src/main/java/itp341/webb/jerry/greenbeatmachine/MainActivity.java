@@ -3,7 +3,6 @@ package itp341.webb.jerry.greenbeatmachine;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +10,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SeekBar;
@@ -19,31 +20,34 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import java.io.File;
+import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.List;
 
+import itp341.webb.jerry.greenbeatmachine.model.Sound;
+import itp341.webb.jerry.greenbeatmachine.model.SoundsSingleton;
 import itp341.webb.jerry.greenbeatmachine.model.Track;
 import itp341.webb.jerry.greenbeatmachine.model.TrackSingleton;
 
 
 public class MainActivity extends Activity {
     public static final String TAG = "itp341.finalProject.tag";
-    private MediaPlayer mp = new MediaPlayer();
 
 
     double masterVolume;
 //    Button btn_to_midi_sequencer;
     EditText editTextBPM;
     ListView soundList;
+    SoundAdapter soundAdapter;
 
     SeekBar seekBarMasterVolume;
     ArrayList<Track> tracks;
+    ArrayList<Sound> soundBank;
     private RecyclerView beatPadLayout;
     private PadAdapter padAdapter;
     Switch playingIndicator;
-
-    Cursor c; //CursorWrapper
-    SimpleCursorAdapter cursorAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         tracks = TrackSingleton.get(this).getmTracks();
+        soundBank = SoundsSingleton.get(getApplicationContext()).getSoundList();
+
 
         beatPadLayout = (RecyclerView) findViewById(R.id.beatPadLayout);
         padAdapter = new PadAdapter(getApplicationContext(),getData());
@@ -61,8 +67,30 @@ public class MainActivity extends Activity {
         playingIndicator = (Switch) findViewById(R.id.playingIndicator);
         soundList = (ListView) findViewById(R.id.soundsList);
 
+        soundAdapter = new SoundAdapter(getApplicationContext(),soundBank);
+        soundList.setAdapter(soundAdapter);
 
-        addSoundsForTest();
+        soundList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView getChoiceText;
+                padAdapter.setPadSound(position, soundBank.get(position).getName());
+//                padAdapter.notifyDataSetChanged();
+                getChoiceText = (TextView)view.findViewById(R.id.textViewSoundName);
+
+
+                soundAdapter.notifyDataSetChanged();
+                soundList.deferNotifyDataSetChanged();
+
+
+                TrackSingleton.get(getApplicationContext())
+                        .loadSample(padAdapter.getLastPadClicked()
+                                , getChoiceText.getText().toString());
+                return false;
+            }
+        });
+
+
         updateView();
 
         masterVolume =  TrackSingleton.get(this).getMasterVolume();
@@ -128,35 +156,6 @@ public class MainActivity extends Activity {
 
 
         return data;
-    }
-    public void addSoundsForTest(){
-        padAdapter.notifyDataSetChanged();
-//        bmb_k_id = samplePool.load(this, R.raw.ac_k, 1);
-//        phn_clp_id = samplePool.load(this, R.raw.phn_clp,1);
-//        dry_ohh_cra_id = samplePool.load(this, R.raw.dry_ohh_cra,1);
-//
-//
-//        Sound so = new Sound("bmb_k",bmb_k_id,"kick");
-//        SoundsSingleton.get(this).addSound(so);
-//
-//        Track t0 = new Track("track 1", 0.8, 0.5);
-//        t0.setTrackSample(so);
-//        TrackSingleton.get(this).updateTrack(0, t0);
-//
-//        Sound s1 = new Sound("phn_clp", phn_clp_id, "clap");
-//        SoundsSingleton.get(this).addSound(s1);
-//
-//        Track t1 = new Track("track 2", 0.8, 0.5);
-//        t1.setTrackSample(s1);
-//        TrackSingleton.get(this).updateTrack(1, t1);
-//
-//        Sound s2 = new Sound("dry_ohh_cra", dry_ohh_cra_id, "crash");
-//        SoundsSingleton.get(this).addSound(s2);
-//
-//        Track t2 = new Track("track 3", 0.8, 0.5);
-//        t2.setTrackSample(s2);
-//        TrackSingleton.get(this).updateTrack(2, t2);
-
 
     }
 
@@ -180,7 +179,12 @@ public class MainActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
             return true;
+        }
+
+        if (id == R.id.action_save){
+
         }
 
         if (id == R.id.action_play_track){
@@ -225,10 +229,17 @@ public class MainActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        padAdapter.notifyDataSetChanged();
+//        padAdapter.notifyDataSetChanged();
+        soundAdapter.notifyDataSetChanged();
         seekBarMasterVolume.setProgress((int) TrackSingleton.get(getApplicationContext()).getMasterVolume());
         playingIndicator.setChecked(TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying());
     }
+//
+//    @Override
+//    public void onPause(){
+//        super.onPause();
+//
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -236,8 +247,10 @@ public class MainActivity extends Activity {
 
         if (resultCode == Activity.RESULT_OK) {
             Log.d(TAG, "Worked : " + requestCode);
-            padAdapter.notifyDataSetChanged();
+//            padAdapter.notifyDataSetChanged();
+
         }
+        soundAdapter.notifyDataSetChanged();
         seekBarMasterVolume.setProgress((int) TrackSingleton.get(getApplicationContext()).getMasterVolume());
         playingIndicator.setChecked(TrackSingleton.get(getApplicationContext()).getSequencer().isPlaying());
     }

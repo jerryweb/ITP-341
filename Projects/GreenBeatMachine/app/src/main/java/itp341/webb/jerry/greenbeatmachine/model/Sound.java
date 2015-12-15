@@ -15,6 +15,7 @@ public class Sound implements Serializable {
     private String name;
     private int soundId;
     private String type;
+    private int resourceArrayPosition;
 
     //constructor used for testing
     public Sound() {
@@ -36,11 +37,20 @@ public class Sound implements Serializable {
         this.type = type;
     }
 
-    public Sound(String Name, int sId, String Type){
+    public Sound(String Name, int sId, String Type, int rp){
         super();
-        name = Name;
-        soundId = sId;
-        type = Type;
+        this.name = Name;
+        this.soundId = sId;
+        this.type = Type;
+        this.resourceArrayPosition = rp;
+    }
+
+    public int getResourceArrayPosition() {
+        return resourceArrayPosition;
+    }
+
+    public void setResourceArrayPosition(int resourceArrayPosition) {
+        resourceArrayPosition = resourceArrayPosition;
     }
 
     public long get_id() {

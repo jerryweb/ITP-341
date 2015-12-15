@@ -24,5 +24,10 @@
     <string name="master">Master</string>
     <string name="mute">Mute</string>
     <string name="pan">Pan</string>
+    <string name="sound">Sound</string>
+    <string name="type">Type</string>
+    <string name="sounds">Sounds</string>
+    <string name="action_load">Load</string>
+    <string name="action_save">Save</string>
 
 </resources>

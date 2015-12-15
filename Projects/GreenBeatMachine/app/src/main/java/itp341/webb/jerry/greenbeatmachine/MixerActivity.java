@@ -65,6 +65,7 @@ public class MixerActivity extends Activity {
         seekbarMasterVolume = (VerticalSlider) findViewById(R.id.seekbarMasterVolume);
         seekbarMasterVolume.setProgress((int)
                 TrackSingleton.get(getApplicationContext()).getMasterVolume());
+        textViewMasterVolume.setText(String.valueOf(TrackSingleton.get(getApplicationContext()).getMasterVolume()));
 
 
         //Track 1 channel Section
@@ -152,7 +153,7 @@ public class MixerActivity extends Activity {
         verticalSlidersTrackVolume[5].setProgress((int)
                 TrackSingleton.get(getApplicationContext()).getTrack(5).getTrackVolume());
          textViewTrackVolumeFaderLevel[5].setText(String.valueOf(TrackSingleton.get(getApplicationContext())
-                .getTrack(5).getTrackVolume()));
+                 .getTrack(5).getTrackVolume()));
         textViewTrackLabel[5] = (TextView) findViewById(R.id.textViewTrack6);
         textViewTrackLabel[5].setText(TrackSingleton.get(getApplicationContext()).getTrack(0).getName());
 

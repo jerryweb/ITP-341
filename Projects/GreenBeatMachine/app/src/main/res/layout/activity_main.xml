@@ -82,11 +82,28 @@
             android:layout_marginLeft="@dimen/activity_min_widget_distance" />
     </LinearLayout>
 
-        <ListView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:id="@+id/soundsList"
-            android:layout_weight=".75" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight=".75"
+            android:layout_marginLeft="@dimen/activity_min_widget_distance">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sounds"
+                android:id="@+id/textView2"
+                android:textStyle="bold"
+                android:textSize="@dimen/medium_text_size"
+                android:layout_marginBottom="@dimen/activity_min_widget_distance"
+                android:gravity="center_horizontal" />
+
+            <ListView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/soundsList" />
+        </LinearLayout>
 
     </LinearLayout>
 

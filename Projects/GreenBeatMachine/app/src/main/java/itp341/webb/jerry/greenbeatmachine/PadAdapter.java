@@ -23,23 +23,32 @@ public static final String TAG = "itp341.finalProject.tag";
 
     private LayoutInflater inflater;
     List<PadLayoutInformation> data = Collections.emptyList();
-
+    ArrayList<PadViewHolder> holders;
     private Context mAppContext;
+    private PadViewHolder holder;
+    private int lastPadClicked;
+
 
     public PadAdapter(Context context, List<PadLayoutInformation> data){
         mAppContext = context;
         inflater = LayoutInflater.from(context);
         this.data = data;
+        lastPadClicked = 0;
+        holders = new ArrayList<>();
     }
 
     @Override
     public PadViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = inflater.inflate(R.layout.item_custom_pad, parent, false);
+        holder = new PadViewHolder(view);
+        if (holders.size() == 8) {
+            holders = new ArrayList<PadViewHolder>();
+        }
+        holders.add(holder);
 
-        PadViewHolder holder = new PadViewHolder(view);
 
-        return holder;
+        return holders.get(holders.size()-1);
     }
 
     @Override
@@ -80,6 +89,18 @@ public static final String TAG = "itp341.finalProject.tag";
                     .playSound(Integer.parseInt(textView3.getText().toString()));
             TrackSingleton.get(mAppContext)
                     .callTriggerBeat(Integer.parseInt(textView3.getText().toString()));
+            lastPadClicked = Integer.parseInt(textView3.getText().toString());
         }
+    }
+
+    public void setPadSound(int id, String name){
+        holders.get(lastPadClicked).btn_pad_item.setText(name);
+        TrackSingleton.get(mAppContext).setSamplesToTracks();
+//        TrackSingleton.get(mAppContext).getTrack(lastPadClicked).setName(name);
+//        holders.get(lastPadClicked).textView3.setText(String.valueOf(id));
+    }
+
+    public int getLastPadClicked() {
+        return lastPadClicked;
     }
 }
