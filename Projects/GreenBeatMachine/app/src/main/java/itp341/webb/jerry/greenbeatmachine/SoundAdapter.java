@@ -38,8 +38,5 @@ public class SoundAdapter extends ArrayAdapter<Sound> {
         return convertView;
     }
 
-//    public void setListAdapter(ArrayList<String>){
-//
-//    }
 }
 

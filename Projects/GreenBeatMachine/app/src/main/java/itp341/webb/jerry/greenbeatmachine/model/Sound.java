@@ -53,13 +53,6 @@ public class Sound implements Serializable {
         resourceArrayPosition = resourceArrayPosition;
     }
 
-    public long get_id() {
-        return _id;
-    }
-
-    public void set_id(long _id) {
-        this._id = _id;
-    }
 
     public String getName() {
         return name;

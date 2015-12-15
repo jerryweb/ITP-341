@@ -9,6 +9,10 @@ import itp341.webb.jerry.greenbeatmachine.database.SoundDbSchema.TABLE_SOUNDS;
 
 /**
  * Created by jerrywebb on 12/6/15.
+ * This holds the database of all of the sounds currently loaded in the app.
+ * The soundId is corresponds to the location of the sound in the sound pool, and
+ * the resource_array_position corresponds to the resource id of the sound. Type is
+ * the type of sample or instrument.
  */
 public class SoundsDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "sounds_sqlite.db";

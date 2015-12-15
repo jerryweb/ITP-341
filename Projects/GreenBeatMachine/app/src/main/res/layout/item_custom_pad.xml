@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+<!--Custom class used to fill the recycle view. Visually it only consists of
+a button, however, the text view is required for saving the id of each beat pad.-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"

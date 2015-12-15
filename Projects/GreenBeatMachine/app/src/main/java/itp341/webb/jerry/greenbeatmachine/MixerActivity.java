@@ -7,12 +7,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.util.Log;
 
-import itp341.webb.jerry.greenbeatmachine.model.Track;
 import itp341.webb.jerry.greenbeatmachine.model.TrackSingleton;
 
 /**
@@ -35,8 +33,7 @@ public class MixerActivity extends Activity {
     //Master channel Section
     VerticalSlider seekbarMasterVolume;
     TextView textViewMasterVolume;
-    ProgressBar progressBarMasterVolumeLeft;
-    ProgressBar progressBarMasterVolumeRight;
+
 
 
 
@@ -60,8 +57,6 @@ public class MixerActivity extends Activity {
     public void initializeChannels(){
         //Master channel Section
         textViewMasterVolume = (TextView) findViewById(R.id.textViewMasterVolume);
-        progressBarMasterVolumeLeft = (ProgressBar) findViewById(R.id.progressBarMasterVolLeft);
-        progressBarMasterVolumeRight = (ProgressBar) findViewById(R.id.progressBarMasterVolRight);
         seekbarMasterVolume = (VerticalSlider) findViewById(R.id.seekbarMasterVolume);
         seekbarMasterVolume.setProgress((int)
                 TrackSingleton.get(getApplicationContext()).getMasterVolume());
@@ -199,10 +194,7 @@ public class MixerActivity extends Activity {
                         .setMasterVolume(progress);
 
                 textViewMasterVolume.setText(String.valueOf(TrackSingleton.get(getApplicationContext()).getMasterVolume()));
-                progressBarMasterVolumeLeft.setProgress((int) TrackSingleton
-                        .get(getApplicationContext()).getMasterVolume());
-                progressBarMasterVolumeRight.setProgress((int) TrackSingleton
-                        .get(getApplicationContext()).getMasterVolume());
+
             }
 
             @Override
@@ -625,16 +617,7 @@ public class MixerActivity extends Activity {
 
         seekbarMasterVolume.setProgress((int) TrackSingleton.get(getApplicationContext()).getMasterVolume());
         Log.d(TAG, "mixer called onResume");
-        //Updates channel 1
 
-//        verticalsetProgress((int) (TrackSingleton.get(getApplicationContext()).getTrack(0).getTrackVolume() * 100));
-//        seekBarTrackPans[0].setProgress((int)
-//                (TrackSingleton.get(getApplicationContext()).getTrack(0).getTrackPan() * 10));
-//        checkBoxTrackMutes[0].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(0).isMuted());
-
-
-        //Updates Channel 2 UI
-//
         checkBoxTrackMutes[0].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(0).isMuted());
 
         checkBoxTrackMutes[1].setChecked(TrackSingleton.get(getApplicationContext()).getTrack(1).isMuted());

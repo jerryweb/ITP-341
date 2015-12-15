@@ -24,7 +24,7 @@ public class Sequencer {
     private boolean midiSteps[][]; //These correspond to the midi step checkboxes in the sequencer
     private boolean metronome;
     private final Object lock = new Object();
-    private int step;
+    private int step;               //which midi step (beat) the sequencer is on
 
 
 
@@ -51,7 +51,6 @@ public class Sequencer {
                     step = i;
                     //This checks whether the steps are checked; if true, then it will tell the track
                     // to play the corresponding sound
-//                    Log.d(TAG,"kick: " + i + " "+ midiSteps[0][i] + "   clap: " + midiSteps[1][i]);
 
                     if(this.metronome){
                         TrackSingleton.get(mAppContext).playMetronome();
@@ -131,9 +130,6 @@ public class Sequencer {
         return playing;
     }
 
-    public void setPlaying(boolean playing) {
-        this.playing = playing;
-    }
 
     public void setMidiSteps(boolean[][] midiSteps) {
         synchronized (lock) {
@@ -141,10 +137,6 @@ public class Sequencer {
             this.midiSteps = midiSteps;
         }
 
-    }
-
-    public int getBpm() {
-        return bpm;
     }
 
     public void setBpm(int bpm) {

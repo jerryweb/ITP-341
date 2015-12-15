@@ -2,6 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="fill_parent">
+
+    <!--The recycler view is a more efficient method to display item in a grid-->
+    <!--view by recycling the visual blocks that fall off screen. It contains a
+    table layout of all  8x16 = 128 midi steps.-->
 <LinearLayout  android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -27,7 +31,8 @@
             android:checked="false"
             android:layout_weight="0.07"
             android:enabled="true"
-            android:clickable="false" />
+            android:clickable="false"
+            android:visibility="invisible" />
 
         <TextView
             android:layout_width="wrap_content"
